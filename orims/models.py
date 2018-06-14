@@ -55,7 +55,7 @@ class branch(models.Model):
     branch_id = models.AutoField(primary_key=True)
 
     # Setting foreign key
-    unit_id = models.AutoField(primary_key=True)
+    unit_id = models.ForeignKey(service_unit, on_delete=models.CASCADE)
 
     branch_name = models.CharField(max_length=30)
     
@@ -89,7 +89,7 @@ class location(models.Model):
     'This is the common base class (model) for all branch locations'
 
     # Setting foreign key
-    branch_id = models.AutoField(primary_key=True)
+    branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
  
     #Location attributes
     district = models.CharField(max_length=15)
@@ -102,8 +102,69 @@ class location(models.Model):
 
     #Defining a display string for each instance
     def __str__(self):
-        return self.branch_name
+        return (str(self.zone) + '-' + str(self.town) + '-' + str(self.district))
 
     #Enforcing custom table name
     class Meta:
     db_table = "location"
+
+
+# Model for branch location
+class contact(models.Model):
+    'This is the common base class (model) for all branch contacts'
+
+    # Setting foreign key
+    branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
+ 
+    #contact attributes
+    office_number = models.CharField(max_length=15)
+    mobile_number = models.CharField(max_length=15)
+    fax_number = models.CharField(max_length=15)
+    email_address = models.CharField(max_length=30)
+
+
+    #Enforcing custom table name
+    class Meta:
+    db_table = "contact"
+
+
+# Model for branch departments
+class department(models.Model):
+    'This is the common base class (model) for all branch contacts'
+
+    # Setting custom Primary key
+    department_id = models.CharField(primary_key=True)
+    
+    # Setting foreign key
+    branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
+ 
+    #other depatment attributes
+    department_name = models.CharField(max_length=15)
+    dep_description = models.TextField(max_length=1024)
+
+    #Enforcing custom table name
+    class Meta:
+    db_table = "department"
+
+
+# Model for branch location
+class staff(models.Model):
+    'This is the common base class (model) for all branch contacts'
+
+    # Setting foreign key
+    department_id = models.ForeignKey(department, on_delete=models.CASCADE)
+ 
+    #other staff attributes
+    staff_first_name = models.CharField(max_length=15)
+    staff_last_name = models.CharField(max_length=15)
+    staff_contact = models.CharField(max_length=15)
+    staff_email_address = models.CharField(max_length=30)
+
+    #To be converted to choice field
+    staff_designation = models.CharField(max_length=30)
+
+
+
+    #Enforcing custom table name
+    class Meta:
+    db_table = "staff"
