@@ -7,22 +7,22 @@ from django.utils import timezone
 
 # Model for service unit object
 class service_unit(models.Model):
-	'This is the common base class (model) for all service facility units. i.e. [Ministries, Organisations, firms, etc.]'
-
+    'This is the common base class (model) for all service facility units. i.e. [Ministries, Organisations, firms, etc.]'
     # Setting custom Primary key
     unit_id = models.AutoField(primary_key=True)
     unit_name = models.CharField(max_length=30)
-    
+    unit_innitials = models.CharField(max_length=10)
+
     #Defining possible service unit types to form a lookup.
     ministry = 'min'
     organization = 'org'
     firm = 'firm'
     other = 'other'
     unit_choice = (
-    	ministry, 'Ministry'
-    	organization,'Organization'
-    	firm,'Firm'
-    	other,'Others'
+    	(ministry, 'Ministry'),
+    	(organization,'Organization'),
+    	(firm,'Firm'),
+    	(other,'Others')
     )
 
     #Creating a choice of service units
@@ -33,9 +33,10 @@ class service_unit(models.Model):
     )
 
     unit_description = models.TextField(max_length=1024)
-    unit_logo = models.ImageField(upload_to='/uploads/images/unit_images/logo_images',height_field=None, width_field=None,max_length=500)
-    unit_featured_image = models.ImageField(upload_to='/uploads/images/unit_images/feutured_images',height_field=None, width_field=None,max_length=1024)
-    unit_cover_photo = models.ImageField(upload_to='/uploads/images/unit_images/cover_images',height_field=None, width_field=None,max_length=2048)
+    #unit_logo = models.ImageField(upload_to='/uploads/images/unit_images/logo_images',height_field=None, width_field=None,max_length=500)
+    unit_logo = models.CharField(max_length=500)
+    unit_featured_image = models.CharField(max_length=500)
+    unit_cover_photo = models.CharField(max_length=500)
 
     #Defining what to be returned for each instance
     def __str__(self):
@@ -43,7 +44,7 @@ class service_unit(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "service_unit"
+        db_table = "service_unit"
 
 
 
@@ -62,8 +63,8 @@ class branch(models.Model):
     #Defining possible branch levels to form a lookup.
     
     branch_level_choice = (
-        'main', 'Main Branch'
-        'other','Other Branch'
+        ('main', 'Main Branch'),
+        ('other','Other Branch')
     )
     #Creating a choice of service units Branch levels
     branch_level = models.CharField(
@@ -81,7 +82,7 @@ class branch(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "branch"
+        db_table = "branch"
 
 
 # Model for branch location
@@ -106,7 +107,7 @@ class location(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "location"
+        db_table = "location"
 
 
 # Model for branch location
@@ -125,7 +126,7 @@ class contact(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "contact"
+        db_table = "contact"
 
 
 # Model for branch departments
@@ -133,7 +134,7 @@ class department(models.Model):
     'This is the common base class (model) for all branch contacts'
 
     # Setting custom Primary key
-    department_id = models.CharField(primary_key=True)
+    department_id = models.CharField(primary_key=True,max_length = 50 )
     
     # Setting foreign key
     branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
@@ -144,7 +145,7 @@ class department(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "department"
+        db_table = "department"
 
 
 # Model for branch location
@@ -167,4 +168,4 @@ class staff(models.Model):
 
     #Enforcing custom table name
     class Meta:
-    db_table = "staff"
+        db_table = "staff"
