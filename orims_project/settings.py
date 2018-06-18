@@ -32,9 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     
-    #Added for orims
+    #Added apps for orims
     'orims.apps.OrimsConfig',
-    #end of added list
+    #End of added apps
 
     'django.contrib.admin',
     'django.contrib.auth',

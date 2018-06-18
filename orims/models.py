@@ -11,14 +11,14 @@ class service_unit(models.Model):
     # Setting custom Primary key
     unit_id = models.AutoField(primary_key=True)
     unit_name = models.CharField(max_length=30)
-    unit_innitials = models.CharField(max_length=10)
-
+    
     #Defining possible service unit types to form a lookup.
     ministry = 'min'
     organization = 'org'
     firm = 'firm'
     other = 'other'
     unit_choice = (
+        ('select','Select Type of service unit'),
     	(ministry, 'Ministry'),
     	(organization,'Organization'),
     	(firm,'Firm'),
@@ -29,11 +29,10 @@ class service_unit(models.Model):
     unit_type = models.CharField(
     	max_length=15,
     	choices=unit_choice,
-        default=ministry,
+        default='select',
     )
 
     unit_description = models.TextField(max_length=1024)
-    #unit_logo = models.ImageField(upload_to='/uploads/images/unit_images/logo_images',height_field=None, width_field=None,max_length=500)
     unit_logo = models.CharField(max_length=500)
     unit_featured_image = models.CharField(max_length=500)
     unit_cover_photo = models.CharField(max_length=500)
@@ -66,6 +65,7 @@ class branch(models.Model):
         ('main', 'Main Branch'),
         ('other','Other Branch')
     )
+
     #Creating a choice of service units Branch levels
     branch_level = models.CharField(
         max_length=15,
@@ -103,69 +103,212 @@ class location(models.Model):
 
     #Defining a display string for each instance
     def __str__(self):
-        return (str(self.zone) + '-' + str(self.town) + '-' + str(self.district))
+        return self.branch_name
 
     #Enforcing custom table name
     class Meta:
         db_table = "location"
 
 
-# Model for branch location
+# Model for branch Contact information
 class contact(models.Model):
-    'This is the common base class (model) for all branch contacts'
 
     # Setting foreign key
     branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
  
-    #contact attributes
-    office_number = models.CharField(max_length=15)
+    #Contact attributes
     mobile_number = models.CharField(max_length=15)
+    office_number = models.CharField(max_length=15)
     fax_number = models.CharField(max_length=15)
-    email_address = models.CharField(max_length=30)
+    email_address = models.CharField(max_length=15)
 
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.branch_name
 
     #Enforcing custom table name
     class Meta:
         db_table = "contact"
 
-
-# Model for branch departments
+# Model for branch Contact information
 class department(models.Model):
-    'This is the common base class (model) for all branch contacts'
 
-    # Setting custom Primary key
-    department_id = models.CharField(primary_key=True,max_length = 50 )
-    
+    #Department primary key
+    department_id = models.CharField(primary_key=True, max_length = 30)
     # Setting foreign key
     branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
  
-    #other depatment attributes
-    department_name = models.CharField(max_length=15)
-    dep_description = models.TextField(max_length=1024)
+    #Department attributes
+    department_name = models.CharField(max_length=50)
+    department_description = models.TextField(max_length=1024)
+
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.department_name
 
     #Enforcing custom table name
     class Meta:
         db_table = "department"
 
 
-# Model for branch location
+# Staff model
 class staff(models.Model):
-    'This is the common base class (model) for all branch contacts'
 
+    #staff primary key
+    staff_id = models.CharField(primary_key=True,max_length = 30)
     # Setting foreign key
     department_id = models.ForeignKey(department, on_delete=models.CASCADE)
  
-    #other staff attributes
+    #staff attributes
     staff_first_name = models.CharField(max_length=15)
     staff_last_name = models.CharField(max_length=15)
-    staff_contact = models.CharField(max_length=15)
-    staff_email_address = models.CharField(max_length=30)
+    staff_profile_photo = models.CharField(max_length=512)
 
-    #To be converted to choice field
-    staff_designation = models.CharField(max_length=30)
+    staff_designation_choices = (
+        ('system_admin', 'System administrator'),
+        ('Official', 'Official'),
+        ('receptionist', 'Receptionist'),
+        ('select','Select Staff Designation')
+    )
 
+    #Creating choices for staff
+    staff_designation = models.CharField(
+        max_length=15,
+        choices=staff_designation_choices,
+        default='select',
+    )
+    
+    about_staff = models.TextField(max_length=512)
 
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.staff_first_name + self.staff_last_name
 
     #Enforcing custom table name
     class Meta:
         db_table = "staff"
+
+
+
+# user model
+class user(models.Model):
+
+    # Setting foreign key
+    staff_id = models.ForeignKey(staff, on_delete=models.CASCADE)
+ 
+    #User attributes
+    user_name = models.CharField(unique=True,max_length=15)
+    user_password = models.CharField(max_length=100)
+
+
+    #Defining a display string for each instance
+    def __str__(self):
+        pass
+
+    #Enforcing custom table name
+    class Meta:
+        db_table = "user"
+
+
+# System administrator model
+class system_admin(models.Model):
+
+    # Setting foreign key
+    staff_id = models.ForeignKey(staff, on_delete=models.CASCADE)
+ 
+    #User attributes
+    branch_id = models.ForeignKey(branch, on_delete=models.CASCADE)
+
+
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.staff_id
+
+    #Enforcing custom table name
+    class Meta:
+        db_table = "system_admin"
+
+
+
+# Avails model
+class avails(models.Model):
+
+    # Setting foreign key
+    availer = models.CharField(max_length = 15)
+    availed = models.ForeignKey(staff, on_delete=models.CASCADE)
+    session_start = models.DateTimeField()
+    session_stop = models.DateTimeField()
+
+    #Defining a display string for each instance
+    def __str__(self):
+        pass
+
+    #Enforcing custom table name
+    class Meta:
+        db_table = "avails"
+
+
+
+
+# Appointment model
+class appointment(models.Model):
+    #Appointment primary key
+    appointment_id = models.CharField(primary_key=True,max_length = 30)
+ 
+    # Setting foreign key
+    staff_id = models.ForeignKey(staff, on_delete=models.CASCADE)
+ 
+    #appointment attributes
+    placement_time = models.DateTimeField()
+    start_time = models.DateTimeField()
+    stop_time = models.DateTimeField()
+    reason = models.TextField(max_length=512)
+
+    appointment_mode_choices = (
+        ('pending', 'Pending'),
+        ('canceled', 'Canceled'),
+        ('settled', 'Settled'),
+        ('select','Select Appointment Mode')
+    )
+
+    #Creating mode choices for appointment
+    appointment_mode = models.CharField(
+        max_length=15,
+        choices=appointment_mode_choices,
+        default='select',
+    )
+
+   
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.appointment_id
+
+    #Enforcing custom table name
+    class Meta:
+        db_table = "appointment"
+
+
+
+# Client model
+class client(models.Model):
+
+    # Setting foreign key
+    appointment_id = models.ForeignKey(appointment, on_delete=models.CASCADE)
+ 
+    #client attributes
+    client_first_name = models.CharField(max_length=15)
+    client_last_name = models.CharField(max_length=15)
+    client_contact = models.CharField(max_length=15)
+    location_district = models.CharField(max_length=15)
+    location_town = models.CharField(max_length=15)
+
+    #Defining a display string for each instance
+    def __str__(self):
+        return self.client_first_name + self.client_last_name
+
+    #Enforcing custom table name
+    class Meta:
+        db_table = "client"
+
+
+
