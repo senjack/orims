@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!cphd%^x@3j0a^k68*9x3n(z-i#+kqc7@pkd)3yxgurqd-+tet'
+SECRET_KEY = 'ARCHIVED'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,9 +32,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     
-    #Added apps for orims
+    # Added apps for orims
     'orims.apps.OrimsConfig',
-    #End of added apps
+    'better_filter_widget',
+    # End of added apps
 
     'django.contrib.admin',
     'django.contrib.auth',

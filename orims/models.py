@@ -246,16 +246,17 @@ class User(models.Model):
 # End class User
 
 # System administrator model
-class SystemAdmin(models.Model):
+class Administrator(models.Model):
     """"Creates and associates with a database relation that store data about a system administrator"""
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     # User attributes
     branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE)
     admin_level_choices = (
-        ('unit-admin', 'Main System administrator'),
-        ('branch-admin', 'Branch system administrator'),
-        ('select','Select administrator level')
+        ('unit-admin', 'Unit Level Administrator'),
+        ('branch-admin', 'Branch Level administrator'),
+        ('dept-admin', 'Department Level Administrator'),
+        ('select','Select Administrator Level')
     )
     # Creating choices for staff
     admin_level = models.CharField(
@@ -270,9 +271,9 @@ class SystemAdmin(models.Model):
 
     #Enforcing custom table name
     class Meta:
-        db_table = "SystemAdmin"
+        db_table = "Administrator"
     # End class Meta
-# End class SystemAdmin
+# End class Administrator
 
 # Avails model
 class Avails(models.Model):
