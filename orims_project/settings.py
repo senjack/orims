@@ -33,8 +33,13 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     
     # Added apps for orims
+    'system_admin',
     'orims.apps.OrimsConfig',
     'better_filter_widget',
+    'administrator.apps.AdministratorConfig',
+    'official.apps.OfficialConfig',
+    'public.apps.PublicConfig',
+    'receptionist.apps.ReceptionistConfig',
     # End of added apps
 
     'django.contrib.admin',

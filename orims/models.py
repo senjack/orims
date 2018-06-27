@@ -1,11 +1,13 @@
 from django.db import models
-
+from system_admin.models import SystemAdmin
 # Added imports
 # from django.utils import timezone
 
 class ServiceUnit(models.Model):
     """"Creates and associates with a database relation that store data about a service unit / facility.
     i.e. [Ministry, Organisation, firm, etc.]"""
+    # Setting foreign key
+    system_admin_id = models.ForeignKey(SystemAdmin, on_delete=models.CASCADE)
     # Setting custom Primary key
     unit_id = models.AutoField(primary_key=True)
     unit_name = models.CharField(max_length=30)
@@ -235,7 +237,7 @@ class User(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     # User attributes
     user_name = models.CharField(unique=True,max_length=15)
-    user_password = models.CharField(max_length=100)
+    user_password = models.CharField(max_length=50)
     # Defining a display string for each instance
     def __str__(self):
         return self.user_name
@@ -251,11 +253,12 @@ class Administrator(models.Model):
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     # User attributes
-    branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    # branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE)
     admin_level_choices = (
         ('unit-admin', 'Unit Level Administrator'),
         ('branch-admin', 'Branch Level administrator'),
         ('dept-admin', 'Department Level Administrator'),
+        ('ofc-admin', 'Office Level Administrator'),
         ('select','Select Administrator Level')
     )
     # Creating choices for staff
