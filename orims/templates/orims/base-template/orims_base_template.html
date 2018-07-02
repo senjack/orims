@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>www.orims.com</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+		<!-- Bootstrap -->
+			<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap.css' %}" />
+			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css' %}" />
+			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap-theme.css' %}" />
+			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap-theme.min.css' %}" />
+		<!-- End Bootstrap -->
+
+		<!-- Glyphicons -->
+			<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.eot' %}" />
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.svg' %}" />
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.ttf' %}" />
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff' %}" />
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff' %}" />
+		<!-- End Glyphicons -->
+
+		<style rel = "stylesheet">
+		
+			body,.standard_bg_color{ background:rgb(240,240,240); }
+			body,#body_skeleton,#content_skeleton,#header_skeleton{ margin:0px; }
+			body,#body_skeleton,#content_skeleton{ outline:0px; }
+			body,#body_skeleton,#content_skeleton{ border:0px; }
+			body,#body_skeleton,#content_skeleton{ padding:0px; }
+			
+			#content_skeleton,#header_skeleton,.content_layer{ width:100%;}
+
+			#header_skeleton,#header_photo_flame{ Xbackground:rgb(200,0,0);background:rgb(35,90,105); }
+			#header_skeleton{ height:50px }
+			#header_skeleton{ padding-top:5px;padding-bottom:4px; }
+			#header_skeleton{ border-bottom:1px solid rgb(0,0,0); }
+
+			#header_skeleton,#submenu_skeleton{ position:fixed; }
+			#header_skeleton{ z-index:1 }
+			#submenu_skeleton{ z-index:2; }
+
+			.no_overflow{overflow:hidden}
+			
+			#header_content_skeleton{height:40px}
+			
+			#content_body_skeleton{ padding-top:60px; }
+			#content_body_skeleton{ vertical-align:top; }
+			
+			#header_content_outer_wrapper,#header_content_inner_wrapper{ height:100% }
+			#header_content_outer_wrapper,#submenu_skeleton,.content_layer{ width:100%; }
+			#header_content_outer_wrapper{ padding-right:10px;padding-left:10px; }
+			#header_content_outer_wrapper,#header_content_inner_wrapper{ text-align:center }
+			#header_content_inner_wrapper{ width-max:1130px; }
+			
+			#header_photo_flame,#header_name_label{ display:inline-block; }
+			#header_photo_flame,#header_profile_image,{ height:40px; }
+			#header_photo_flame,#header_profile_image{ width:40px; }
+			#header_photo_flame,#header_profile_image{ border-radius:40px; }
+
+			#header_name_label{ height:30px; }
+			#header_name_label{ padding-right:5px;padding-left:5px; }
+			#header_name_label{ vertical-align:top; }
+			#header_name_label{ color:#fff; }
+
+			.no_content1,.borderless{ border:0px; }
+			.no_content1{ height:0px; }
+
+			.hidden_features,.no_content1{ visibility:hidden }
+			.hidden_features{ display:none; }
+
+			.dynamic_visibility{ display:inline-block;visibility:visible }
+
+			.content_layer{ text-align:left; }
+			.content_layer,.oto_hyt{ height:auto; }
+			
+			.vtop_mgn10{ margin-top:-10px; }
+			.top_pad10{ padding-top:10px; }
+			
+			.content_pad{ padding:10px; }
+			.cont_top_mgn{ margin-top:5px; }
+			
+			.cont_side_pad{ padding-left:0px; }
+			.cont_side_pad{ padding-right:0px; }
+			.cont_side_pad{ padding-top:5px; }
+
+		</style>
+		
+	</head>
+	<body class = "standard_bg_color" >
+	
+		<div id = "body_skeleton" class = "standard_bg_color">
+			<div id = "content_skeleton" class = "standard_bg_color">
+			
+				<div id = "header_skeleton" class = "no_overflow">
+					<div id = "header_content_skeleton" class = "no_overflow">
+						<!-- HEADER CONTENT ARE TO GO HERE -->
+						<div id = "header_content_outer_wrapper" class = "no_overflow">
+							<div id = "header_content_inner_wrapper"class = "no_overflow" style = "">
+								<!--center-->
+								
+								<div id = "header_logo" class = "no_overflow" style = "float:left;border:2px solid #fff;height:40px;width:40px;border-radius:40px;" >
+									<img id = "header_logo" src = "jackson.png" alt = "" style = ""/>
+								</div>								
+
+								<div id = "header_photo_flame" class = "no_overflow" style = "" >
+									<img id = "header_profile_image" src = "jackson.png" alt = "" style = ""/>
+								</div>
+									
+								<div id = "header_name_label" class = "no_overflow" style = "" >
+									<h4 id = "hide_4_xs" style = "width:150px;">www.orims.com</h4>
+								</div>
+
+								<div style="display:inline-block;height:35px;">
+									<form class="bs-example bs-example-form" role="form">
+										<div class="row">
+											<div class="col-lg-12"  >
+												<div class="input-group">
+													<input type="text" placeholder = "" class="form-control"  style="height:30px;">
+														<span class="input-group-btn"  style="">
+															<button class="btn btn-default" type="submit"  style="background:rgb(45,104,123);color:#fff;height:30px;z-index:0;">
+																Search
+															</button>
+														</span>
+													</div><!-- /input-group -->
+												</div><!-- /.col-lg-6 -->
+											</div><!-- /.row -->
+									</form>
+								</div>															
+
+								<div id = "header_logo" class = "no_overflow" style = "display:inline-block;height:40px;width:40px;" >
+									<img id = "header_logo" src = "jackson.png" alt = "" style = ""/>
+								</div>
+								
+								<!--/center-->
+							</div>
+						
+						</div>
+						<!-- END OF HEADER CONTENT AREA -->
+
+						
+					</div>
+				</div>
+
+				<div id = "content_body_skeleton" class = "no_overflow"  >
+
+					
+
+					<!-- PAGE'S BODY CONTENT GOES HERE  -->
+
+					<div class = "container standard_bg_color" style = "" >
+
+						<div class = "row">
+							<div class = "col-xs-1 standard_bg_color no_content1" style = "" ><!--No content[div3]--></div>
+
+							<div  class = "col-xs-10 standard_bg_color borderless vtop_mgn10 top_pad10 oto_hyt" style = "" >
+								<div class = "row" >
+									<div  class = "col-xs-12 borderless oto_hyt" style = "background:rgb(245,245,245);height:8000px; " >
+										
+										<!--THIS IS ALWAYS TO BE USED FOR DISPLAYING DYNAMIC INFORMATION / CONTENT AS PER USER -->
+										<div id = "content_launcher" class = "" style = "">
+											<div class = "row" >
+												<!-- application's dynamic content now follows-->
+												<div class = "row" >
+													<div class = "col-md-3" style = "" >												
+														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
+															<!--Build content left pagelet-->
+															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:rgb(248,248,248);XXXXbackground:#FFF;border:1px solid rgb(230,230,230);border-radius:4px;" >
+																<center><span>{:4:}</span><center><br/>
+
+																
+															</div>
+															<!--End of building content left pagelet-->
+														</div>							
+													</div>
+													<div class = "col-md-6" style = "padding-left:15px;border:0px;" >												
+														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
+															<!--Build content center pagelet-->
+															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:#FFF;border:1px dashed rgb(230,230,230);border-radius:4px;" >
+																<!--<center><span>{:5:}</span><center><br/>-->
+																
+<div style="z-index:0;">
+<form class="bs-example bs-example-form" role="form">
+<div class="row">
+<div class="col-lg-12">
+<div class="input-group">
+<input type="text" class="form-control" style="z-index:0;">
+<span class="input-group-btn">
+<button class="btn btn-default" type="submit" style = "color:#fff;background:rgb(39,90,105);z-index:0;">
+Search
+</button>
+</span>
+</div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+</form>
+</div>															
+															</div>
+															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:#FFF;border:1px solid rgb(230,230,230);border-radius:4px;" >
+																<center><span>{:5:}</span><center><br/>
+
+
+<!-- THIS SECTION IS FOR INJECTION OF SUB TEWMPLATES -->
+
+<!-- END SUB TEWMPLATES INJECTION AREA -->
+																
+															</div>
+															<!--End of building content center pagelet-->
+														</div>							
+													</div>
+													<div class = "col-md-3" style = "" >												
+														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
+															<!--Build content right pagelet-->
+															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:rgb(248,248,248);XXXXbackground:#FFF;text-align:center;border:1px solid rgb(230,230,230);border-radius:4px;" >
+																<span>{:6:}</span><br/>
+																<img src = "jackson.png" alt = "" class = "" style = "width:inherit;" />
+															
+															</div>
+															<!--End of building content right pagelet-->
+														</div>							
+													</div>
+												</div>
+												<!--End of E-ledger application's dynamic content.-->
+
+											</div>
+										</div>
+											<!--END OF DYNAMIC INFORMATION / CONTENT'S DISPLAY PART-->
+									</div>
+
+					
+									<div class = "col-xs-1 standard_bg_color no_overflow no_content1" style = "" ><!--No content[div4]--></div>
+								</div>
+
+							</div>
+
+						</div>	
+					</div>
+
+<!-- END:Of PAGE'S BODY CONTENT  -->
+
+<!-- PAGE'S FOOTER CONTENT START -->
+
+<!-- PAGE'S FOOTER CONTENT ENDS -->
+					
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
