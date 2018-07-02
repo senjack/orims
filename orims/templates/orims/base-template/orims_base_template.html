@@ -33,7 +33,7 @@
 			
 			#content_skeleton,#header_skeleton,.content_layer{ width:100%;}
 
-			#header_skeleton,#header_photo_flame{ Xbackground:rgb(200,0,0);background:rgb(35,90,105); }
+			#header_skeleton,#header_photo_flame{ Xbackground:rgb(200,0,0);background:#254061; }
 			#header_skeleton{ height:50px }
 			#header_skeleton{ padding-top:5px;padding-bottom:4px; }
 			#header_skeleton{ border-bottom:1px solid rgb(0,0,0); }
@@ -86,6 +86,11 @@
 			.cont_side_pad{ padding-right:0px; }
 			.cont_side_pad{ padding-top:5px; }
 
+            /*ORIMS LOGIN FORM STYLES*/
+            .clr-wht{color:#fff}
+            .clr-dft{color:#254061}
+            .pn-hd{background:#254061;text-align:center;}
+            /*END OF ORIMS LOGIN FORM STYLES*/
 		</style>
 		
 	</head>
@@ -120,7 +125,7 @@
 												<div class="input-group">
 													<input type="text" placeholder = "" class="form-control"  style="height:30px;">
 														<span class="input-group-btn"  style="">
-															<button class="btn btn-default" type="submit"  style="background:rgb(45,104,123);color:#fff;height:30px;z-index:0;">
+															<button class="btn btn-default" type="submit"  style="background:#254061;color:#fff;height:30px;z-index:0;">
 																Search
 															</button>
 														</span>
@@ -164,48 +169,54 @@
 											<div class = "row" >
 												<!-- application's dynamic content now follows-->
 												<div class = "row" >
-													<div class = "col-md-3" style = "" >												
-														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
-															<!--Build content left pagelet-->
-															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:rgb(248,248,248);XXXXbackground:#FFF;border:1px solid rgb(230,230,230);border-radius:4px;" >
-																<center><span>{:4:}</span><center><br/>
-
-																
-															</div>
-															<!--End of building content left pagelet-->
-														</div>							
+													<div class = "col-md-3" style = "height:100px" >
 													</div>
-													<div class = "col-md-6" style = "padding-left:15px;border:0px;" >												
+													<div class = "col-md-6" style = "padding-left:15px;border:0px;" >
 														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
 															<!--Build content center pagelet-->
-															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:#FFF;border:1px dashed rgb(230,230,230);border-radius:4px;" >
-																<!--<center><span>{:5:}</span><center><br/>-->
-																
-<div style="z-index:0;">
-<form class="bs-example bs-example-form" role="form">
-<div class="row">
-<div class="col-lg-12">
-<div class="input-group">
-<input type="text" class="form-control" style="z-index:0;">
-<span class="input-group-btn">
-<button class="btn btn-default" type="submit" style = "color:#fff;background:rgb(39,90,105);z-index:0;">
-Search
-</button>
-</span>
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-</form>
-</div>															
-															</div>
-															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:#FFF;border:1px solid rgb(230,230,230);border-radius:4px;" >
-																<center><span>{:5:}</span><center><br/>
+															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "XXXbackground:#FFF;XXXborder:1px solid rgb(230,230,230);border-radius:4px;" >
+																<!-- <center><span>{:5:}</span><center><br/>-->
 
 
-<!-- THIS SECTION IS FOR INJECTION OF SUB TEWMPLATES -->
+<!-- THIS SECTION IS FOR INJECTION OF SUB TEMPLATES -->
 
-<!-- END SUB TEWMPLATES INJECTION AREA -->
-																
+<div class="panel-heading pn-hd">
+    <strong><h3 class="panel-title clr-wht" >Login Form</h3></strong>
+</div>
+<div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
+    <div class="panel-body">
+        <form class="bs-example bs-example-form" role="form">
+            <label for = "user_name" style="text-align:left;"><h4>User Name</h4><Label>
+            <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" name = "user_name" id = "user_name" class="form-control" placeholder="">
+            </div>
+            <br>
+            <label for = "password" style="text-align:left;"><h4>Password</h4><Label>
+            <div class="input-group">
+                <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
+                <input type="password" name = "password" id = "password" class="form-control" placeholder="">
+            </div>
+            <br>
+            <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;">
+                <input type="submit" value="Login" name = "login" class="btn btn-primary" style="width:50%;"/>
+                <input type="submit" value="Cancel" name = "Cancel" class="btn btn-danger" style="width:50%;"/>
+            </div>
+        </form>
+        <br>
+        <br>
+        <center><a href="#"><h5 class="help-block clr-dft">Have you forgoten your password ?</h5></a></center>
+        <br>
+        <button name = "create" class="btn btn-success" style="width:100%;">Create Office Account</button>
+
+    </div>
+
+    <div class="panel-footer" style="color:#bbb;">
+        <center><span class="glyphicon glyphicon-calendar "></span><strong> orims.com </strong><span class="glyphicon glyphicon-time "></span></center>
+    </div>
+</div>
+<!-- END SUB TEMPLATES INJECTION AREA -->
+
 															</div>
 															<!--End of building content center pagelet-->
 														</div>							
@@ -213,11 +224,7 @@ Search
 													<div class = "col-md-3" style = "" >												
 														<div id = "left_d_pipe" class = "oto_hyt no_overflow" style = "width:100%;padding:0px;border:0px;">
 															<!--Build content right pagelet-->
-															<div id = "hdn_blk3_cont" class = "content_layer XXXXhidden_features content_pad cont_top_mgn oto_hyt no_overflow" style = "background:rgb(248,248,248);XXXXbackground:#FFF;text-align:center;border:1px solid rgb(230,230,230);border-radius:4px;" >
-																<span>{:6:}</span><br/>
-																<img src = "jackson.png" alt = "" class = "" style = "width:inherit;" />
-															
-															</div>
+
 															<!--End of building content right pagelet-->
 														</div>							
 													</div>
