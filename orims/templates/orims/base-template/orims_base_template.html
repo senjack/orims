@@ -90,6 +90,10 @@
             .clr-wht{color:#fff}
             .clr-dft{color:#254061}
             .pn-hd{background:#254061;text-align:center;}
+            .pn-hd{background:rgb(65, 118, 144);text-align:center;}
+            .blu-bdr{border-color:#376092;}
+            .grn-bdr{border-color:#379260;}
+            .gre-ftr-lnk{color:#999;}
             /*END OF ORIMS LOGIN FORM STYLES*/
 		</style>
 		
@@ -162,7 +166,7 @@
 
 							<div  class = "col-xs-10 standard_bg_color borderless vtop_mgn10 top_pad10 oto_hyt" style = "" >
 								<div class = "row" >
-									<div  class = "col-xs-12 borderless oto_hyt" style = "background:rgb(245,245,245);height:8000px; " >
+									<div  class = "col-xs-12 borderless oto_hyt" style = "XXXXbackground:rgb(245,245,245);XXXXheight:8000px;padding-top:50px;" >
 										
 										<!--THIS IS ALWAYS TO BE USED FOR DISPLAYING DYNAMIC INFORMATION / CONTENT AS PER USER -->
 										<div id = "content_launcher" class = "" style = "">
@@ -180,12 +184,14 @@
 
 <!-- THIS SECTION IS FOR INJECTION OF SUB TEMPLATES -->
 
+<!-- LOGIN FORM PAGELET -->
+<!--
 <div class="panel-heading pn-hd">
-    <strong><h3 class="panel-title clr-wht" >Login Form</h3></strong>
+    <h3 class="panel-title clr-wht" style="height:25px;">Login Form</h3>
 </div>
 <div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
     <div class="panel-body">
-        <form class="bs-example bs-example-form" role="form">
+        <form class="bs-example bs-example-form" role="form" method="Xpost">
             <label for = "user_name" style="text-align:left;"><h4>User Name</h4><Label>
             <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -200,21 +206,74 @@
             <br>
             <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;">
                 <input type="submit" value="Login" name = "login" class="btn btn-primary" style="width:50%;"/>
-                <input type="submit" value="Cancel" name = "Cancel" class="btn btn-danger" style="width:50%;"/>
+                <input type="submit" value="Cancel" name = "Cancel" class="btn btn-default blu-bdr" style="width:50%;"/>
             </div>
         </form>
         <br>
         <br>
         <center><a href="#"><h5 class="help-block clr-dft">Have you forgoten your password ?</h5></a></center>
         <br>
-        <button name = "create" class="btn btn-success" style="width:100%;">Create Office Account</button>
+        <button name = "create" class="btn btn-success" style="width:100%;">OpenUp Office Account</button>
 
     </div>
 
     <div class="panel-footer" style="color:#bbb;">
-        <center><span class="glyphicon glyphicon-calendar "></span><strong> orims.com </strong><span class="glyphicon glyphicon-time "></span></center>
+		<center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
     </div>
 </div>
+-->
+<!-- END OF LOGIN FORM PAGELET -->
+
+<!-- SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
+<div class="panel-heading pn-hd">
+    <h3 class="panel-title clr-wht" style="height:25px;">System Admin SignUp Form</h3>
+</div>
+<div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
+    <div class="panel-body">
+        <form class="bs-example bs-example-form" role="form" method="Xpost">
+            <div class="input-group">
+            	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" name = "admin_name" id = "admin_name" class="form-control" placeholder="Enter Admin user name">
+            </div>
+            <br>
+            <div class="input-group">
+            	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" name = "admin_email" id = "admin_email" class="form-control" placeholder="Enter Admin Email address">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
+                <input type="password" name = "admin_password" id = "admin_password" class="form-control" placeholder="Enter admin Password">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
+                <input type="password" name = "admin_password2" id = "admin_password2" class="form-control" placeholder="Re-enter Password to confirm">
+            </div>
+            <br>
+			<div class="input-group">
+				<span class="input-group-addon">
+					<input type="checkbox">
+				</span>
+				<label type="text" class="form-control" style="font-size:90%;text-align:left;">
+					Check to Agree with our <a href="#">Terms and Policy</a>
+				</label>
+			</div><!-- /input-group -->
+			<br>
+            <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;">
+                <input type="submit" value="SignUp" name = "login" class="btn btn-success" style="width:50%;"/>
+                <input type="submit" value="Cancel" name = "Cancel" class="btn btn-default grn-bdr" style="width:50%;"/>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="panel-footer" style="color:#bbb;">
+		<center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
+    </div>
+</div>
+<!-- END OF SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
+
 <!-- END SUB TEMPLATES INJECTION AREA -->
 
 															</div>
