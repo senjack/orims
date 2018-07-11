@@ -10,10 +10,10 @@ class Appointment(models.Model):
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     # appointment attributes
-    placement_time = models.DateTimeField()
-    start_time = models.DateTimeField()
-    stop_time = models.DateTimeField()
-    reason = models.TextField(max_length=512)
+    placement_time = models.DateTimeField('Appointment placement Time')
+    start_time = models.DateTimeField('Time when appointment starts')
+    stop_time = models.DateTimeField('Time when Appointment ends')
+    reason = models.TextField('Reason for appointment schedule', max_length=512)
     appointment_mode_choices = (
         ('pend', 'Pending'),
         ('canc', 'Canceled'),
@@ -25,6 +25,7 @@ class Appointment(models.Model):
 
     # Creating mode choices for appointment
     appointment_mode = models.CharField(
+        'Current appointment mode',
         max_length=15,
         choices=appointment_mode_choices,
         default='non',
@@ -48,15 +49,15 @@ class Client(models.Model):
     # Setting foreign key
     appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     # client attributes
-    client_first_name = models.CharField(max_length=15)
-    client_last_name = models.CharField(max_length=15)
-    client_contact = models.CharField(max_length=15)
-    client_location_district = models.CharField(max_length=15)
-    client_location_town = models.CharField(max_length=15)
+    client_first_name = models.CharField('First Name', max_length=15)
+    client_last_name = models.CharField('Last Name', max_length=15)
+    client_contact = models.CharField('Mobile Number', max_length=15)
+    client_location_district = models.CharField('District', max_length=15)
+    client_location_town = models.CharField('Town', max_length=15)
 
     # Defining a display string for each instance
     def __str__(self):
-        return "%s %s", self.client_first_name, self.client_last_name
+        return str(self.client_first_name) + ' ' + str(self.client_last_name) + ' ' + str(self.appointment_id)
     # End function __str__()
 
     # Enforcing custom table name
@@ -72,17 +73,18 @@ class Schedule(models.Model):
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     # schedule attributes
-    sch_date = models.DateField('Date when Schedule is made',max_length=3)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    sch_date = models.DateField('Date when Schedule was made', max_length=3)
+    start_time = models.TimeField('Schedule start time')
+    end_time = models.TimeField('Schedule End time')
     # If reason is Appointment, default sch_reason is "Appointment.
     appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     # If any other reason".
-    sch_reason = models.TextField(max_length=512)
+    sch_reason = models.TextField('Reason for schedule', max_length=512)
 
     # Defining a display string for each instance
     def __str__(self):
-        sch = "Scheduled on %s. Schedule duration [from %s to %s]", self.sch_date, self.start_time, self.end_time
+        sch = 'Scheduled on ' + str(self.sch_date) + '. With Effect From: ' + str(self.start_time)\
+              + ' To: ' + str(self.end_time)
         return sch
     # End function __str__()
 

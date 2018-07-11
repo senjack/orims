@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Administrator
+
+
+class ManageAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Administrator Information', {'fields': ['staff_id']}),
+        (None, {'fields': ['admin_level']}),
+    ]
+
+
+admin.site.register(Administrator, ManageAdmin)
