@@ -77,6 +77,18 @@ class ManageOfficeWorkingTime(admin.ModelAdmin):
     ]
 
 
+class ManageStaff(admin.ModelAdmin):
+    fieldsets = [
+        ('Staff Details', {'fields': ['office_id']}),
+        (None, {'fields': ['staff_id']}),
+        (None, {'fields': ['staff_first_name']}),
+        (None, {'fields': ['staff_last_name']}),
+        (None, {'fields': ['staff_profile_photo']}),
+        (None, {'fields': ['staff_designation']}),
+        (None, {'fields': ['about_staff']}),
+    ]
+
+
 admin.site.register(ServiceUnit, ManageServiceUnit)
 
 admin.site.register(Branch, ManageUnitBranch)
@@ -90,3 +102,5 @@ admin.site.register(Department, ManageBranchDepartment)
 admin.site.register(Office, ManageDepartmentOffice)
 
 admin.site.register(WorkingTime, ManageOfficeWorkingTime)
+
+admin.site.register(Staff, ManageStaff)

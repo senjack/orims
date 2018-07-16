@@ -1,0 +1,17 @@
+body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
+.clr-wht{color:#fff;}
+.fm-hd-big{font-size:large;font-weight:bold;}
+.clr-dft{color:#254061}
+.pn-hd{background:#254061;text-align:center;}
+/*.pn-hd{background:rgb(65, 118, 144);text-align:center;}*/
+.blu-bdr{border-color:#376092;}
+.grn-bdr{border-color:#379260;}
+.gre-ftr-lnk{color:#999;}
+
+.header-division {margin-bottom:100px;}
+.pnl-bdy-white-bg {
+                    text-align:center;
+                    border-top-right-radius:0px;
+                    border-top-left-radius:0px;
+                    background:#fff;
+                   }

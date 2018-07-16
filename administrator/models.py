@@ -14,7 +14,7 @@ class Administrator(models.Model):
         ('branch-admin', 'Branch Level administrator'),
         ('dept-admin', 'Department Level Administrator'),
         ('ofc-admin', 'Office Level Administrator'),
-        ('select','Select Administrator Level')
+        ('select','Select Administration Level')
     )
     # Creating choices for staff
     admin_level = models.CharField(

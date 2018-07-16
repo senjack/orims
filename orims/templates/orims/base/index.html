@@ -20,11 +20,12 @@
 			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.svg' %}" />
 			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.ttf' %}" />
 			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff' %}" />
-			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff' %}" />
+			<link rel="stylesheet" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/fonts/glyphicons-halflings-regular.woff2' %}" />
 		<!-- End Glyphicons -->
 
+<!--		<link type="text/css" href="{% static 'orims/styles/orimstrap/orimstrap.css' %}" media="all" />-->
+
 		<style rel = "stylesheet">
-		
 			body,.standard_bg_color{ background:rgb(240,240,240); }
 			body,#body_skeleton,#content_skeleton,#header_skeleton{ margin:0px; }
 			body,#body_skeleton,#content_skeleton{ outline:0px; }
@@ -85,18 +86,11 @@
 			.cont_side_pad{ padding-left:0px; }
 			.cont_side_pad{ padding-right:0px; }
 			.cont_side_pad{ padding-top:5px; }
-
-            /*ORIMS LOGIN FORM STYLES*/
-            .clr-wht{color:#fff}
-            .clr-dft{color:#254061}
-            .pn-hd{background:#254061;text-align:center;}
-            .pn-hd{background:rgb(65, 118, 144);text-align:center;}
-            .blu-bdr{border-color:#376092;}
-            .grn-bdr{border-color:#379260;}
-            .gre-ftr-lnk{color:#999;}
-            /*END OF ORIMS LOGIN FORM STYLES*/
 		</style>
-		
+		<!-- Required for Bootstrap to work successfully offline -->
+        <link rel="stylesheet" href="{% static 'orims/styles/orimstrap/orimstrap.css' %}"/>
+        <!-- End of : Required for Bootstrap to work successfully offline -->
+
 	</head>
 	<body class = "standard_bg_color" >
 	
@@ -226,7 +220,7 @@
 
 <!-- SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
 <div class="panel-heading pn-hd">
-    <h3 class="panel-title clr-wht" style="height:25px;">System Admin SignUp Form</h3>
+    <h3 class="panel-title clr-wht fm-hd-big" style="">SignUp Form</h3>
 </div>
 <div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
     <div class="panel-body">
@@ -237,7 +231,7 @@
             </div>
             <br>
             <div class="input-group">
-            	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            	<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                 <input type="text" name = "admin_email" id = "admin_email" class="form-control" placeholder="Enter Admin Email address">
             </div>
             <br>

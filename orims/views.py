@@ -6,5 +6,6 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'orims/base-template/orims_base_template.html', context={})
+    return render(request, 'orims/base/index.html', context={'title': 'System Administrator'})
+#    return render(request, 'orims/orims_template.html', context={})
 #    return HttpResponse("Hello, world. You're welcome @ the orims index page.<br/>Page is still under construction")

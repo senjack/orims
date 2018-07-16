@@ -20,5 +20,8 @@ urlpatterns = [
 
     path('', include('orims.urls')),
     path('orims/', include('orims.urls')),
+    path('index/', include('orims.urls')),
+    path('system-admin/', include('system_admin.urls')),
+
     path('admin/', admin.site.urls),
 ]

@@ -245,24 +245,25 @@ class Staff(models.Model):
     # staff primary key
     staff_id = models.CharField(primary_key=True, max_length=30)
     # Setting foreign key
-    office_id = models.ForeignKey(Office, on_delete=models.CASCADE)
+    office_id = models.ForeignKey(Office, on_delete=models.CASCADE, verbose_name='Office')
     # staff attributes
-    staff_first_name = models.CharField(max_length=15)
-    staff_last_name = models.CharField(max_length=15)
-    staff_profile_photo = models.CharField(max_length=512)
+    staff_first_name = models.CharField('First Name', max_length=15)
+    staff_last_name = models.CharField('Last Name', max_length=15)
+    staff_profile_photo = models.CharField('Profile Photo', max_length=512, blank=True, null=True)
     staff_designation_choices = (
-        ('system_admin', 'System administrator'),
+        # ('system_admin', 'System administrator'),
         ('Official', 'Official'),
         ('receptionist', 'Receptionist'),
-        ('select','Select Staff Designation')
+        ('select', 'Select Staff Designation')
     )
     # Creating choices for staff
     staff_designation = models.CharField(
+        'Designation',
         max_length=15,
         choices=staff_designation_choices,
         default='select',
     )
-    about_staff = models.TextField(max_length=512)
+    about_staff = models.TextField(max_length=512, blank=True, null=True)
 
     # Defining a display string for each instance
     def __str__(self):
@@ -274,26 +275,3 @@ class Staff(models.Model):
         db_table = "Staff"
     # End class Meta
 # End class Staff
-
-
-# Avails model
-class Avails(models.Model):
-    """"
-    Creates and associates with a database relation that store data about availing process relationship
-    """
-    # Setting foreign key
-    availer = models.CharField(max_length=15)
-    availed = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    session_start = models.DateTimeField()
-    session_stop = models.DateTimeField()
-
-    # Defining a display string for each instance
-    def __str__(self):
-        return "%s Availed %s", self.availer, self.availed
-    # End function __str__()
-
-    # Enforcing custom table name
-    class Meta:
-        db_table = "Avails"
-    # End class Meta
-# End class Avails

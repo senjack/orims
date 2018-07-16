@@ -2,13 +2,36 @@ from django.db import models
 from orims.models import Staff
 
 
+# Avails model
+class Avails(models.Model):
+    """"
+    Creates and associates with a database relation that store data about availing process relationship
+    """
+    # Setting foreign key
+    availer = models.CharField(max_length=15)
+    availed = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    session_start = models.DateTimeField()
+    session_stop = models.DateTimeField()
+
+    # Defining a display string for each instance
+    def __str__(self):
+        return str(self.availed) + ' Available From : ' + self.session_start + ' To : ' + self.session_stop
+    # End function __str__()
+
+    # Enforcing custom table name
+    class Meta:
+        db_table = "Avails"
+    # End class Meta
+# End class Avails
+
+
 # Appointment model
 class Appointment(models.Model):
     """"Creates and associates with a database relation that store data about official - client appointment"""
     # Appointment primary key
     appointment_id = models.CharField(primary_key=True,max_length = 30)
     # Setting foreign key
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Staff')
     # appointment attributes
     placement_time = models.DateTimeField('Appointment placement Time')
     start_time = models.DateTimeField('Time when appointment starts')
@@ -71,9 +94,10 @@ class Client(models.Model):
 class Schedule(models.Model):
     """"Creates and associates with a database relation that store data about official monthly schedule"""
     # Setting foreign key
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Staff')
     # schedule attributes
-    sch_date = models.DateField('Date when Schedule was made', max_length=3)
+    sch_date = models.DateField('When Schedule was made')
+    effect_date = models.DateField('When Schedule is to effect')
     start_time = models.TimeField('Schedule start time')
     end_time = models.TimeField('Schedule End time')
     # If reason is Appointment, default sch_reason is "Appointment.
@@ -84,7 +108,7 @@ class Schedule(models.Model):
     # Defining a display string for each instance
     def __str__(self):
         sch = 'Scheduled on ' + str(self.sch_date) + '. With Effect From: ' + str(self.start_time)\
-              + ' To: ' + str(self.end_time)
+              + ' To: ' + str(self.end_time) + ' Of : ' + str(self.effect_date)
         return sch
     # End function __str__()
 
