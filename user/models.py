@@ -18,8 +18,4 @@ class User(models.Model):
         return str(self.user_name) + '( ' + str(self.staff_id) + ')'
     # End function __str__()
 
-    # Enforcing custom table name
-    class Meta:
-        db_table = "User"
-    # End class Meta
 # End class User

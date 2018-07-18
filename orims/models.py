@@ -1,6 +1,6 @@
 from django.db import models
-from system_admin.models import SystemAdmin
-import string
+from systemAdmin.models import SystemAdmin
+
 # Added imports
 # from django.utils import timezone
 
@@ -36,9 +36,9 @@ class ServiceUnit(models.Model):
         default='select',
     )
     unit_description = models.TextField(max_length=1024)
-    unit_logo = models.FileField(max_length=500)
-    unit_featured_image = models.FileField(max_length=500)
-    unit_cover_photo = models.FileField(max_length=500)
+    unit_logo = models.FileField(upload_to='uploads/ServiceUnit/logo',max_length=500)
+    unit_featured_image = models.FileField(upload_to='uploads/ServiceUnit/logo', max_length=500)
+    unit_cover_photo = models.FileField(upload_to='uploads/ServiceUnit/logo', max_length=500)
 
     # Defining what to be returned for each instance
     def __str__(self):
@@ -270,8 +270,4 @@ class Staff(models.Model):
         return str(self.staff_first_name) + ' ' + str(self.staff_last_name) + ' [ ID: ' + str(self.staff_id) + ' ]'
     # End function __str__()
 
-    # Enforcing custom table name
-    class Meta:
-        db_table = "Staff"
-    # End class Meta
 # End class Staff

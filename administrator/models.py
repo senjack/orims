@@ -29,8 +29,4 @@ class Administrator(models.Model):
         return str(Staff.staff_first_name) + ' ' + str(Staff.staff_last_name) + ' [ ID: ' + str(self.staff_id) + ' ]'
     # End function __str__()
 
-    # Enforcing custom table name
-    class Meta:
-        db_table = "Administrator"
-    # End class Meta
 # End class Administrator
