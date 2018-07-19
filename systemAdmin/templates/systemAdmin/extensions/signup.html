@@ -1,0 +1,85 @@
+{# Dynamically load all static files of the system-admin App #}
+{% extends 'orims/base/base.html' %}
+
+{#To be injected in the Title Block of the base.html template #}
+{% block title %}System-Admin SignUp Form{% endblock %}
+
+{#To be injected in the Body Block of the base.html template#}
+{% block body %}
+<div class="row">
+    <div class="col-sm-3"  ></div>
+    <div class="col-sm-6" style="" >
+        <div class="row">
+            <div class="col-sm-1"  ></div>
+            <div class="col-sm-10"  >
+                 <div class="pagelet-frame" style="" >
+ <!-- SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
+{% if display_error %}
+    <div class="alert alert-danger">SignUp Failure! Invalid user name or password.</div>
+{% endif %}
+
+<div class="panel-heading pn-hd">
+    <h3 class="panel-title clr-wht fm-hd-big" style="">SignUp Form</h3>
+</div>
+<div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
+    <div class="panel-body">
+        <form action="{% url 'systemAdmin:registration' %}" class="bs-example bs-example-form" role="form" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                {{ form.username.errors }}
+            	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                {{ form.username }}
+                <!--<input type="text" name = "admin_name" id = "admin_name" class="form-control" placeholder="Enter Admin user name">-->
+            </div>
+            <br>
+            <div class="input-group">
+                {{ form.email.errors }}
+            	<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                {{ form.email }}
+                <!--<input type="email" name = "admin_email" id = "admin_email" class="form-control" placeholder="Enter Admin Email address">-->
+            </div>
+            <br>
+            <div class="input-group">
+                {{ form.password1.errors }}
+                <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
+                {{ form.password1 }}
+                <!--<input type="password" name = "password1" id = "password1" class="form-control" placeholder="Enter admin Password">-->
+            </div>
+            <br>
+            <div class="input-group">
+                {{ form.password2.errors }}
+                <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
+                {{ form.password2 }}
+                <!--<input type="password" name = "password2" id = "password2" class="form-control" placeholder="Re-enter Password to confirm">-->
+            </div>
+            <br>
+			<div class="input-group">
+				<label type="text" class="form-control" style="font-size:90%;text-align:left;">
+					Check to Agree with our <a href="#">Terms and Policy</a>
+				</label>
+				<span class="input-group-addon">
+					<input type="checkbox">
+				</span>
+
+			</div><!-- /input-group -->
+			<br>
+            <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;">
+                <input type="submit" value="SignUp" name = "login" class="btn btn-success" style="width:50%;"/>
+                     <input type="button" value="Cancel" name = "Cancel" class="btn btn-default grn-bdr" style="width:50%;"/>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="panel-footer" style="color:#bbb;">
+		<center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
+    </div>
+</div>
+<!-- END OF SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
+                 </div>
+            </div>
+            <div class="col-sm-1"  ></div>
+        </div>
+    </div>
+    <div class="col-sm-3"  ></div>
+{% endblock %}

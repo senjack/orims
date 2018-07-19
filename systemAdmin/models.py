@@ -7,7 +7,7 @@ class SystemAdmin(models.Model):
     system_admin_id = models.AutoField(primary_key=True)
     system_admin_user_name = models.CharField(max_length=254)
     system_admin_password = models.CharField(max_length=254)
-    system_admin_email = models.EmailField(max_length=150)
+    system_admin_email = models.EmailField(max_length=500)
 
     # Defining a display string for each instance
     def __str__(self):
