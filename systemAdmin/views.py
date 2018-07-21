@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from .models import SystemAdmin
 from django.http import HttpResponse
 from .forms import *
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth import views
 
 """
@@ -12,19 +13,12 @@ def index(request):
 
 
 def signup(request):
-    template_name = 'systemAdmin/extensions/signup.html'
-    signup_form = AdminSignUpForm()
-    context = {'form': signup_form}
-    return render(request, template_name, context)
-
-
-def registration(request):
     if request.method == 'POST':
         f = AdminSignUpForm(request.POST)
         if f.is_valid():
             f.save()
             # messages.success(request, 'Account created successfully')
-            return redirect('register')
+            return redirect('systemAdmin:login')
 
     else:
         f = AdminSignUpForm()
@@ -32,66 +26,48 @@ def registration(request):
 
 
 def login(request):
-    try:
-        request.session['user_id']
-    except KeyError:
-        login_form = AdminLoginForm()
-        context = {'form': login_form}
-        return render(request, 'systemAdmin/extensions/login.html', context)
-    return HttpResponse("Already Logged in. Do you want to <a href='logout'>logout?</a>")
+    t = 'systemAdmin/extensions/login.html'
+    f = AdminLoginForm(request.POST or None)
+
+    if request.method == 'POST':
+        if f.is_valid:
+            username = request.POST['username'].lower()
+            u = SystemAdmin.objects.filter(system_admin_user_name= username)
+            if not u.count():
+                uname_error = "There is no User with the supplied Username. \
+                Please Enter your correct Username and Try again."
+                return render(request,t,{'form':f, 'username_error': uname_error})
+
+            password = request.POST['password']
+            u1 = SystemAdmin.objects.get(system_admin_user_name= username)
+            p = u1.get_password(password)
+            if not p:
+                password_error = "Invalid password. \
+                Please Enter your correct Password and Try again."
+                return render(request,t,{'form':f, 'password_error': password_error})
 
 
-# ENTRY POINT : LOGIN ALGORITHM
-# STEP1: Ensure to only allow Data sent using the post method.
-@require_POST
-# STEP2: Login process method definition starting point
-def login_process(request):
-
-    # STEP2.1: Define a custom template name to be rendered @ the end of the process
-    template_name = 'systemAdmin/extensions/login.html'
-
-    # STEP2.2: Creating a model form instance # sticks in a POST or renders empty form
-    form = AdminLoginForm(request.POST or None)
-
-    # STEP2.2: Test If form Exists and is Valid
-    if form:
-        # STEP2.2.1: Search database for a user with matching user name as that supplied.
+            user = f.get_user_id()
+            request.session['user_admin'] = user
+            print(user)
+            return HttpResponse("You are now Logged in. Do you want to <a href='logout'>logout?</a>" + "\
+            " + str(request.session['user_admin']))
+    else:
         try:
-            get_object_or_404(SystemAdmin,system_admin_user_name=request.POST['username'])
+            if request.session['user_admin']:
+                return HttpResponse("You are Already Logged in. Do you want to <a href='logout'>logout?</a>" + str(f.uid))
+                # return redirect('systemAdmin:login')
         except KeyError:
-            form = AdminLoginForm()
-            return render(request, template_name, {'form': form})
 
-        # if a user is found:
-        # STEP2.2.2: Now check for whether passwords match, i.e. the one int the database
-        # with the one supplied. .
-        user = SystemAdmin.objects.get(system_admin_user_name=request.POST['username'])
-        if user is not None:
-            if user.system_admin_password == request.POST['password']:
-                # If true:
-                # STEP2.2.2: Set session for user.
-                request.session['user_id'] = str(user.system_admin_user_name) + '(' + str(user.system_admin_id) + ')'
-                # request.session['user_id'] = {'username': user.system_admin_user_name, 'id': user.system_admin_id}
-                print(user)
-                print(request.session['user_id'])
-                # return HttpResponse(request.session['user_id'])
-                return redirect('systemAdmin:signup')
-            else:
-                pass
-
-        # return render(request, 'systemAdmin/extensions/login.html', context={})
-
-    #return redirect('home')
-    # STEP2.3: If it tests otherwise than(form Exists and is Valid) return empty login form
-    # return render(request, template_name, {'form': form})
-    # End : if form.is_valid():
+            f = AdminLoginForm()
+    return render(request, t, {'form': f})
 
 
 # LOGOUT METHOD.
 def logout(request):
     try:
-        del request.session['user_id']
+        del request.session['user_admin']
+        return redirect('systemAdmin:login')
     except KeyError:
-        pass
-    return HttpResponse("You're logged out.")
+       return HttpResponse("Error.")
 

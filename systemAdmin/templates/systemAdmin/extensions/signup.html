@@ -23,42 +23,66 @@
 </div>
 <div class="panel panel-default" style="text-align:center;border-top-right-radius:0px;border-top-left-radius:0px;background:#f9f9f9;">
     <div class="panel-body">
-        <form action="{% url 'systemAdmin:registration' %}" class="bs-example bs-example-form" role="form" method="post">
+        <form action="{% url 'systemAdmin:signup' %}" class="bs-example bs-example-form" role="form" method="post">
             {% csrf_token %}
+            {% if form.username.errors %}
+            <div class="alert alert-danger" style="text-align:left;">
+                <div>
+                    {{ form.username.errors }}
+                </div>
+            </div>
+            {% endif %}
             <div class="input-group">
-                {{ form.username.errors }}
             	<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                 {{ form.username }}
                 <!--<input type="text" name = "admin_name" id = "admin_name" class="form-control" placeholder="Enter Admin user name">-->
             </div>
             <br>
-            <div class="input-group">
+            {% if form.email.errors %}
+            <div class="alert alert-danger" style="text-align:left;">
                 {{ form.email.errors }}
+            </div>
+            {% endif %}
+            <div class="input-group">
             	<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                 {{ form.email }}
                 <!--<input type="email" name = "admin_email" id = "admin_email" class="form-control" placeholder="Enter Admin Email address">-->
             </div>
             <br>
-            <div class="input-group">
+            {% if form.password1.errors %}
+            <div class="alert alert-danger" style="text-align:left;">
                 {{ form.password1.errors }}
+            </div>
+             {% endif %}
+            <div class="input-group">
                 <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
                 {{ form.password1 }}
                 <!--<input type="password" name = "password1" id = "password1" class="form-control" placeholder="Enter admin Password">-->
             </div>
             <br>
-            <div class="input-group">
+            {% if form.password2.errors %}
+            <div class="alert alert-danger" style="text-align:left;">
                 {{ form.password2.errors }}
+            </div>
+            {% endif %}
+            <div class="input-group">
                 <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
                 {{ form.password2 }}
                 <!--<input type="password" name = "password2" id = "password2" class="form-control" placeholder="Re-enter Password to confirm">-->
             </div>
             <br>
+            {% if form.agree.errors %}
+            <div class="alert alert-danger" style="text-align:left;">
+                {{ form.agree.errors }}
+            </div>
+            {% endif %}
 			<div class="input-group">
 				<label type="text" class="form-control" style="font-size:90%;text-align:left;">
-					Check to Agree with our <a href="#">Terms and Policy</a>
+					Do you Agree with our <a href="#">Terms & Conditions</a> ?
 				</label>
 				<span class="input-group-addon">
-					<input type="checkbox">
+                    {{ form.agree }}
+					<!--<input name="agree" type="checkbox">-->
 				</span>
 
 			</div><!-- /input-group -->

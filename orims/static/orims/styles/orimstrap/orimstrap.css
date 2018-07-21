@@ -7,7 +7,7 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
 .blu-bdr{border-color:#376092;}
 .grn-bdr{border-color:#379260;}
 .gre-ftr-lnk{color:#999;}
-
+.cnt-lft{text-align:left;}
 .header-division {margin-bottom:100px;}
 .pnl-bdy-white-bg {
                     text-align:center;
@@ -15,3 +15,4 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
                     border-top-left-radius:0px;
                     background:#fff;
                    }
+

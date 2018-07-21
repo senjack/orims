@@ -12,6 +12,9 @@
     <div class="row">
         <div class="col-sm-1"  ></div>
         <div class="col-sm-10"  >
+            {% if form.username.errors %}
+                <div class="alert alert-danger" style="text-align:left;">{{ form.username.errors }}</div>
+            {% endif %}
              <div class="pagelet-frame" style="" >
                 <!-- LOGIN FORM PAGELET -->
                 <div class="panel-heading pn-hd">
@@ -19,18 +22,33 @@
                 </div>
                 <div class="panel panel-default pnl-bdy-white-bg" style="">
                     <div class="panel-body">
-                        <form action="{% url 'systemAdmin:login_process' %}" class="bs-example bs-example-form" role="form" method="post">
+                        <form action="{% url 'systemAdmin:login' %}" class="bs-example bs-example-form" role="form" method="post">
                             {% csrf_token %}
                             <br/>
+                                {{ form.username.errors }}
+                                {% csrf_token %}
+                                {% if username_error %}
+                                    <div class="alert alert-danger" style="text-align:left;">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        {{ username_error }}
+                                    </div>
+                                {% endif %}
+
                             <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                {{ form.username.errors }}
                                 {{ form.username }}
                             </div>
                             <br>
+                                {% csrf_token %}
+                                {{ form.password.errors }}
+                                {% if password_error %}
+                                    <div class="alert alert-danger" style="text-align:left;">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        {{ password_error }}
+                                    </div>
+                                {% endif %}
                             <div class="input-group">
                                 <span class="input-group-addon "><span class="glyphicon glyphicon-asterisk"></span></span>
-                                {{ form.password.errors }}
                                 {{ form.password }}
                             </div>
                             <br>
