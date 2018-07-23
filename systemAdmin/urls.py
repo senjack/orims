@@ -12,6 +12,8 @@ urlpatterns = [
     path('login', views.login, name='login'),
     # path('login_process', views.login_process, name='login_process'),
 
+    path('home', views.home, name='home'),
+
     path('logout', views.logout, name='logout'),
     # path('login', login, {'template_name': 'system_admin/extensions/login.html'}),
 ]

@@ -3,7 +3,6 @@
 
 {#To be injected in the Title Block of the base.html template #}
 {% block title %}System-Admin Log in Form{% endblock %}
-
 {#To be injected in the Body Block of the base.html template#}
 {% block body %}
 <div class="row">
@@ -54,7 +53,8 @@
                             <br>
                             <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;">
                                 <input type="submit" value="Login" name = "login" class="btn btn-primary" style="width:50%;"/>
-                                <input type="button" value="Cancel" name = "Cancel" class="btn btn-default blu-bdr" onclick="{% url 'systemAdmin:signup' %}" style="width:50%;"/>
+                                <input type="button" value="Cancel" name = "Cancel" class="btn btn-default blu-bdr"
+                                       onclick="window.location.href = '{% url 'systemAdmin:login' %}';" style="width:50%;"/>
                                 </a>
                             </div>
                         </form>

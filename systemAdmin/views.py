@@ -15,10 +15,11 @@ def index(request):
 def signup(request):
     if request.method == 'POST':
         f = AdminSignUpForm(request.POST)
+        t = 'systemAdmin/extensions/signup.html'
         if f.is_valid():
             f.save()
-            # messages.success(request, 'Account created successfully')
-            return redirect('systemAdmin:login')
+            f = AdminSignUpForm()
+            return render(request, t, {'form': f,'display_success':True})
 
     else:
         f = AdminSignUpForm()
@@ -47,21 +48,37 @@ def login(request):
                 return render(request,t,{'form':f, 'password_error': password_error})
 
 
-            user = f.get_user_id()
+            user = u1.get_user_id()
             request.session['user_admin'] = user
-            print(user)
-            return HttpResponse("You are now Logged in. Do you want to <a href='logout'>logout?</a>" + "\
-            " + str(request.session['user_admin']))
+            return redirect('systemAdmin:home')
+            # return HttpResponse("You are now Logged in. Do you want to <a href='logout'>logout?</a>" + "\
+            # " + str(request.session['user_admin']))
     else:
         try:
             if request.session['user_admin']:
-                return HttpResponse("You are Already Logged in. Do you want to <a href='logout'>logout?</a>" + str(f.uid))
-                # return redirect('systemAdmin:login')
+                return redirect('systemAdmin:home')
         except KeyError:
-
             f = AdminLoginForm()
+
     return render(request, t, {'form': f})
 
+
+# SYSTEM ADMIN HOME PAGE BUILDER
+def home(request):
+    # STEP1.0: Set home template.
+    t = 'systemAdmin/extensions/home.html'
+
+    # STEP1.1: Test for session, to determine currently logged in user.
+        # if user is logged in, build home page.
+    try:
+        if request.session['user_admin']:
+            return render(request, t)
+        # if no user is logged in, redirect to Login page.
+        else:
+            return redirect('systemAdmin:login')
+    except KeyError:
+        pass
+    return redirect('systemAdmin:login')
 
 # LOGOUT METHOD.
 def logout(request):

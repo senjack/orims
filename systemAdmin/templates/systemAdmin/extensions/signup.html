@@ -14,10 +14,18 @@
             <div class="col-sm-10"  >
                  <div class="pagelet-frame" style="" >
  <!-- SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
+{% if display_success %}
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        Account created successfully. Would you like to login now?
+       <a href="{% url 'systemAdmin:login' %}">
+           <button name = "create" class="btn btn-success" style="width:100%;">Login</button>
+       </a>
+    </div>
+{% endif %}
 {% if display_error %}
     <div class="alert alert-danger">SignUp Failure! Invalid user name or password.</div>
 {% endif %}
-
 <div class="panel-heading pn-hd">
     <h3 class="panel-title clr-wht fm-hd-big" style="">SignUp Form</h3>
 </div>
@@ -89,14 +97,18 @@
 			<br>
             <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;">
                 <input type="submit" value="SignUp" name = "login" class="btn btn-success" style="width:50%;"/>
-                     <input type="button" value="Cancel" name = "Cancel" class="btn btn-default grn-bdr" style="width:50%;"/>
+                <input type="button" value="Cancel" name = "Cancel" class="btn btn-default grn-bdr"
+                       onclick="window.location.href = '{% url 'systemAdmin:login' %}';" style="width:50%;"/>
             </div>
         </form>
 
     </div>
 
     <div class="panel-footer" style="color:#bbb;">
-		<center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
+		<center>
+            <span class="glyphicon glyphicon-calendar "></span>
+            <strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong>
+            <span class="glyphicon glyphicon-time "></span></center>
     </div>
 </div>
 <!-- END OF SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
