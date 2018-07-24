@@ -2,22 +2,37 @@
 {% extends 'orims/base/base.html' %}
 
 {#To be injected in the Title Block of the base.html template #}
-{% block title %}System-Admin Log in Form{% endblock %}
+{% block title %}System-Admin Home page{% endblock %}
 {#To be injected in the Body Block of the base.html template#}
 
 {% block header %}
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background:#254061;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Orims.com</a>
-    <div class="navbar-header navbar-right">
-      <ul class="nav navbar-nav navbar-right" style="float:right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-        <li><a href="{% url 'systemAdmin:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
+    <div class="row">
+        <div class="col-sm-11 collapse navbar-collapse" id="myNavbar">
+
+            <div class="col-sm-5" style="text-align:left;">
+                <a class="navbar-brand" href="#">Orims.com</a>
+            </div>
+            <div class="col-sm-3">
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span> Profile</a>
+            </div>
+            <div class="col-sm-3">
+                <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+            </div>
+        </div>
 
     </div>
-    </div>
+        <div class="col-sm-1" style="text-align:right;">
+            <div class="col-sm-12" style="">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+
 </nav>
 
 {% endblock %}

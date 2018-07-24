@@ -69,7 +69,7 @@ def home(request):
     t = 'systemAdmin/extensions/home.html'
 
     # STEP1.1: Test for session, to determine currently logged in user.
-        # if user is logged in, build home page.
+    # if user is logged in, build home page.
     try:
         if request.session['user_admin']:
             return render(request, t)
@@ -79,6 +79,7 @@ def home(request):
     except KeyError:
         pass
     return redirect('systemAdmin:login')
+
 
 # LOGOUT METHOD.
 def logout(request):
