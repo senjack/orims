@@ -7,41 +7,55 @@
 
 {% block header %}
 
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background:#254061;">
-    <div class="row">
-        <div class="col-sm-11 collapse navbar-collapse" id="myNavbar">
+<div class="navbar-fixed-top navbar-inverse navbar-collapse" style="width:100%;background:#254061;">
+    <div style="">
+        <div class=" col-sm-11" style="">
+            <nav class="collapse navbar-collapse" id="myNavbar">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4" style="margin-left:-15px;padding-left:0px;">
+                         <a class="navbar-brand" style="font-size:160%;" href="#">Orims.com </a>
+                        <div class="navbar-brand"> Administrator</div>
+                    </div>
+                    <div class=" col-sm-7">
+                        <div class="col-sm-5">
+                            <a class="navbar-brand" href="#">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                            </a>
+                            <a class="navbar-brand" href="#"  style="font-size:110%;">
+                                <span class="glyphicon glyphicon-briefcase"></span>
+                            </a>
+                            <a class="navbar-brand" href="#" style="font-size:110%;">
+                                <span class="glyphicon glyphicon-briefcase"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-7">
+                            <a class="navbar-brand" href="#" style="font-size:110%;">
+                                <span class="glyphicon glyphicon-user"></span> Profile
+                            </a>
+                            <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}" style="font-size:110%;">
+                                <span class="glyphicon glyphicon-log-out"></span> Logout
+                            </a>
 
-            <div class="col-sm-5" style="text-align:left;">
-                <a class="navbar-brand" href="#">Orims.com</a>
-            </div>
-            <div class="col-sm-3">
-                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-user"></span> Profile</a>
-            </div>
-            <div class="col-sm-3">
-                <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-            </div>
+                        </div>
+                    </div>
+            </nav>
         </div>
-
+        <div class="col-sm-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
     </div>
-        <div class="col-sm-1" style="text-align:right;">
-            <div class="col-sm-12" style="">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-        </div>
-
-</nav>
-
+</div>
 {% endblock %}
 
 
 {% block body %}
 
-<div class="row">
-    <div class="col-sm-4"  >
+<div class="row" style="margin-top:60px;">
+    <div class="col-md-4"  >
         <div class="list-group">
             <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                 <span class="glyphicon glyphicon-user"></span> Profile
@@ -51,16 +65,44 @@
                 <strong class="gre-ftr-lnk"> orims.com </strong>
             </div>
         </div>
+        <div class="list-group">
+            <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
+                <span class="glyphicon glyphicon-user"></span> Administrator Panel
+            </div>
+            <a href="#" class="list-group-item">Second item</a>
+            <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
+                <strong class="gre-ftr-lnk"> orims.com </strong>
+            </div>
+        </div>
+
     </div>
 
-    <div class="col-sm-6" style="" >
+    <div class="col-md-8" style="" >
         <div class="row">
-
+            <div class="col-md-12">
+                <div class="list-group">
+                    <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
+                        <span class="glyphicon glyphicon-user"></span> Administrator Panel
+                    </div>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <a href="#" class="list-group-item">Second item</a>
+                    <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
+                        <strong class="gre-ftr-lnk"> orims.com </strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="col-sm-3"  >
-
-    </div>
 </div>
 {% endblock %}

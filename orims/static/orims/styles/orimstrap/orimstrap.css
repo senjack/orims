@@ -8,7 +8,8 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
 .grn-bdr{border-color:#379260;}
 .gre-ftr-lnk{color:#999;}
 .cnt-lft{text-align:left;}
-.header-division {margin-bottom:110px;}
+.header-division {margin-bottom:10px;}
+
 .pnl-bdy-white-bg {
                     text-align:center;
                     border-top-right-radius:0px;
