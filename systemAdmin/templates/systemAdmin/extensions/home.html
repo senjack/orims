@@ -1,5 +1,6 @@
-{# Dynamically load all static files of the system-admin App #}
+﻿{# Dynamically load all static files of the system-admin App #}
 {% extends 'orims/base/base.html' %}
+{% load static %}
 
 {#To be injected in the Title Block of the base.html template #}
 {% block title %}System-Admin Home page{% endblock %}
@@ -7,45 +8,53 @@
 
 {% block header %}
 
-<div class="navbar-fixed-top navbar-inverse navbar-collapse" style="width:100%;background:#254061;">
+<div class="navbar-fixed-top navbar-inverse navbar-collapse" style="width:100%;background:#254061;"
+     >
     <div style="">
-        <div class=" col-sm-11" style="">
+        <div class="col-lg-11 col-sm-12" style="">
             <nav class="collapse navbar-collapse" id="myNavbar">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-4" style="margin-left:-15px;padding-left:0px;">
-                         <a class="navbar-brand" style="font-size:160%;" href="#">Orims.com </a>
+                    <div class="col-md-1 col-sm-12"></div>
+                    <div class="col-md-4 col-sm-12" style="margin-left:-15px;padding-left:0px;">
+                         <a class="navbar-brand" style="font-size:160%;" href="{% url 'orims:index' %}">Orims.com </a>
                         <div class="navbar-brand"> Administrator</div>
                     </div>
-                    <div class=" col-sm-7">
-                        <div class="col-sm-5">
-                            <a class="navbar-brand" href="#">
+                    <div class="col-md-7 col-sm-12">
+                        <div class="col-md-5 col-sm-12">
+                            <a class="navbar-brand" href="{% url 'systemAdmin:home' %}">
                                 <span class="glyphicon glyphicon-dashboard"></span>
                             </a>
+<!--
                             <a class="navbar-brand" href="#"  style="font-size:110%;">
                                 <span class="glyphicon glyphicon-briefcase"></span>
                             </a>
-                            <a class="navbar-brand" href="#" style="font-size:110%;">
-                                <span class="glyphicon glyphicon-briefcase"></span>
-                            </a>
+-->
                         </div>
-                        <div class="col-sm-7">
-                            <a class="navbar-brand" href="#" style="font-size:110%;">
-                                <span class="glyphicon glyphicon-user"></span> Profile
-                            </a>
-                            <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}" style="font-size:110%;">
-                                <span class="glyphicon glyphicon-log-out"></span> Logout
-                            </a>
+                        <div class="col-md-7 col-sm-12">
+                            <div class="col-md-2 col-sm-12"></div>
+                            <div class="col-md-10 col-sm-12">
+                                <div class="col-md-6 col-sm-12">
+                                <a class="navbar-brand" href="#" style="font-size:110%;">
+                                    <span class="glyphicon glyphicon-user"></span> Profile
+                                </a>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}" style="font-size:110%;">
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                                </a>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
             </nav>
-        </div>
-        <div class="col-sm-1">
+        <div class="col-md-1 col-sm-12">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+        </div>
+
         </div>
     </div>
 </div>
@@ -54,55 +63,500 @@
 
 {% block body %}
 
-<div class="row" style="margin-top:60px;">
+<div class="row" style="margin-top:50px;">
     <div class="col-md-4"  >
         <div class="list-group">
             <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                 <span class="glyphicon glyphicon-user"></span> Profile
             </div>
-            <a href="#" class="list-group-item">Second item</a>
+            <div class="panel-body" style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
+                <div ><!--Build profile panel-->
+                    <div class="row"><!--Build profile Info section-->
+                        <div class="col-md-11" style="text-align:left;">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>UserName: </strong></div>
+                                </div>
+                                    <div class="col-md-7" style="padding-left:0px;">
+                                    <div class="clr-dft"><strong>Senjack</strong></div>
+                                </div>
+                            </div>
+                                <br/>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>Role: </strong></div>
+                                </div>
+                                <div class="col-md-7" style="padding-left:0px;">
+                                    <div class="clr-dft"><strong>System Admin</strong></div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>Email: </strong></div>
+                                </div>
+                                <div class="col-md-7" style="padding-left:1px;">
+                                    <div class="clr-dft" style="font-size:95%;"><strong> Senjackglobal@gmail.com</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+                    </div><!--End profile Info section-->
+                </div><!--End profile panel-->
+            </div>
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
-                <strong class="gre-ftr-lnk"> orims.com </strong>
+                <center>
+                    <strong> <a href="#" class="clr-gre"><span class="glyphicon glyphicon-pencil "></span> Profile</a> </strong>
+                </center>
             </div>
         </div>
+
+
+
         <div class="list-group">
             <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
-                <span class="glyphicon glyphicon-user"></span> Administrator Panel
+                <span class="glyphicon glyphicon-wrench"></span> Administrator Panel
             </div>
-            <a href="#" class="list-group-item">Second item</a>
+
+            <a href="#" class="list-group-item active-pill" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>Dashboard</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-briefcase "></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>Office Accounts</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-user "></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>User Accounts</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>Appointments</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-book"></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>Documents & Reports</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>General Settings</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-pencil clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
-                <strong class="gre-ftr-lnk"> orims.com </strong>
+                <strong class="clr-gre"> orims.com </strong>
             </div>
         </div>
 
     </div>
 
-    <div class="col-md-8" style="" >
+    <div class="col-md-8" style="margin-bottom:20px;" >
         <div class="row">
             <div class="col-md-12">
                 <div class="list-group">
                     <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
-                        <span class="glyphicon glyphicon-user"></span> Administrator Panel
+                        <span class="glyphicon glyphicon-dashboard"></span> Dashboard : Quick Options
                     </div>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <a href="#" class="list-group-item">Second item</a>
-                    <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
-                        <strong class="gre-ftr-lnk"> orims.com </strong>
+                    <div class="alert-info" style="padding:10px;border:1px grey;">
+                        <div class="clr-gre"> You can quickly select an organisation to manage, from the list below.</div>
                     </div>
+
+            <div class="panel-body"
+                 style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
+                <div ><!--Build Quick access panel-->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>
+                                        <div class="clr-gre">Ministry</div>
+                                    </strong>
+                                </div>
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
+                                    <img src="{% static 'orims/photos/uploads/featured-images/mowt.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item clr-dft"><strong>Ministry of Works and transport</strong></li>
+                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
+                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                             <div class="row">
+                                                 <div class="col-xs-6"></div>
+                                                 <div class="col-sm-6">
+                                                    <a href="{% url 'systemAdmin:signup' %}">
+                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    </a>
+                                                </div>
+                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>
+                                        <div class="clr-gre">Organisation</div>
+                                    </strong>
+                                </div>
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
+                                    <img src="{% static 'orims/photos/uploads/featured-images/afrodjango.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item clr-dft"><strong>AfroDjango Initiative Uganda</strong></li>
+                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
+                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                             <div class="row">
+                                                 <div class="col-xs-6"></div>
+                                                 <div class="col-sm-6">
+                                                    <a href="{% url 'systemAdmin:signup' %}">
+                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    </a>
+                                                </div>
+                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>
+                                        <div class="clr-gre">Firm</div>
+                                    </strong>
+                                </div>
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
+                                    <img src="{% static 'orims/photos/uploads/featured-images/business.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item clr-dft"><strong>Business firm</strong></li>
+                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
+                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                             <div class="row">
+                                                 <div class="col-xs-6"></div>
+                                                 <div class="col-sm-6">
+                                                    <a href="{% url 'systemAdmin:signup' %}">
+                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    </a>
+                                                </div>
+                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>
+                                        <div class="clr-gre">Ohter</div>
+                                    </strong>
+                                </div>
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
+                                    <img src="{% static 'orims/photos/uploads/featured-images/orims.com.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item clr-dft"><strong>Other</strong></li>
+                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
+                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                             <div class="row">
+                                                 <div class="col-xs-6"></div>
+                                                 <div class="col-sm-6">
+                                                    <a href="{% url 'systemAdmin:signup' %}">
+                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    </a>
+                                                </div>
+                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="caption">
+                        <div class="clr-gre">
+                        <h3>Quick preview and Selection Area</h3>
+                        <p>You can minimize this section at any time.</p>
+                        </div>
+                            <p>
+                            <a href="#" class="btn btn-primary" role="button">
+                                Button
+                            </a>
+                            <a href="#" class="btn btn-default" role="button">
+                                Button
+                            </a>
+                        </p>
+                    </div>
+
+                </div><!--End Quick access profile panel-->
+            </div>
+            <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
+                <strong class="clr-gre"> orims.com </strong>
+            </div>
                 </div>
             </div>
         </div>
+
+        <!-- QUICK GUIDE SECTION -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- office account creation quick guide -->
+                <div class="alert" style="border:1px solid #ccc;">
+                    <div class="row">
+                        <div class="col-sm-4"   style="border-right:1px solid #ccc;text-align:center;">
+                            <div class="caption">
+                                <div class="clr-gre">
+                                    <h3 style="text-decoration:underline;">Office Account</h3>
+                                    <p>How to create an office account.</p>
+                                    <span class="glyphicon glyphicon-briefcase" style="font-size:1000%;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="clr-gre" >
+                                <center>
+                                    <strong>
+                                        Quickly learn how create an office account through these simple steps
+                                    </strong>
+                                </center>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">1</span>
+                                     Go to <strong class="clr-gre-1">Administrator panel</strong>
+                                    then click on the <strong class="clr-gre-1">office accounts</strong>.
+                                    option pill, Then Choose create Office account, from the options provided in order
+                                    to load the Registration form.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">2</span>
+                                     Select or create a <strong class="clr-gre-1">Service unit</strong>
+                                    Account i.e. Ministry, Organisation, or any other business firm under which you want
+                                    your office account to be created.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">3</span>
+                                     Select or create a <strong class="clr-gre-1">Branch</strong>
+                                    Account under which you want your office account to be created.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">4</span>
+                                     Select or create a <strong class="clr-gre-1">Department</strong>
+                                    Account under which you want your office account to be created.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">5</span>
+                                     Now finally create <strong class="clr-gre-1">Office Account</strong>
+                                    by filling in the form provided to you.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of office account creation quick guide -->
+
+                <!-- User creation quick guide -->
+                <div class="alert" style="border:1px solid #ccc;">
+                    <div class="row">
+                        <div class="col-sm-4"   style="border-right:1px solid #ccc;text-align:center;">
+                            <div class="caption">
+                                <div class="clr-gre">
+                                    <h3 style="text-decoration:underline;">User Account</h3>
+                                    <p>How to create or add user to the system.</p>
+                                    <span class="glyphicon glyphicon-user" style="font-size:1000%;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="clr-gre" >
+                                <center>
+                                    <strong>
+                                        Quickly learn how create a user account, or add a user to the system through
+                                        these simple steps
+                                    </strong>
+                                </center>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">1</span>
+                                     Go to <strong class="clr-gre-1">Administrator panel</strong>
+                                    then click on the <strong class="clr-gre-1">User accounts</strong>.
+                                    option pill.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">2</span>
+                                     Select <strong class="clr-gre-1">Add user </strong>
+                                    from the options provided to load the User creation / or staff registration form.
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">3</span>
+                                     Select <strong class="clr-gre-1">Office Account</strong> under which you want to register
+                                    the user.<br/>Note: If you are not yet aware of how to create an office account, then
+                                    follow the steps in the section above this on <strong class="clr-gre-1">
+                                    How to create an Office Account</strong>
+                                </div>
+                                <div class=" col-sm-12 clr-gre" style="margin-top:15px;">
+                                    <span class="badge"  style="font-size:100%;">4</span>
+                                     Now finally add user or create <strong class="clr-gre-1">User Account</strong>
+                                    by filling in the form provided to you.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of user creation quick guide -->
+
+            </div>
+        </div>
+        <!-- END OF QUICK GUIDE SECTION -->
     </div>
 
 </div>
 {% endblock %}
+
+<!-- FOOTER EXRENSION SECTION -->
+{% block footer%}
+<div class="container clr-gre" style="margin-top:20px;margin-bottom:20px;">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="col-md-1">
+                    <center>Help</center>
+            </div>
+            <div class="col-md-2">
+                <center>Security Policy</center>
+            </div>
+            <div class="col-md-3">
+                <center>Terms and Conditions</center>
+            </div>
+
+            <div class="col-md-3">
+                <center>About Orims</center>
+            </div>
+            <div class="col-md-3">
+                <center>Developers</center>
+            </div>
+        <div class="col-md-1"></div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <center>All rights reserved @ AfroDjango Initiative</center>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <center>Orims 2018</center>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- END OF FOOTER EXRENSION SECTION -->

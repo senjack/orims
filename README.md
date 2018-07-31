@@ -1,5 +1,7 @@
 # orims_repository
 
+
+
 CONCEPT FOR ONLINE OFFICE RECEPTION AND INFO MANAGEMENT SYSTEM.
 The project is to build an online office reception information management tool using Python and related technologies. The major aim of the tool is to help the general public make official appointments and to reduce time wasted on visiting a public office when the official wanted is absent or not available for meeting.
 

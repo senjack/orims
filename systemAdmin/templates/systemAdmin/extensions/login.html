@@ -1,18 +1,18 @@
-{# Dynamically load all static files of the system-admin App #}
+﻿{# Dynamically load all static files of the system-admin App #}
 {% extends 'orims/base/base.html' %}
 
 {#To be injected in the Title Block of the base.html template #}
 {% block title %}System-Admin Log in Form{% endblock %}
 {#To be injected in the Body Block of the base.html template#}
 {% block body %}
-<div class="row">
+<div class="row fm-mido" style="">
 <div class="col-sm-3"  ></div>
 <div class="col-sm-6" style="" >
     <div class="row">
         <div class="col-sm-1"  ></div>
         <div class="col-sm-10"  >
             {% if form.username.errors %}
-                <div class="alert alert-danger" style="text-align:left;">{{ form.username.errors }}</div>
+                <div class="alert alert-danger alert-dismissable" style="text-align:left;">{{ form.username.errors }}</div>
             {% endif %}
              <div class="pagelet-frame" style="" >
                 <!-- LOGIN FORM PAGELET -->
@@ -55,7 +55,6 @@
                                 <input type="submit" value="Login" name = "login" class="btn btn-primary" style="width:50%;"/>
                                 <input type="button" value="Cancel" name = "Cancel" class="btn btn-default blu-bdr"
                                        onclick="window.location.href = '{% url 'systemAdmin:login' %}';" style="width:50%;"/>
-                                </a>
                             </div>
                         </form>
                         <br>
@@ -69,7 +68,7 @@
                     </div>
 
                     <div class="panel-footer" style="color:#bbb;">
-                        <center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
+                        <center><span class="glyphicon glyphicon-calendar "></span><strong> <a href="#" class="clr-gre">orims.com</a> </strong><span class="glyphicon glyphicon-time "></span></center>
                     </div>
                 </div>
                 <!-- END OF LOGIN FORM PAGELET -->

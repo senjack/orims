@@ -14,61 +14,35 @@
       <file leaf-file-name="orimstrap.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orims/static/orims/styles/orimstrap/orimstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="476">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/systemAdmin/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="4" column="24" selection-start-line="4" selection-end-line="4" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret lean-forward="true" />
+            <state relative-caret-position="238">
+              <caret line="74" column="54" lean-forward="true" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
               <folding>
-                <element signature="e#366#419#0" expanded="true" />
-                <element signature="e#642#685#0" expanded="true" />
-                <element signature="e#640#663#0" expanded="true" />
-                <element signature="e#1151#1174#0" expanded="true" />
-                <element signature="e#1342#1365#0" expanded="true" />
-                <element signature="e#1712#1734#0" expanded="true" />
-                <element signature="e#1933#1956#0" expanded="true" />
-                <element signature="e#2463#2491#0" expanded="true" />
-                <element signature="e#3096#3131#0" expanded="true" />
-                <element signature="e#3339#3384#0" expanded="true" />
-                <element signature="e#3757#3807#0" expanded="true" />
-                <element signature="e#3971#4016#0" expanded="true" />
+                <element signature="e#366#404#0" expanded="true" />
+                <element signature="e#648#691#0" expanded="true" />
+                <element signature="e#723#746#0" expanded="true" />
+                <element signature="e#1851#1874#0" expanded="true" />
+                <element signature="e#2517#2541#0" expanded="true" />
+                <element signature="e#3078#3102#0" expanded="true" />
+                <element signature="e#3246#3271#0" expanded="true" />
+                <element signature="e#11237#11313#0" expanded="true" />
+                <element signature="e#11515#11558#0" expanded="true" />
+                <element signature="e#12005#12038#0" expanded="true" />
+                <element signature="e#13874#13917#0" expanded="true" />
+                <element signature="e#14007#14040#0" expanded="true" />
+                <element signature="e#16257#16300#0" expanded="true" />
+                <element signature="e#16390#16423#0" expanded="true" />
+                <element signature="e#18591#18634#0" expanded="true" />
+                <element signature="e#18724#18757#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="100" column="88" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="88" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -76,26 +50,17 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orims/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state relative-caret-position="51">
+              <caret line="4" selection-start-line="3" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="91" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="204">
+              <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -135,16 +100,16 @@
         <option value="$PROJECT_DIR$/systemAdmin/forms.py" />
         <option value="$PROJECT_DIR$/systemAdmin/models.py" />
         <option value="$PROJECT_DIR$/systemAdmin/admin.py" />
-        <option value="$PROJECT_DIR$/orimsProject/settings.py" />
         <option value="$PROJECT_DIR$/systemAdmin/urls.py" />
         <option value="$PROJECT_DIR$/orimsProject/urls.py" />
-        <option value="$PROJECT_DIR$/orims/templates/orims/base/base.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html" />
-        <option value="$PROJECT_DIR$/orims/urls.py" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html" />
-        <option value="$PROJECT_DIR$/systemAdmin/views.py" />
+        <option value="$PROJECT_DIR$/orimsProject/settings.py" />
         <option value="$PROJECT_DIR$/orims/static/orims/styles/orimstrap/orimstrap.css" />
+        <option value="$PROJECT_DIR$/orims/templates/orims/base/base.html" />
+        <option value="$PROJECT_DIR$/orims/urls.py" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/home.html" />
+        <option value="$PROJECT_DIR$/systemAdmin/views.py" />
       </list>
     </option>
   </component>
@@ -170,33 +135,7 @@
             <path>
               <item name="orims" type="b2602c69:ProjectViewProjectNode" />
               <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="orims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="orims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="orims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="orims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="orims" type="462c0819:PsiDirectoryNode" />
-              <item name="orimsProject" type="462c0819:PsiDirectoryNode" />
+              <item name="systemAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -261,7 +200,7 @@
     <frame x="-8" y="-8" width="1040" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20558882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19760479" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -283,21 +222,21 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20605469" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3290938" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -410,24 +349,10 @@
     <entry file="file://$PROJECT_DIR$/system_admin/forms.py" />
     <entry file="file://$PROJECT_DIR$/system_admin/models.py" />
     <entry file="file://$PROJECT_DIR$/system_admin/views.py" />
-    <entry file="file://$PROJECT_DIR$/orims/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orims_project/settings.py" />
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/base/xxbase.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-232" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orims/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/index.html">
@@ -455,13 +380,6 @@
     <entry file="file://$PROJECT_DIR$/systemAdmin/models.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/orimsProject/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orimsProject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -469,78 +387,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html">
+    <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="88" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="88" />
+        <state relative-caret-position="17">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+        <state relative-caret-position="201">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orimsProject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2227">
+          <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/systemAdmin/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="24" selection-start-line="4" selection-end-line="4" selection-end-column="24" />
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orims/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orims/static/orims/styles/orimstrap/orimstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="476">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orims/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="6" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orims/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret lean-forward="true" />
+        <state relative-caret-position="238">
+          <caret line="74" column="54" lean-forward="true" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
           <folding>
-            <element signature="e#366#419#0" expanded="true" />
-            <element signature="e#642#685#0" expanded="true" />
-            <element signature="e#640#663#0" expanded="true" />
-            <element signature="e#1151#1174#0" expanded="true" />
-            <element signature="e#1342#1365#0" expanded="true" />
-            <element signature="e#1712#1734#0" expanded="true" />
-            <element signature="e#1933#1956#0" expanded="true" />
-            <element signature="e#2463#2491#0" expanded="true" />
-            <element signature="e#3096#3131#0" expanded="true" />
-            <element signature="e#3339#3384#0" expanded="true" />
-            <element signature="e#3757#3807#0" expanded="true" />
-            <element signature="e#3971#4016#0" expanded="true" />
+            <element signature="e#366#404#0" expanded="true" />
+            <element signature="e#648#691#0" expanded="true" />
+            <element signature="e#723#746#0" expanded="true" />
+            <element signature="e#1851#1874#0" expanded="true" />
+            <element signature="e#2517#2541#0" expanded="true" />
+            <element signature="e#3078#3102#0" expanded="true" />
+            <element signature="e#3246#3271#0" expanded="true" />
+            <element signature="e#11237#11313#0" expanded="true" />
+            <element signature="e#11515#11558#0" expanded="true" />
+            <element signature="e#12005#12038#0" expanded="true" />
+            <element signature="e#13874#13917#0" expanded="true" />
+            <element signature="e#14007#14040#0" expanded="true" />
+            <element signature="e#16257#16300#0" expanded="true" />
+            <element signature="e#16390#16423#0" expanded="true" />
+            <element signature="e#18591#18634#0" expanded="true" />
+            <element signature="e#18724#18757#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orims/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="4" selection-start-line="3" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
           </folding>
         </state>
       </provider>

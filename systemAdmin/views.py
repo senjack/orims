@@ -24,6 +24,7 @@ def signup(request):
     else:
         f = AdminSignUpForm()
     return render(request, 'systemAdmin/extensions/signup.html', {'form': f})
+# End of function signup():
 
 
 def login(request):
@@ -61,6 +62,7 @@ def login(request):
             f = AdminLoginForm()
 
     return render(request, t, {'form': f})
+# End of function login():
 
 
 # SYSTEM ADMIN HOME PAGE BUILDER
@@ -79,6 +81,7 @@ def home(request):
     except KeyError:
         pass
     return redirect('systemAdmin:login')
+# End of function home():
 
 
 # LOGOUT METHOD.
@@ -88,4 +91,34 @@ def logout(request):
         return redirect('systemAdmin:login')
     except KeyError:
        return HttpResponse("Error.")
+# End of function logout():
 
+
+# CHECK ADMIN LOGIN STATUS EVERY TIME BEFORE LOADING ANY TEMPLATE
+def loggedin(request, template, data_feed):
+    # STEP1.0: Receive and store passed template(template) in local variable t.
+    t = template
+
+    # STEP1.0: Receive and store passed data feed in local variable df.
+    df = data_feed
+
+    # STEP2.0: Test for running session, to determine if there is any logged in user(user_admin).
+    # Using the try concept, to handle omissions in case no session instance is found.
+    try:
+        # if there is any user logged in, return appropriate template and data_feeds.
+        if request.session['user_admin']:
+            return render(request, t,)
+
+        # if no user is logged in, redirect to Login page.
+        else:
+            return redirect('systemAdmin:login')
+        # End if request.session['user_admin']:
+
+    # Throw keyError as exception just in case.
+    except KeyError:
+        # If all is well, just do nothing.
+        pass
+    # Failure to successfully execute this code, just load the home page.
+    return redirect('systemAdmin:login')
+    # End of try
+# End of function loggedin():

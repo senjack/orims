@@ -1,4 +1,4 @@
-{# Dynamically load all static files of the systemAdmin App #}
+﻿{# Dynamically load all static files of the systemAdmin App #}
     {% load static %}
 
 <!--Hyper Text Markup Content Begins-->
@@ -7,6 +7,7 @@
 	<head>
 		<title>{% block title %}Orims.com{% endblock %}</title>
 
+		<meta charset="UTF-8">
 		<!-- Required for Bootstrap to work successfully online -->
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -14,6 +15,7 @@
 
 		<!-- Bootstrap -->
 			<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+		{% load staticfiles %}
 			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap.css' %}" />
 			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css' %}" />
 			<link rel="stylesheet" type="text/css" href="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/bootstrap-theme.css' %}" />
@@ -60,17 +62,21 @@
 
 		<!-- ORIMS FOOTER SECTION MARKUP -->
 		<div id="footer-division" class="footer-division"><!-- Beginning of footer container div -->
-			<div id="footer-container" class="container footer-container"><!-- Beginning of footer container Bootstrap inheritor div -->
+            <div id="footer-container" class="container footer-container"><!-- Beginning of footer container Bootstrap inheritor div -->
 				<!-- To be extended [Just in case] -->
+                {% block footer%} {% endblock %}
 			</div><!-- End of footer container Bootstrap inheritor div -->
 		</div><!-- End of footer container div -->
 		<!-- END OF : ORIMS FOOTER SECTION MARKUP -->
+	</div><!-- End of Body inheritor div -->
 
 
     <!-- Required for Bootstrap to successfully work offline -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/js/bootstrap.min.js' %}" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/js/bootstrap.js' %}"></script>
+        <script src="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/js/npm.js' %}"></script>
     <!-- End of : Required for Bootstrap to successfully work offline -->
 
     <!-- Required for Bootstrap to successfully work online -->
@@ -78,7 +84,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <!-- End of : Required for Bootstrap to successfully work online -->
-	</div><!-- End of Body inheritor div -->
 	</body>
 
 </html>

@@ -1,4 +1,4 @@
-{# Dynamically load all static files of the system-admin App #}
+﻿{# Dynamically load all static files of the system-admin App #}
 {% extends 'orims/base/base.html' %}
 
 {#To be injected in the Title Block of the base.html template #}
@@ -6,7 +6,7 @@
 
 {#To be injected in the Body Block of the base.html template#}
 {% block body %}
-<div class="row">
+<div class="row row fm-mido">
     <div class="col-sm-3"  ></div>
     <div class="col-sm-6" style="" >
         <div class="row">
@@ -15,7 +15,7 @@
                  <div class="pagelet-frame" style="" >
  <!-- SYSTEM ADMIN ACCOUNTS CREATION FORM PAGELET -->
 {% if display_success %}
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissable">
         <span class="glyphicon glyphicon-ok"></span>
         Account created successfully. Would you like to login now?
        <a href="{% url 'systemAdmin:login' %}">
@@ -24,7 +24,7 @@
     </div>
 {% endif %}
 {% if display_error %}
-    <div class="alert alert-danger">SignUp Failure! Invalid user name or password.</div>
+    <div class="alert alert-danger alert-dismissable">SignUp Failure! Invalid user name or password.</div>
 {% endif %}
 <div class="panel-heading pn-hd">
     <h3 class="panel-title clr-wht fm-hd-big" style="">SignUp Form</h3>
@@ -107,7 +107,7 @@
     <div class="panel-footer" style="color:#bbb;">
 		<center>
             <span class="glyphicon glyphicon-calendar "></span>
-            <strong> <a href="#" class="gre-ftr-lnk">orims.com</a> </strong>
+            <strong> <a href="#" class="clr-gre">orims.com</a> </strong>
             <span class="glyphicon glyphicon-time "></span></center>
     </div>
 </div>

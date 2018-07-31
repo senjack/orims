@@ -6,9 +6,13 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
 /*.pn-hd{background:rgb(65, 118, 144);text-align:center;}*/
 .blu-bdr{border-color:#376092;}
 .grn-bdr{border-color:#379260;}
-.gre-ftr-lnk{color:#999;}
+.clr-gre{color:#999;}
+.clr-gre-1{color:#666;}
+.clr-grn{color:green;}
 .cnt-lft{text-align:left;}
-.header-division {margin-bottom:10px;}
+a.active-pill{background:#f7f7f7;}
+.header-division{margin-bottom:10px;}
+.fm-mido{padding-top:150px;}
 
 .pnl-bdy-white-bg {
                     text-align:center;
@@ -17,3 +21,9 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
                     background:#fff;
                    }
 
+
+.footer-container{
+    border-top:1px solid #ddd;
+}
+
+.hidden-element{display:none;}
