@@ -1,7 +1,6 @@
 ﻿{# Dynamically load all static files of the system-admin App #}
 {% extends 'orims/base/base.html' %}
 {% load static %}
-{% load staticfiles %}
 
 {#To be injected in the Title Block of the base.html template #}
 {% block title %}System-Admin Home page{% endblock %}
@@ -12,16 +11,15 @@
 <div class="navbar-fixed-top navbar-inverse navbar-collapse" style="width:100%;background:#254061;"
      >
     <div style="">
-        <div class="col-sm-11 col-xs-12" style="">
+        <div class="col-lg-11 col-sm-12" style="">
             <nav class="collapse navbar-collapse" id="myNavbar">
-                    <div class="col-sm-1 col-xs-12"></div>
-                    <div class="col-sm-4 col-xs-12" style="height:50px;margin-left:-15px;padding-left:0px;overflow:hidden;">
-                            <a data-toggle="tooltip" data-placement="bottom" title="www.orims.com" class="navbar-brand"
-                               style="font-size:160%;" href="{% url 'orims:index' %}">Orims.com </a>
-                        <div class="navbar-brand col-sm-4 col-xs-12" style="">Administrator</div>
+                    <div class="col-md-1 col-sm-12"></div>
+                    <div class="col-md-4 col-sm-12" style="margin-left:-15px;padding-left:0px;">
+                         <a data-toggle="tooltip" data-placement="bottom" title="www.orims.com" class="navbar-brand" style="font-size:160%;" href="{% url 'orims:index' %}">Orims.com </a>
+                        <div class="navbar-brand"> Administrator</div>
                     </div>
-                    <div class="col-sm-7 col-xs-12">
-                        <div class="col-sm-4 col-xs-12">
+                    <div class="col-md-7 col-sm-12">
+                        <div class="col-md-5 col-sm-12">
                             <a data-toggle="tooltip" data-placement="bottom" title="Dashbord" class="navbar-brand" href="{% url 'systemAdmin:home' %}">
                                 <span class="glyphicon glyphicon-dashboard"></span>
                             </a>
@@ -31,14 +29,15 @@
                             </a>
 -->
                         </div>
-                        <div class="col-sm-8 col-xs-12">
-                            <div class="col-sm-12 col-xs-12">
-                                <div class="col-sm-6 col-xs-12">
+                        <div class="col-md-7 col-sm-12">
+                            <div class="col-md-2 col-sm-12"></div>
+                            <div class="col-md-10 col-sm-12">
+                                <div class="col-md-6 col-sm-12">
                                 <a class="navbar-brand" href="#" style="font-size:110%;">
                                     <span class="glyphicon glyphicon-user"></span> Profile
                                 </a>
                                 </div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-12">
                                 <a class="navbar-brand" href="{% url 'systemAdmin:logout' %}" style="font-size:110%;">
                                     <span class="glyphicon glyphicon-log-out"></span> Logout
                                 </a>
@@ -48,19 +47,18 @@
                         </div>
                     </div>
             </nav>
-        </div>
-       <div class="col-sm-1 col-xs-12">
+        <div class="col-md-1 col-sm-12">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </div>
+
+        </div>
     </div>
 </div>
 {% endblock %}
-
-{% include '../inclusions/admin_mini_profile.html' %}
 
 {% block body %}
 <div class="row" style="margin-top:50px;">
@@ -79,7 +77,7 @@
                                         <strong>UserName: </strong></div>
                                 </div>
                                     <div class="col-md-7" style="padding-left:0px;">
-                                    <div class="clr-dft"><strong>{{ request.session.admin.username }}</strong></div>
+                                    <div class="clr-dft"><strong>{{ request.session.admin_username }}</strong></div>
                                 </div>
                             </div>
                                 <br/>
@@ -89,7 +87,7 @@
                                         <strong>Role: </strong></div>
                                 </div>
                                 <div class="col-md-7" style="padding-left:0px;">
-                                    <div class="clr-dft"><strong>{{ request.session.admin.role }}</strong></div>
+                                    <div class="clr-dft"><strong>System Admin</strong></div>
                                 </div>
                             </div>
                             <br/>
@@ -99,7 +97,7 @@
                                         <strong>Email: </strong></div>
                                 </div>
                                 <div class="col-md-7" style="padding-left:1px;">
-                                    <div class="clr-dft" style="font-size:95%;"><strong>{{ request.session.admin.email }}</strong></div>
+                                    <div class="clr-dft" style="font-size:95%;"><strong>{{ request.session.admin_email }}</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -247,29 +245,24 @@
                  style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
                 <div ><!--Build Quick access panel-->
 
-{% if units %}
-    {% if units|length < 1 %}
-         {{ unit.unit_type }}
-    {% elif %}
-        {% for unit in units %}
-
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <strong>
-                                        <div class="clr-gre">{{ unit.unit_type }}</div>
+                                        <div class="clr-gre">Ministry</div>
                                     </strong>
                                 </div>
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                    <img src="{% static 'orims/photos/uploads/featured-images/orims.com.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                    <img src="{% static 'orims/photos/uploads/featured-images/mowt.jpg' %}" alt="unit" style="height:150px;width:250px;">
                                 </div>
                                 <ul class="list-group">
-                                    <li class="list-group-item clr-dft"><strong>{{ unit.unit_name }}</strong></li>
+                                    <li class="list-group-item clr-dft"><strong>Ministry of Works and transport</strong></li>
                                         <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
                                             <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                {{unit.unit_featured_image}}
-                                                {{ unit.unit_description }}
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
+                                                This is a brief description about Ministry of works and transport.
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -290,18 +283,19 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <strong>
-                                        <div class="clr-gre">{{ unit.unit_type }}</div>
+                                        <div class="clr-gre">Organisation</div>
                                     </strong>
                                 </div>
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
                                     <img src="{% static 'orims/photos/uploads/featured-images/afrodjango.jpg' %}" alt="unit" style="height:150px;width:250px;">
                                 </div>
                                 <ul class="list-group">
-                                    <li class="list-group-item clr-dft"><strong>{{ unit.unit_name }}</strong></li>
+                                    <li class="list-group-item clr-dft"><strong>AfroDjango Initiative Uganda</strong></li>
                                         <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
                                             <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                {{unit.unit_featured_image}}
-                                                {{ unit.unit_description }}
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
+                                                This is a brief description about AfroDjango initiative.
                                             </div>
                                         </li>
                                         <li class="list-group-item">
@@ -318,10 +312,6 @@
                                 </div>
                             </div>
                     </div>
-
-        {% endfor %}
-    {% endif %}
-{% endif %}
 
                     <div class="row">
                         <div class="col-sm-6">
@@ -562,7 +552,7 @@
     </div>
     <div class="row" style="margin-top:20px;">
         <div class="col-md-12">
-            <center>Orims {{ request.session.current_time }}</center>
+            <center>Orims 2018</center>
         </div>
     </div>
 </div>

@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
 from .models import SystemAdmin
+from django.utils import timezone
 from django.http import HttpResponse
 from .forms import *
+from orims.views import *
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import views
 
@@ -20,9 +22,11 @@ def signup(request):
             f.save()
             f = AdminSignUpForm()
             return render(request, t, {'form': f,'display_success':True})
-
+        # End of if f.is_valid():
     else:
         f = AdminSignUpForm()
+    # End of if request.method == 'POST':
+
     return render(request, 'systemAdmin/extensions/signup.html', {'form': f})
 # End of function signup():
 
@@ -30,7 +34,7 @@ def signup(request):
 def login(request):
     t = 'systemAdmin/extensions/login.html'
     f = AdminLoginForm(request.POST or None)
-
+    context = {'form':f}
     if request.method == 'POST':
         if f.is_valid:
             username = request.POST['username'].lower()
@@ -38,7 +42,9 @@ def login(request):
             if not u.count():
                 uname_error = "There is no User with the supplied Username. \
                 Please Enter your correct Username and Try again."
-                return render(request,t,{'form':f, 'username_error': uname_error})
+                context.update({'username_error': uname_error})
+                return render(request, t, context)
+            # End of if not u.count():
 
             password = request.POST['password']
             u1 = SystemAdmin.objects.get(system_admin_user_name= username)
@@ -46,40 +52,52 @@ def login(request):
             if not p:
                 password_error = "Invalid password. \
                 Please Enter your correct Password and Try again."
-                return render(request,t,{'form':f, 'password_error': password_error})
-
+                context.password_error = password_error
+                context.update({'password_error': password_error})
+                return render(request, t, context)
+            # End of if not p:
 
             user = u1.get_user_id()
             request.session['user_admin'] = user
-            return redirect('systemAdmin:home')
-            # return HttpResponse("You are now Logged in. Do you want to <a href='logout'>logout?</a>" + "\
-            # " + str(request.session['user_admin']))
+            t = 'systemAdmin/extensions/home.html'
+            return render(request, t, context)
+        # End of if f.is_valid:
     else:
         try:
             if request.session['user_admin']:
+
+                set_ssession_data(request, request.session['user_admin'])
                 return redirect('systemAdmin:home')
         except KeyError:
             f = AdminLoginForm()
-
-    return render(request, t, {'form': f})
+        context.update({'form': f})
+        # End of try:
+    return render(request, t, context)
 # End of function login():
 
 
 # SYSTEM ADMIN HOME PAGE BUILDER
 def home(request):
-    # STEP1.0: Set home template.
+    # STEP1.0.0: Set home template.
     t = 'systemAdmin/extensions/home.html'
+    context = {'units': ''}
 
     # STEP1.1: Test for session, to determine currently logged in user.
     # if user is logged in, build home page.
     try:
         if request.session['user_admin']:
-            return render(request, t)
-        # if no user is logged in, redirect to Login page.
+            user = request.session['user_admin']
+            set_ssession_data(request, user)
+            units = fetch_units_for_user(user)
+            context.update({'units': units})
+            return render(request, t, context)
         else:
+            # if no user is logged in, redirect to Login page.
             return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
     except KeyError:
         pass
+    # End of try:
     return redirect('systemAdmin:login')
 # End of function home():
 
@@ -87,7 +105,14 @@ def home(request):
 # LOGOUT METHOD.
 def logout(request):
     try:
-        del request.session['user_admin']
+        if request.session['user_admin']:
+            del request.session['user_admin']
+
+        if request.session['user_staff']:
+            del request.session['user_staff']
+
+        if request.session['current_time']:
+            del request.session['current_time']
         return redirect('systemAdmin:login')
     except KeyError:
        return HttpResponse("Error.")
@@ -122,3 +147,31 @@ def loggedin(request, template, data_feed):
     return redirect('systemAdmin:login')
     # End of try
 # End of function loggedin():
+
+
+# Fetch user details based on session admin id
+# This data is always to be fetched frequently before any action.
+# This is because, in case the user data is updated, the session is updated too.
+def set_ssession_data(request, uid):
+    if uid:
+        u = SystemAdmin.objects.get(system_admin_id=uid)
+        admn = {
+            'userid': uid,
+            'username': u.system_admin_user_name,
+            'role': 'Administrator',
+            'email': u.system_admin_email,
+            # 'photo': u.system_admin_user_name,
+        }
+        request.session['admin'] = admn
+        t= timezone.now().date().year
+        # 'year': timezone.now().date().year,
+        # 'month': timezone.now().date().month,
+        # 'day': timezone.now().date().day,
+        # 'weekday': timezone.now().date().isoweekday(),
+        # 'hour': timezone.now().time().hour,
+        # 'minute': timezone.now().time().minute,
+        # 'second': timezone.now().time().second,
+        # 'microsecond': timezone.now().time().microsecond,
+        # 'meridian': timezone.now().time(),
+        request.session['current_time'] = t
+# End of def set_ssession_data()

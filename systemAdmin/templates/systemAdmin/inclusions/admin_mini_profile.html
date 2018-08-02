@@ -1,0 +1,55 @@
+﻿<div class="row" style="margin-top:50px;">
+    <div class="col-md-4"  >
+        <div class="list-group">
+            <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
+                <span class="glyphicon glyphicon-user"></span> Profile
+            </div>
+            <div class="panel-body" style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
+                <div ><!--Build profile panel-->
+                    <div class="row"><!--Build profile Info section-->
+                        <div class="col-md-11" style="text-align:left;">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>UserName: </strong></div>
+                                </div>
+                                    <div class="col-md-7" style="padding-left:0px;">
+                                    <div class="clr-dft"><strong>{{ request.session.admin_username }}</strong></div>
+                                </div>
+                            </div>
+                                <br/>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>Role: </strong></div>
+                                </div>
+                                <div class="col-md-7" style="padding-left:0px;">
+                                    <div class="clr-dft"><strong>System Admin</strong></div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div style="text-align:right;">
+                                        <strong>Email: </strong></div>
+                                </div>
+                                <div class="col-md-7" style="padding-left:1px;">
+                                    <div class="clr-dft" style="font-size:95%;"><strong>{{ request.session.admin_email }}</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+                    </div><!--End profile Info section-->
+                </div><!--End profile panel-->
+            </div>
+            <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
+                <center>
+                    <strong> <a href="#" class="clr-gre"><span class="glyphicon glyphicon-pencil "></span> Profile</a> </strong>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- END OF FOOTER EXRENSION SECTION -->

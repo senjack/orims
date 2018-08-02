@@ -22,5 +22,12 @@ class SystemAdmin(models.Model):
     def get_password(self,pwd):
         check = check_password(pwd,self.system_admin_password)
         return check
+
+    # Defining a display string for each instance
+    def get_data(self):
+
+        return self.system_admin_user_name
+    # End function __str__()
+
 # End of class SystemAdmin
 
