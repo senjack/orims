@@ -1,96 +1,335 @@
-﻿
+﻿{% load static %}
+{% load staticfiles %}
+`
         <div class="list-group">
             <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                 <span class="glyphicon glyphicon-briefcase"></span> System Admin : Office Account
             </div>
+
+<!-- Section1: Section for creeation accounts -->
+            <!--<a>-->
             <div class="alert-info" style="padding:10px;border:1px grey;">
-                <div class="clr-gre"><strong>1. Add Account to System. </strong></div>
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-plus clr-gre1"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="clr-gre1"><strong>Create New Account.</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-triangle-top clr-gre1"></span>
+                                <span class="glyphicon glyphicon-triangle-bottom clr-gre1"></span>
+                        </div>
+                    </div>
             </div>
+            <!--</a>-->
 
-            <a href="{% url 'systemAdmin:officeAccounts' %}" class="list-group-item" style="padding:5px;">
-                <div class="alert" style="margin:0px;background:#f8f8f8;">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="glyphicon glyphicon-briefcase "></span>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="clr-gre-1" ><strong>Create Office Account</strong></div>
-                        </div>
-                        <div class="col-xs-1">
-                                <span class="glyphicon glyphicon-plus clr-grn"></span>
+            <div class="admin-accounts-create">
+                <a href="{% url 'systemAdmin:officeAccounts' %}" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-briefcase "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Create Office Account</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus glyplus clr-grn" style="font-size:90%;"></span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="#" class="list-group-item" style="padding:5px;">
-                <div class="alert" style="margin:0px;background:#f8f8f8;">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="glyphicon glyphicon- "></span>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="clr-gre-1" ><strong>Add department</strong></div>
-                        </div>
-                        <div class="col-xs-1">
-                                <span class="glyphicon glyphicon-plus clr-grn"></span>
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon-user "></span>-->
+                                <img src="{% static 'orims/photos/icons/department.png' %}" alt="unit" style="height:16px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Create Department</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus clr-grn"  style="font-size:90%;"></span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="#" class="list-group-item" style="padding:5px;">
-                <div class="alert" style="margin:0px;background:#f8f8f8;">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="glyphicon glyphicon- "></span>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="clr-gre-1" ><strong>Add Branch</strong></div>
-                        </div>
-                        <div class="col-xs-1">
-                                <span class="glyphicon glyphicon-plus clr-grn"></span>
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon- "></span>-->
+                                <img src="{% static 'orims/photos/icons/branch.png' %}" alt="unit" style="height:20px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Create Branch</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus clr-grn" style="font-size:90%;"></span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="#" class="list-group-item" style="padding:5px;">
-                <div class="alert" style="margin:0px;background:#f8f8f8;">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="glyphicon glyphicon- "></span>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="clr-gre-1" ><strong>Add Service unit</strong></div>
-                        </div>
-                        <div class="col-xs-1">
-                                <span class="glyphicon glyphicon-plus clr-grn"></span>
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-home "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Create Service Unit</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus clr-grn" style="font-size:90%;"></span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="#" class="list-group-item" style="padding:5px;">
-                <div class="alert" style="margin:0px;background:#f8f8f8;">
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="glyphicon glyphicon- "></span>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="clr-gre-1" ><strong>Load combined creation form </strong></div>
-                        </div>
-                        <div class="col-xs-1">
-                                <span class="glyphicon glyphicon-plus clr-grn"></span>
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-link "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Use Combined Creation Form </div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus clr-grn" style="font-size:90%;"></span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                <!--<div style="background:#fff;width:100%;height:20px;border:0px;"></div>-->
+                <br/>
+            </div>
+<!-- END of Section1: Section for creation accounts -->
+
+<!-- Section2: Section for viewing, editing &/ deleting accounts -->
+            <!--<a>-->
+            <div class="alert-info" style="padding:10px;border:1px grey;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-eye-open clr-gre1"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="clr-gre1"><strong>View All Accounts You manage.</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-triangle-top clr-gre1"></span>
+                                <span class="glyphicon glyphicon-triangle-bottom clr-gre1"></span>
+                        </div>
+                    </div>
+            </div>
+            <!--</a>-->
+
+            <div class="admin-accounts-create">
+                <a href="{% url 'systemAdmin:officeAccounts' %}" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-briefcase "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >View all Office Accounts you manage</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open glyplus clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon-user "></span>-->
+                                <img src="{% static 'orims/photos/icons/department.png' %}" alt="unit" style="height:16px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >View all Departments you manage</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open clr-grn"  style="font-size:90%;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon- "></span>-->
+                                <img src="{% static 'orims/photos/icons/branch.png' %}" alt="unit" style="height:20px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >View all Branches you manage</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-home "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >View all Service Units you manage</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-list "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Load nested list view for all Accounts</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <br/>
+<!-- END of Section2: Section for viewing, editing &/ deleting accounts -->
+
+<!-- Section3: Section for searching and filtering accounts for viewing, editing &/ deleting-->
+            <!--<a>-->
+            <div class="alert-info" style="padding:10px;border:1px grey;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-filter clr-gre1"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="clr-gre1"><strong>Search or Filter Account For management.</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-triangle-top clr-gre1"></span>
+                                <span class="glyphicon glyphicon-triangle-bottom clr-gre1"></span>
+                        </div>
+                    </div>
+            </div>
+            <!--</a>-->
+
+            <div class="admin-accounts-create">
+                <a href="{% url 'systemAdmin:officeAccounts' %}" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-briefcase "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Open advanced filter panel for Office Accounts</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-folder-open glyplus clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon-user "></span>-->
+                                <img src="{% static 'orims/photos/icons/department.png' %}" alt="unit" style="height:16px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Open advanced filter panel for Departments</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-folder-open clr-grn"  style="font-size:90%;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <!--<span class="glyphicon glyphicon- "></span>-->
+                                <img src="{% static 'orims/photos/icons/branch.png' %}" alt="unit" style="height:20px;width:20px;" />
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Open advanced filter panel for Branches</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-folder-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-home "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Open advanced filter panel for Service Units</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-folder-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-search "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Open generic search and filter panel for all Accounts</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-folder-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+<!-- END of Section3: Section for searching and filtering accounts for viewing, editing &/ deleting-->
 
 
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">

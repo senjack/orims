@@ -13,6 +13,7 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
 a.active-pill{background:#f7f7f7;}
 .header-division{margin-bottom:10px;}
 .fm-mido{padding-top:150px;}
+.glyplus{font-size:85%;}
 
 .pnl-bdy-white-bg {
                     text-align:center;
