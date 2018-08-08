@@ -38,6 +38,7 @@ class ServiceUnit(models.Model):
     unit_description = models.TextField(max_length=1024)
     unit_logo = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/logos',max_length=500)
     unit_featured_image = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/featured_images', max_length=500)
+    featured_image = ''
     unit_cover_photo = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/cover_photos', max_length=500)
 
     # Defining what to be returned for each instance
@@ -46,6 +47,12 @@ class ServiceUnit(models.Model):
         ret_str = str(self.unit_name) + ' ( Unit Id :  ' + str(self.unit_id) + ' )'
         return str(ret_str)
     # End of function __str__(self)
+
+    # A method to build a featured image of a service unit.
+    def create_featured_image(self):
+        img = '< img src = ' + str(self.unit_featured_image) + 'alt = ' + str(self.unit_name) + 'style = "height:150px;width:250px;" >'
+        return img
+    # END OF: def create_featured_image(self):
 
     # Enforcing custom table name
     class Meta:

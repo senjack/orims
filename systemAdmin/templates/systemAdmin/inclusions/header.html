@@ -1,0 +1,49 @@
+﻿<div class="navbar-fixed-top navbar-inverse navbar-collapse" style="width:100%;background:#254061;"
+     >
+    <div style="">
+        <div class="col-sm-11 col-xs-12" style="">
+            <nav class="collapse navbar-collapse" id="myNavbar">
+                    <div class="col-sm-1 col-xs-12"></div>
+                    <div class="col-sm-4 col-xs-12" style="height:50px;margin-left:-15px;padding-left:0px;overflow:hidden;">
+                            <a data-toggle="tooltip" data-placement="bottom" title="www.orims.com" class="navbar-brand"
+                               style="font-size:160%;" href="{% url 'orims:index' %}">Orims.com </a>
+                        <div class="navbar-brand col-sm-4 col-xs-12" style="">Administrator</div>
+                    </div>
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="col-sm-4 col-xs-12">
+                            <a data-toggle="tooltip" data-placement="bottom" title="Go to Dashbord" class="navbar-brand" href="{% url 'systemAdmin:home' %}">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                            </a>
+<!--
+                            <a class="navbar-brand" href="#"  style="font-size:110%;">
+                                <span class="glyphicon glyphicon-briefcase"></span>
+                            </a>
+-->
+                        </div>
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-6 col-xs-12">
+                                <a  data-toggle="tooltip" data-placement="bottom" title="Click to View profile" class="navbar-brand" href="#" style="font-size:110%;">
+                                    <span class="glyphicon glyphicon-user"></span> Profile
+                                </a>
+                                </div>
+                                <div class="col-sm-6 col-xs-12">
+                                <a  data-toggle="tooltip" data-placement="bottom" title="Click to Logout" class="navbar-brand" href="{% url 'systemAdmin:logout' %}" style="font-size:110%;">
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                                </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </nav>
+        </div>
+       <div class="col-sm-1 col-xs-12">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+</div>

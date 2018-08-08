@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 {#To be injected in the Title Block of the base.html template #}
-{% block title %}System-Admin : Home page{% endblock %}
+{% block title %}System-Admin : Office Accounts{% endblock %}
 {#To be injected in the Body Block of the base.html template#}
 
 {% block header %}
@@ -19,11 +19,7 @@
 <div class="row" style="">
     <!-- Left panels section -->
     <div class="col-md-4" style="" >
-        <!-- Include System Admin Mini profile pane -->
             <div style="margin-top:-20px;width:100%;"></div>
-            {% block pr %}{% include '../inclusions/admin_mini_profile.html' %} {% endblock %}
-        <!-- End of System Admin Mini profile pane -->
-
         <!-- Include System Admin panel -->
             {% block pn %}{% include '../inclusions/admin_panel.html' %} {% endblock %}
         <!-- End of System Admin panel -->
@@ -33,18 +29,9 @@
     <!-- right bigger body section -->
     <div class="col-md-8" style="margin-bottom:20px;" >
             <div style="margin-top:-20px;width:100%;"></div>
-        <!-- Include Dashboard Quick selection panel -->
-            {% block QS %}{% include '../inclusions/quick_selection.html' %} {% endblock %}
-        <!-- End of Dashboard Quick selection panel -->
-
-
-        <!-- QUICK GUIDE SECTION -->
-
-            <!-- Include Quick guide -->
-                {% block QG %}{% include '../inclusions/quick_guide.html' %} {% endblock %}
-            <!-- End of Quick guide -->
-
-        <!-- END OF QUICK GUIDE SECTION -->
+        <!-- Include Office accounts option panel -->
+            {% block OA %}{% include '../inclusions/office_accounts_options.html' %} {% endblock %}
+        <!-- End of Office accounts option panel -->
     </div>
 
 </div>

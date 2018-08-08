@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.views.decorators.http import require_POST
-from .models import SystemAdmin
 from django.utils import timezone
-from django.http import HttpResponse
 from .forms import *
 from orims.views import *
+from .models import SystemAdmin
+from django.http import HttpResponse
+from orims.meta import meta_data
+from django.views.decorators.http import require_POST
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import views
 
@@ -15,107 +16,188 @@ def index(request):
 
 
 def signup(request):
+    # Test whether POST method is used.
+    # POST method is needed for data hiding
     if request.method == 'POST':
+        # If the POST method was used, then create and set Variables(filled up form and template).
+        # Create a new form instance(f)
         f = AdminSignUpForm(request.POST)
         t = 'systemAdmin/extensions/signup.html'
+        # Check for form validity(status)
         if f.is_valid():
+            # If form is valid, then save data in the form and and then clear the signUp form,
+            #  by creating a new empty signUp form instance.
             f.save()
             f = AdminSignUpForm()
+            # Now return the empty Signup form with success message alert initiated.
             return render(request, t, {'form': f,'display_success':True})
         # End of if f.is_valid():
     else:
+        # If the POST method was not used, then Drop or clear up that insecure data,
+        # By creating an empty signUp form instance.
+        # OR in case of first signup instance, Prepare an empty signup form.
         f = AdminSignUpForm()
     # End of if request.method == 'POST':
 
+    # In case of first signup instance, Return an empty SignUp form.
     return render(request, 'systemAdmin/extensions/signup.html', {'form': f})
 # End of function signup():
 
 
 def login(request):
+    # Sert login template.
     t = 'systemAdmin/extensions/login.html'
+    # If the Request POST variable has data in it, Create a filled up Login form instance(f).
+    # Otherwise set f to nothing.
     f = AdminLoginForm(request.POST or None)
+    # set f as a value to the key 'form' of the context object to be passed on to any returned template
     context = {'form':f}
     if request.method == 'POST':
+        # In case the request.POST variable has some data, Test for validity of the passed data.
         if f.is_valid:
+            # If data in the Request.POST variable is valid, fetch user name from the form.
             username = request.POST['username'].lower()
+            # Check whether there is any user with the supplied user name.
             u = SystemAdmin.objects.filter(system_admin_user_name= username)
             if not u.count():
+                # In case there is no user with the supplied user name set username error
                 uname_error = "There is no User with the supplied Username. \
                 Please Enter your correct Username and Try again."
                 context.update({'username_error': uname_error})
+                # Terminate the login process and throw username error.
                 return render(request, t, context)
             # End of if not u.count():
 
+            # In case there is a user with the supplied username,
+            # fetch the supplied password form the submitted form.
             password = request.POST['password']
             u1 = SystemAdmin.objects.get(system_admin_user_name= username)
+            # Compare the supplied password with that of the filtered user from the database.
             p = u1.get_password(password)
             if not p:
+                # In case the two password don't tally or match, set password error
                 password_error = "Invalid password. \
                 Please Enter your correct Password and Try again."
-                context.password_error = password_error
                 context.update({'password_error': password_error})
+                # Terminate the login process and throw password error
                 return render(request, t, context)
             # End of if not p:
 
+            # In case the two passwords match, then the authentication process was successful.
+            # Hence set or start the user session for admin.
             user = u1.get_user_id()
             request.session['user_admin'] = user
-            t = 'systemAdmin/extensions/home.html'
-            return render(request, t, context)
+            # After the system admin user session has been successfully set, then redirect to System-admin home.
+            return redirect('systemAdmin:home')
         # End of if f.is_valid:
     else:
+        # In case no data was submitted,.
         try:
+            # Test for any logged in user.
             if request.session['user_admin']:
-
-                set_ssession_data(request, request.session['user_admin'])
+                # In case of a logged in user, redirect to System admin home.
                 return redirect('systemAdmin:home')
         except KeyError:
+            # Else create an empty login form for logging in.
             f = AdminLoginForm()
         context.update({'form': f})
         # End of try:
+    # Return the new created empty login form.
     return render(request, t, context)
 # End of function login():
 
 
 # SYSTEM ADMIN HOME PAGE BUILDER
 def home(request):
-    # STEP1.0.0: Set home template.
+    # STEP1.0.0: Set home template and create an empty context object.
     t = 'systemAdmin/extensions/home.html'
-    context = {'units': ''}
+    context = {}
 
     # STEP1.1: Test for session, to determine currently logged in user.
-    # if user is logged in, build home page.
     try:
         if request.session['user_admin']:
+            # if user is logged in, build home page.
+            # create new user instance
             user = request.session['user_admin']
-            set_ssession_data(request, user)
+            # Set session data for the new user
+            set_session_data(request, user)
+            # Fetch and set all service units created or managed by the current user.
             units = fetch_units_for_user(user)
             context.update({'units': units})
+            # Build and return the home client view template with the set units for the user
             return render(request, t, context)
         else:
-            # if no user is logged in, redirect to Login page.
+            # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
         # End of if request.session['user_admin']:
     except KeyError:
+        # In case  testing for the logged in user fails, do nothing,
         pass
     # End of try:
+    # Just try logging in.
     return redirect('systemAdmin:login')
 # End of function home():
 
 
-# LOGOUT METHOD.
-def logout(request):
+# OFFICE ACCOUNTS PAGE BUILDER
+def officeAccounts(request):
+    # STEP1.0.0: Set home template and create an empty context object.
+    t = 'systemAdmin/extensions/office_accounts.html'
+    context = {}
+
+    # STEP1.1: Test for session, to determine currently logged in user.
     try:
         if request.session['user_admin']:
+            # if user is logged in, build home page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            # Build and return the home client view template with the set units for the user
+            return render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, do nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
+# End of officeAccounts() Method
+
+
+# LOGOUT METHOD.
+def logout(request):
+    """ THE LOGOUT PROCESS """
+    try:
+        if request.session['user_admin']:
+            # Logout any system-admin currently logged in
             del request.session['user_admin']
+        # END: if request.session['user_admin']:
+
+        if request.session['user_receptionist']:
+            # Logout any Receptionist currently logged in
+            del request.session['user_staff']
+        # END: if request.session['user_receptionist']:
 
         if request.session['user_staff']:
+            # Logout any official currently logged in
             del request.session['user_staff']
+        # END: if request.session['user_staff']:
 
         if request.session['current_time']:
+            # Delete the current time session
             del request.session['current_time']
+        # END: if request.session['current_time']:
+
+        # After logging out any possible user, redirect to login page
         return redirect('systemAdmin:login')
     except KeyError:
-       return HttpResponse("Error.")
+        # OTHERWISE. redirect to login page
+       return redirect('systemAdmin:login')
+    # END OF: try
 # End of function logout():
 
 
@@ -152,7 +234,7 @@ def loggedin(request, template, data_feed):
 # Fetch user details based on session admin id
 # This data is always to be fetched frequently before any action.
 # This is because, in case the user data is updated, the session is updated too.
-def set_ssession_data(request, uid):
+def set_session_data(request, uid):
     if uid:
         u = SystemAdmin.objects.get(system_admin_id=uid)
         admn = {
@@ -174,4 +256,5 @@ def set_ssession_data(request, uid):
         # 'microsecond': timezone.now().time().microsecond,
         # 'meridian': timezone.now().time(),
         request.session['current_time'] = t
+        request.session['meta'] = meta_data
 # End of def set_ssession_data()
