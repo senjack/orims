@@ -8,7 +8,7 @@
                         <span class="glyphicon glyphicon-dashboard"></span> Dashboard : Quick Options
                     </div>
                     <div class="alert-info" style="padding:10px;border:1px grey;">
-                        <div class="clr-gre">You can quickly select an organisation to manage, from the list below.</div>
+                        <div class="clr-gre1">You can quickly select an organisation to manage, from the list below.</div>
                     </div>
             <div class="panel-body"
                  style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
@@ -16,7 +16,7 @@
 
 {% if units %}
         {% for unit in units %}
-
+                {% if forloop.first or not forloop.counter|divisibleby:2 %}
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="panel panel-default">
@@ -26,14 +26,12 @@
                                     </strong>
                                 </div>
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                        {# unit.featured_image |striptags #}
-                                    <img src="{% static 'orims/photos/uploads/featured-images/orims.com.jpg' %}" alt="unit" style="height:150px;width:250px;" />
+                                    <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="height:150px;width:250px;" />
                                 </div>
                                 <ul class="list-group">
                                     <li class="list-group-item clr-dft"><strong>{{ unit.unit_name }}</strong></li>
                                         <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
                                             <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                {{unit.unit_featured_image}}
                                                 {{ unit.unit_description }}
                                             </div>
                                         </li>
@@ -49,8 +47,9 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-
+                        </div>
+                        {% if forloop.last %}</div>{% endif %}
+                {% else %}
                         <div class="col-sm-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -59,102 +58,35 @@
                                     </strong>
                                 </div>
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                    <img src="{% static 'orims/photos/uploads/featured-images/afrodjango.jpg' %}" alt="unit" style="height:150px;width:250px;">
+                                    <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="height:150px;width:250px;" />
                                 </div>
                                 <ul class="list-group">
                                     <li class="list-group-item clr-dft"><strong>{{ unit.unit_name }}</strong></li>
-                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
-                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                {{unit.unit_featured_image}}
-                                                {{ unit.unit_description }}
+                                    <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
+                                        <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                            {{ unit.unit_description }}
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                         <div class="row">
+                                             <div class="col-xs-6"></div>
+                                             <div class="col-sm-6">
+                                                <a href="{% url 'systemAdmin:signup' %}">
+                                                    <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                </a>
                                             </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                             <div class="row">
-                                                 <div class="col-xs-6"></div>
-                                                 <div class="col-sm-6">
-                                                    <a href="{% url 'systemAdmin:signup' %}">
-                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
-                                                    </a>
-                                                </div>
-                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                         </div>
+                                    </li>
+                                </ul>
                             </div>
+                        </div>
                     </div>
+                {% endif %}
+
 
 
         {% endfor %}
 {% endif %}
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <strong>
-                                        <div class="clr-gre">Firm</div>
-                                    </strong>
-                                </div>
-                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                    <img src="{% static 'orims/photos/uploads/featured-images/business.jpg' %}" alt="unit" style="height:150px;width:250px;">
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item clr-dft"><strong>Business firm</strong></li>
-                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
-                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                This is a brief description about Ministry of works and transport.
-                                                This is a brief description about Ministry of works and transport.
-                                                This is a brief description about Ministry of works and transport.
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                             <div class="row">
-                                                 <div class="col-xs-6"></div>
-                                                 <div class="col-sm-6">
-                                                    <a href="{% url 'systemAdmin:signup' %}">
-                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
-                                                    </a>
-                                                </div>
-                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <strong>
-                                        <div class="clr-gre">Ohter</div>
-                                    </strong>
-                                </div>
-                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                    <img src="{% static 'orims/photos/uploads/featured-images/orims.com.jpg' %}" alt="unit" style="height:150px;width:250px;">
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item clr-dft"><strong>Other</strong></li>
-                                        <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
-                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
-                                                This is a brief description about AfroDjango initiative.
-                                                This is a brief description about AfroDjango initiative.
-                                                This is a brief description about AfroDjango initiative.
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                             <div class="row">
-                                                 <div class="col-xs-6"></div>
-                                                 <div class="col-sm-6">
-                                                    <a href="{% url 'systemAdmin:signup' %}">
-                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
-                                                    </a>
-                                                </div>
-                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                    </div>
 
                     <div class="caption">
                         <div class="clr-gre">

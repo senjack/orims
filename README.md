@@ -8,21 +8,21 @@ The project is to build an online office reception information management tool u
 Objective
 To effect social service delivery and e-governance
 Key functionalities and user interaction
-•	System admin
+ï¿½	System admin
 I.	Create organization/ministry account
 II.	Create offices (under organization account)
 III.	Register receptionist and official for office
 
 
 
-•	Official
+ï¿½	Official
 I.	Create monthly schedule
 II.	Receive appointments from receptionist
 III.	Confirms appointments
 IV.	Cancels appointment
 
 
-•	Public
+ï¿½	Public
 I.	Search for ministry/ organization
 II.	Find office(under organization)
 III.	Places appointment with office
@@ -31,7 +31,7 @@ V.	Confirms to appointment date(on appoint approval)
 VI.	Cancel appointment
 VII.	Appointment repot after (meeting official)
 
-•	Receptionist
+ï¿½	Receptionist
 I.	Send official appointment request to official
 II.	Assigns appointment dates to public
 III.	Contacts person who placed appointment once official approves appointment.

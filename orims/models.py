@@ -17,16 +17,12 @@ class ServiceUnit(models.Model):
     unit_id = models.AutoField(primary_key=True, verbose_name='Service Unit ID')
     unit_name = models.CharField('Service Unit name', max_length=200)
     # Defining possible service unit types to form a lookup.
-    ministry = 'min'
-    organization = 'org'
-    firm = 'firm'
-    other = 'other'
     unit_choice = (
         ('select', 'Select Type of service unit'),
-        (ministry, 'Ministry'),
-        (organization, 'Organization'),
-        (firm, 'Firm'),
-        (other, 'Others')
+        ('Ministry', 'Ministry'),
+        ('Organization', 'Organization'),
+        ('Firm', 'Firm'),
+        ('Other', 'Others')
     )
     # Creating a choice of service units
     unit_type = models.CharField(
@@ -36,10 +32,10 @@ class ServiceUnit(models.Model):
         default='select',
     )
     unit_description = models.TextField(max_length=1024)
-    unit_logo = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/logos',max_length=500)
-    unit_featured_image = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/featured_images', max_length=500)
+    unit_logo = models.FileField(upload_to='photos/uploads/ServiceUnit/logos',max_length=500)
+    unit_featured_image = models.FileField(upload_to='photos/uploads/ServiceUnit/featured_images', max_length=500)
     featured_image = ''
-    unit_cover_photo = models.FileField(upload_to='orims/static/orims/photos/uploads/ServiceUnit/cover_photos', max_length=500)
+    unit_cover_photo = models.FileField(upload_to='photos/uploads/ServiceUnit/cover_photos', max_length=500)
 
     # Defining what to be returned for each instance
     def __str__(self):
@@ -47,12 +43,6 @@ class ServiceUnit(models.Model):
         ret_str = str(self.unit_name) + ' ( Unit Id :  ' + str(self.unit_id) + ' )'
         return str(ret_str)
     # End of function __str__(self)
-
-    # A method to build a featured image of a service unit.
-    def create_featured_image(self):
-        img = '< img src = ' + str(self.unit_featured_image) + 'alt = ' + str(self.unit_name) + 'style = "height:150px;width:250px;" >'
-        return img
-    # END OF: def create_featured_image(self):
 
     # Enforcing custom table name
     class Meta:

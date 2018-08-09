@@ -19,7 +19,4 @@ def fetch_all_units(request):
 # A method to return all service units managed by a user
 def fetch_units_for_user(user_id):
     filtered_units = ServiceUnit.objects.filter(system_admin_id=user_id)
-    if filtered_units:
-        for unit in filtered_units:
-            unit.featured_image = unit.create_featured_image()
     return filtered_units

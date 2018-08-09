@@ -17,6 +17,11 @@ Including another URLconf
 from django.urls import include, path
 from django.contrib import admin
 
+# custom imported to handle static files
+from django.conf import settings
+from django.conf.urls.static import static
+# END: custom imported to handle static files
+
 urlpatterns = [
 
     path('', include('orims.urls')),
@@ -25,4 +30,4 @@ urlpatterns = [
     path('system-admin/', include('systemAdmin.urls')),
 
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
