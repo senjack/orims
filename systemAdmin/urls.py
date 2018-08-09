@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('officeAccounts', views.officeAccounts, name='officeAccounts'),
 
+    path('userAccounts', views.userAccounts, name='userAccounts'),
+
     path('logout', views.logout, name='logout'),
     # path('login', login, {'template_name': 'system_admin/extensions/login.html'}),
 ]

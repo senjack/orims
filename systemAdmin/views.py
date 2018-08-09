@@ -131,7 +131,7 @@ def home(request):
             return redirect('systemAdmin:login')
         # End of if request.session['user_admin']:
     except KeyError:
-        # In case  testing for the logged in user fails, do nothing,
+        # In case  testing for the logged in user fails, try nothing,
         pass
     # End of try:
     # Just try logging in.
@@ -139,7 +139,7 @@ def home(request):
 # End of function home():
 
 
-# OFFICE ACCOUNTS PAGE BUILDER
+# OFFIECE ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
 def officeAccounts(request):
     # STEP1.0.0: Set home template and create an empty context object.
     t = 'systemAdmin/extensions/office_accounts.html'
@@ -148,19 +148,48 @@ def officeAccounts(request):
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
         if request.session['user_admin']:
-            # if user is logged in, build home page.
+            # if user is logged in, build the required page.
             # create new user instance
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            # Build and return the home client view template with the set units for the user
+            # Build and return the the required
             return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
         # End of if request.session['user_admin']:
     except KeyError:
-        # In case  testing for the logged in user fails, do nothing,
+        # In case  testing for the logged in user fails, try nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
+# End of officeAccounts() Method
+
+
+# USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
+def userAccounts(request):
+    # STEP1.0.0: Set home template and create an empty context object.
+    t = 'systemAdmin/extensions/user_accounts.html'
+    context = {}
+
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            # Build and return the the required
+            return render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, try nothing,
         pass
     # End of try:
     # Just try logging in.
