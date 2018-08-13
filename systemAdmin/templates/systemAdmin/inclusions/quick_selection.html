@@ -5,12 +5,15 @@
             <div class="col-md-12">
                 <div class="list-group">
                     <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
-                        <span class="glyphicon glyphicon-dashboard"></span> Dashboard : Quick Options
+                        <div class="row">
+                            <div class="col-xs-1"><span class="glyphicon glyphicon-dashboard"></span></div>
+                            <div class="col-xs-11" style=""> Dashboard : Quick Options</div>
+                        </div>
                     </div>
                     <div class="alert-info" style="padding:10px;border:1px grey;">
-                        <div class="clr-gre1">You can quickly select an organisation to manage, from the list below.</div>
+                        <div class="clr-gre1">You can quickly select a Service unit to manage, from the list below.</div>
                     </div>
-            <div class="panel-body"
+            <div id="units" class="panel-body"
                  style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
                 <div ><!--Build Quick access panel-->
 
@@ -38,9 +41,9 @@
                                         <li class="list-group-item">
                                              <div class="row">
                                                  <div class="col-xs-6"></div>
-                                                 <div class="col-sm-6">
+                                                 <div class="col-xs-6">
                                                     <a href="{% url 'systemAdmin:signup' %}">
-                                                        <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                        <button name = "select" class="btn btn-sm btn-success" style="width:100%;">Select</button>
                                                     </a>
                                                 </div>
                                              </div>
@@ -70,9 +73,9 @@
                                     <li class="list-group-item">
                                          <div class="row">
                                              <div class="col-xs-6"></div>
-                                             <div class="col-sm-6">
+                                             <div class="col-xs-6">
                                                 <a href="{% url 'systemAdmin:signup' %}">
-                                                    <button name = "create" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    <button name = "select" class="btn btn-sm btn-success" style="width:100%;">Select</button>
                                                 </a>
                                             </div>
                                          </div>
@@ -93,7 +96,8 @@
                         <h3>Quick preview and Selection Area</h3>
                         <p>You can minimize this section at any time.</p>
                         </div>
-                            <p>
+                        <p>
+                            <button id="min" class="btn btn-primary">minimize</button>
                             <a href="#" class="btn btn-primary" role="button">
                                 Button
                             </a>
@@ -106,7 +110,7 @@
                 </div><!--End Quick access profile panel-->
             </div>
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
-                <strong class="clr-gre"> orims.com </strong>
+                <strong class="clr-gre"> {{ request.session.app }} </strong>
             </div>
                 </div>
             </div>

@@ -9,11 +9,13 @@ body, .body-inheritor, .std-bg-clr { background:rgb(240,240,240); }
 .clr-gre{color:#999;}
 .clr-gre-1{color:#666;}
 .clr-grn{color:green;}
+.clr-blu{color:blue;}
 .cnt-lft{text-align:left;}
 a.active-pill{background:#f7f7f7;}
 .header-division{margin-bottom:10px;}
 .fm-mido{padding-top:150px;}
-.glyplus{font-size:85%;}
+.glyplus{font-size:85%;text-align:right;}
+a.list1:hover{background:#eee;}
 
 .pnl-bdy-white-bg {
                     text-align:center;
@@ -21,7 +23,12 @@ a.active-pill{background:#f7f7f7;}
                     border-top-left-radius:0px;
                     background:#fff;
                    }
-
+.bdr-zr-all {
+                    border-top-right-radius:0px;
+                    border-top-left-radius:0px;
+                    border-bottom-right-radius:0px;
+                    border-bottom-left-radius:0px;
+                    }
 
 .footer-container{
     border-top:1px solid #ddd;

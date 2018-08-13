@@ -112,7 +112,6 @@ def home(request):
     # STEP1.0.0: Set home template and create an empty context object.
     t = 'systemAdmin/extensions/home.html'
     context = {}
-
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
         if request.session['user_admin']:
@@ -141,7 +140,7 @@ def home(request):
 
 # OFFIECE ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
 def officeAccounts(request):
-    # STEP1.0.0: Set home template and create an empty context object.
+    # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/office_accounts.html'
     context = {}
 
@@ -153,7 +152,7 @@ def officeAccounts(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            # Build and return the the required
+            # Build and return the required page
             return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
@@ -170,7 +169,7 @@ def officeAccounts(request):
 
 # USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
 def userAccounts(request):
-    # STEP1.0.0: Set home template and create an empty context object.
+    # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/user_accounts.html'
     context = {}
 
@@ -182,7 +181,7 @@ def userAccounts(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            # Build and return the the required
+            # Build and return the required page
             return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
@@ -194,7 +193,36 @@ def userAccounts(request):
     # End of try:
     # Just try logging in.
     return redirect('systemAdmin:login')
-# End of officeAccounts() Method
+# End of userAccounts() Method
+
+
+# APPOINTMENT RECORDS MANAGEMENT OPTIONS PAGE BUILDER
+def appointments(request):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/appointments.html'
+    context = {}
+
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance.
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            # Build and return the required page
+            return render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, try nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
+# End of appointments() Method
 
 
 # LOGOUT METHOD.
@@ -266,6 +294,7 @@ def loggedin(request, template, data_feed):
 def set_session_data(request, uid):
     if uid:
         u = SystemAdmin.objects.get(system_admin_id=uid)
+        request.session['app'] = 'orims.com'
         admn = {
             'userid': uid,
             'username': u.system_admin_user_name,
