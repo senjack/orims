@@ -11,20 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quick_selection.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/quick_selection.html">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="orimscript.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orims/static/orims/scripts/javascript/orimscript.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="578">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -32,9 +23,10 @@
       <file leaf-file-name="unit_selection_template1.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/units/unit_selection_template1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="188" selection-start-line="188" selection-end-line="188" />
+            <state relative-caret-position="17">
+              <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -54,33 +46,36 @@
                 <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="153">
+              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orims/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orims/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="473">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
             </state>
           </provider>
         </entry>
@@ -124,30 +119,30 @@
         <option value="$PROJECT_DIR$/orims/templates/orims/inclusions/footer.html" />
         <option value="$PROJECT_DIR$/orimsProject/settings.py" />
         <option value="$PROJECT_DIR$/orimsProject/urls.py" />
-        <option value="$PROJECT_DIR$/orims/views.py" />
-        <option value="$PROJECT_DIR$/orims/models.py" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/user_accounts.html" />
-        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_mini_profile.html" />
         <option value="$PROJECT_DIR$/systemAdmin/urls.py" />
-        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/header.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/office_accounts_options.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/user_accounts_options.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/appointments_options.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/quick_guide.html" />
-        <option value="$PROJECT_DIR$/systemAdmin/views.py" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html" />
-        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/appointments.html" />
         <option value="$PROJECT_DIR$/orims/templates/orims/base/base.html" />
-        <option value="$PROJECT_DIR$/orims/static/orims/scripts/javascript/orimscript.js" />
         <option value="$PROJECT_DIR$/orims/static/orims/styles/orimstrap/orimstrap.css" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_panel.html" />
+        <option value="$PROJECT_DIR$/orims/static/orims/scripts/javascript/orimscript.js" />
+        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html" />
+        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_mini_profile.html" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/quick_selection.html" />
+        <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/header.html" />
+        <option value="$PROJECT_DIR$/orims/models.py" />
+        <option value="$PROJECT_DIR$/orims/views.py" />
         <option value="$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/units/unit_selection_template1.html" />
+        <option value="$PROJECT_DIR$/systemAdmin/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1004" />
@@ -158,7 +153,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -293,12 +287,22 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="systemAdmin" type="462c0819:PsiDirectoryNode" />
               <item name="inclusions" type="462c0819:PsiDirectoryNode" />
+              <item name="appointments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="orims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orims" type="462c0819:PsiDirectoryNode" />
+              <item name="systemAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="systemAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="inclusions" type="462c0819:PsiDirectoryNode" />
               <item name="units" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +359,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1040" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24650699" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -465,22 +470,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orims/static/orims/meta/app_meta_file.py" />
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/footer.html" />
-    <entry file="file://$PROJECT_DIR$/orims/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orimsProject/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -496,24 +487,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SECOND">
           <first_editor relative-caret-position="34">
             <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orims/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -531,20 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_mini_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="34" column="121" selection-start-line="34" selection-start-column="88" selection-end-line="34" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/user_accounts_options.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
@@ -556,27 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="124" column="53" selection-start-line="124" selection-start-column="53" selection-end-line="124" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1184">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="57" column="34" lean-forward="true" selection-start-line="53" selection-end-line="57" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="101" column="18" lean-forward="true" selection-start-line="97" selection-end-line="101" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -622,10 +571,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/header.html">
+    <entry file="file://$PROJECT_DIR$/orims/static/orims/scripts/javascript/orimscript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_mini_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/quick_selection.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/extensions/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="48" />
+          <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-end-line="4" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#nav#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#2;n#nav#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -634,43 +643,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orims/static/orims/scripts/javascript/orimscript.js">
+    <entry file="file://$PROJECT_DIR$/systemAdmin/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="25" />
+        <state relative-caret-position="68">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orims/templates/orims/base/base.html">
+    <entry file="file://$PROJECT_DIR$/orims/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="473">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/admin_panel.html">
+    <entry file="file://$PROJECT_DIR$/orims/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/systemAdmin/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="46" lean-forward="true" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/quick_selection.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/systemAdmin/templates/systemAdmin/inclusions/units/unit_selection_template1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="188" selection-start-line="188" selection-end-line="188" />
+        <state relative-caret-position="17">
+          <caret line="19" column="44" lean-forward="true" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -690,23 +696,8 @@
             <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

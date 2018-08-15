@@ -7,37 +7,61 @@
             <div class="alert-info" style="padding:10px;border:1px grey;">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="clr-gre1">You can view appointments for the entire Service unit, or browse for
-                            Branches under it.</div>
+                            <div class="clr-gre1">
+                                <!-- IP1 -->
+                                {# section_title_info #}
+                                {{ section_title_info }}
+                                {# section_title_info #}
+                                <!-- END: IP1 -->
+                            </div>
                         </div>
                     </div>
             </div>
             <!-- Build selection pagelet -->
-            <div class="admin-unit-select">
+{% if units %}
+        {% for unit in units %}
+            <div>
                 <div class="list-group-item" style="padding:5px;">
                     <div class="alert bdr-zr-all" style="margin:0px;background:#f8f8f8;padding-top:5px;padding-bottom:5px;">
 
                         <div class="row" style="padding-left:5px;">
                             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;padding-right:0px;margin:0px;background:#eee;height:100px;">
-                                <img src="{% static 'orims/photos/uploads/ServiceUnit/logos/orims.com.jpg' %}" alt="unit"
+                                <!-- IP2 -->
+                                {# src:unit.logo #}{# alt:unit.name #}
+                                <img src="{{unit.unit_logo.url}}" alt="{{unit.unit_name}}"
                                      style="height:100%;width:100%;" />
+                                {# src:unit.logo #}{# alt:unit.name #}
+                                <!-- END: IP2 -->
                             </div>
                             <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9" style="height:100px;padding-left:5px;padding-right:5px;">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20%;overflow:hidden;">
+                                    <!-- IP3 -->
+                                    {# title:toggle_title1 #}
                                     <div class="clr-dft" data-toggle="tooltip" data-placement="bottom"
-                                         title="View Appointments for this entire Service unit">
+                                         title="{{ unit.unit_name }}">
+                                    {# title:toggle_title1 #}
+                                    <!-- IP3 -->
+
                                         <strong>
-                                            Uganda national expanded program on Immunization (UNEPI)
+                                            <!-- IP4 -->
+                                            {# unit_name #}
+                                            {{unit.unit_name}}
+                                            {# unit_name #}
+                                            <!-- IP4 -->
                                         </strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:80%;padding:0px;padding-top:10px;">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:70%;">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:60%;">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"style="height:100%;width:100%;padding:5px;margin-right:5px;overflow:hidden;">
-                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                                            <!-- IP5 -->
+                                            {# unit_description #}
+                                            {{unit.unit_description}}
+                                            {# unit_description #}
+                                            <!-- IP5 -->
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:30%;padding-left:0px;padding-right:0px;">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:40%;padding-left:0px;padding-right:0px;">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:right;padding-right:0px;">
@@ -45,22 +69,30 @@
                                            </div>
                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="background:#ccc;padding:0px;">
                                                  <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;margin:0px;padding:0px;">
+                                                     <!-- IP6 -->
+                                                     {# onclick:custom_url #}{# title:custom_toggle_title1 #}
                                                      <button name = "view" class="btn btn-success"
-                                                             onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
+                                                             onclick=""
                                                              style="width:50%;"
                                                              data-toggle="tooltip"
                                                              data-placement="bottom"
-                                                             title="View Appointments for this entire Service unit">
-                                                         <span class="glyphicon glyphicon-eye-open"></span>
+                                                             title="{{toggle_title1}}">
+                                                         <span class="{{ btn1_value }}"></span>
                                                      </button>
+                                                     {# onclick:custom_url #}{# title:custom_toggle_title1 #}
+                                                     <!-- IP6 -->
+                                                     <!-- IP7 -->
+                                                     {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                                     <button name = "branches" class="btn btn-default grn-bdr"
-                                                            onclick="orimsCollapseOne('oxb1');"
+                                                            onclick="orimsCollapseOne('{{ unit.unit_id }}');"
                                                             style="width:50%;"
                                                             data-toggle="tooltip" data-placement="bottom"
-                                                            title="Browse Branches under this Service unit"
+                                                            title="{{toggle_title2}}"
                                                     >
-                                                        <span class="glyphicon glyphicon-option-horizontal clr-grn"></span>
+                                                        <span class="{{ btn2_value }}"></span>
                                                     </button>
+                                                     {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
+                                                     <!-- IP7 -->
                                                 </div>
                                            </div>
                                         </div>
@@ -71,48 +103,54 @@
 
                     </div>
                 </div>
-            <!-- END: Build selection pagelet -->
-                <div class="unit_collapsible" id="oxb1" style="display:none;padding:10px;border:1px grey;">
+                <!-- IP8 -->
+                {# id:id #}
+                <div class="unit_collapsible" id="{{ unit.unit_id }}" style="display:none;padding:10px;border:1px grey;">
+                {# id:id #}
+                <!-- IP8 -->
+                {% if branches %}
                         <div class="row" style="margin-top:-10px;">
+                    {% for branch_group in branches %}
+                            {% for branch in branch_group %}
+                                {% if branch.unit_id %}
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
+                                    <!-- IP href for <a> -->
                                     <a class="list1" href="#">
+                                            <!-- IP9 -->
+                                        {# title:branch_name #}
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                             style="height:40px;background:#fff;border:1px solid #eee;color:#79aec8;padding-top:10px;">
+                                             style="height:40px;background:#fff;border:1px solid #eee;color:#79aec8;padding-top:10px;"
+                                             data-toggle="tooltip"
+                                             data-placement="bottom"
+                                             title="{{ branch.branch_name }}"
+                                        >
+                                        {# title:branch_name #}
+                                            <!-- END: IP9 -->
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow:hidden;">
                                                 <div style="height:20px;overflow:hidden;">
-                                                Immunisation and vaccination [ TT, TT1, BCG, POLIO ]
+                                                   <!-- IP10 -->
+                                                    {# branch_name #}
+                                                    {{ unit.unit_id }}
+                                                    {{ branch.unit_id }}
+                                                    Ntinda - kiwatule Branch
+                                                    {# branch_name #}
+                                                   <!-- END: IP10 -->
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
-                                    <a href="#">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                             style="height:40px;background:#fff;border:1px solid #eee;color:#79aec8;padding-top:10px;">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                Finance department
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
-                                    <a href="#">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                             style="height:40px;background:#fff;border:1px solid #eee;color:#79aec8;padding-top:10px;">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                Administration department
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                {% endif %}
+                            {% endfor %}
+                    {% endfor %}
+                {% endif %}
                             <!-- For collapse Button -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;padding:5px;">
                                             <button name = "branches" class="btn btn-sm btn-default"
-                                                    onclick="orimsCollapseOne('oxb1');"
+                                                    onclick="orimsCollapseOne('{{ unit.unit_id }}');"
                                                     style="width:50%;"
                                                     data-toggle="tooltip" data-placement="bottom"
                                                     title="Hide Branch List for this Service unit"
@@ -125,187 +163,9 @@
                         </div>
                 </div>
             </div>
-
-            <!-- Build selection pagelet -->
-            <div class="admin-unit-select">
-                <div class="list-group-item" style="padding:5px;">
-                    <div class="alert bdr-zr-all" style="margin:0px;background:#f8f8f8;padding-top:5px;padding-bottom:5px;">
-
-                        <div class="row" style="padding-left:5px;">
-                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;padding-right:0px;margin:0px;background:#eee;height:100px;">
-                                <img src="{% static 'orims/photos/uploads/ServiceUnit/logos/orims.com.jpg' %}" alt="unit"
-                                     style="height:100%;width:100%;" />
-                            </div>
-                            <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9" style="height:100px;padding-left:5px;padding-right:5px;">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20%;">
-                                    <div class="clr-dft">
-                                        <strong>
-                                            Uganda national expanded program on Immunization (UNEPI)
-                                        </strong>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:80%;padding:0px;padding-top:10px;">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:70%;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"style="height:100%;width:100%;padding:5px;margin-right:5px;overflow:hidden;">
-                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:30%;padding-left:0px;padding-right:0px;">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:right;padding-right:0px;">
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
-                                           </div>
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="background:#ccc;padding:0px;">
-                                                 <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;margin:0px;padding:0px;">
-                                                     <button name = "view" class="btn btn-success"
-                                                             onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                             style="width:50%;"
-                                                             data-toggle="tooltip"
-                                                             data-placement="bottom"
-                                                             title="View Appointments for this entire Service unit">
-                                                         <span class="glyphicon glyphicon-eye-open"></span>
-                                                     </button>
-                                                    <button name = "branches" class="btn btn-default grn-bdr"
-                                                            onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                            style="width:50%;"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            title="Browse departments under this Service unit"
-                                                    >
-                                                        <span class="glyphicon glyphicon-option-horizontal clr-grn"></span>
-                                                    </button>
-                                                </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="admin-unit-select">
-                <div class="list-group-item" style="padding:5px;">
-                    <div class="alert bdr-zr-all" style="margin:0px;background:#f8f8f8;padding-top:5px;padding-bottom:5px;">
-
-                        <div class="row" style="padding-left:5px;">
-                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;padding-right:0px;margin:0px;background:#eee;height:100px;">
-                                <img src="{% static 'orims/photos/uploads/ServiceUnit/logos/orims.com.jpg' %}" alt="unit"
-                                     style="height:100%;width:100%;" />
-                            </div>
-                            <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9" style="height:100px;padding-left:5px;padding-right:5px;">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20%;">
-                                    <div class="clr-dft">
-                                        <strong>
-                                            Uganda national expanded program on Immunization (UNEPI)
-                                        </strong>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:80%;padding:0px;padding-top:10px;">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:70%;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"style="height:100%;width:100%;padding:5px;margin-right:5px;overflow:hidden;">
-                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:30%;padding-left:0px;padding-right:0px;">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:right;padding-right:0px;">
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
-                                           </div>
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="background:#ccc;padding:0px;">
-                                                 <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;margin:0px;padding:0px;">
-                                                     <button name = "view" class="btn btn-success"
-                                                             onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                             style="width:50%;"
-                                                             data-toggle="tooltip"
-                                                             data-placement="bottom"
-                                                             title="View Appointments for this entire Service unit">
-                                                         <span class="glyphicon glyphicon-eye-open"></span>
-                                                     </button>
-                                                    <button name = "branches" class="btn btn-default grn-bdr"
-                                                            onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                            style="width:50%;"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            title="Browse departments under this Service unit"
-                                                    >
-                                                        <span class="glyphicon glyphicon-option-horizontal clr-grn"></span>
-                                                    </button>
-                                                </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="admin-unit-select">
-                <div class="list-group-item" style="padding:5px;">
-                    <div class="alert bdr-zr-all" style="margin:0px;background:#f8f8f8;padding-top:5px;padding-bottom:5px;">
-
-                        <div class="row" style="padding-left:5px;">
-                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;padding-right:0px;margin:0px;background:#eee;height:100px;">
-                                <img src="{% static 'orims/photos/uploads/ServiceUnit/logos/orims.com.jpg' %}" alt="unit"
-                                     style="height:100%;width:100%;" />
-                            </div>
-                            <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9" style="height:100px;padding-left:5px;padding-right:5px;">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20%;">
-                                    <div class="clr-dft">
-                                        <strong>
-                                            Uganda national expanded program on Immunization (UNEPI)
-                                        </strong>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:80%;padding:0px;padding-top:10px;">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:70%;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"style="height:100%;width:100%;padding:5px;margin-right:5px;overflow:hidden;">
-                                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:30%;padding-left:0px;padding-right:0px;">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:right;padding-right:0px;">
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
-                                           </div>
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="background:#ccc;padding:0px;">
-                                                 <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;margin:0px;padding:0px;">
-                                                     <button name = "view" class="btn btn-success"
-                                                             onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                             style="width:50%;"
-                                                             data-toggle="tooltip"
-                                                             data-placement="bottom"
-                                                             title="View Appointments for this entire Service unit">
-                                                         <span class="glyphicon glyphicon-eye-open"></span>
-                                                     </button>
-                                                    <button name = "branches" class="btn btn-default grn-bdr"
-                                                            onclick="window.location.href = '{% url 'systemAdmin:login' %}';"
-                                                            style="width:50%;"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            title="Browse departments under this Service unit"
-                                                    >
-                                                        <span class="glyphicon glyphicon-option-horizontal clr-grn"></span>
-                                                    </button>
-                                                </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+{% endif %}
             <!-- END: Build selection pagelet -->
-
-
-
 
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
                 <strong class="clr-gre"> orims.com </strong>

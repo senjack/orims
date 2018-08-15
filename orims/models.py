@@ -60,7 +60,7 @@ class Branch(models.Model):
     branch_id = models.AutoField(primary_key=True)
     # Setting foreign key
     unit_id = models.ForeignKey(ServiceUnit, on_delete=models.CASCADE, verbose_name='Service unit')
-    branch_name = models.CharField(max_length=30)
+    branch_name = models.CharField(max_length=200)
     # Defining possible branch levels to form a lookup.
     branch_level_choice = (
         ('main', 'Main Branch'),
@@ -73,6 +73,11 @@ class Branch(models.Model):
         default='other',
     )
     registration_date = models.DateTimeField()
+
+    safe_id = ''
+
+    def set_safe_id(self):
+        self.safe_id = self.unit_id
 
     # Defining a display string for each instance
     def __str__(self):
@@ -92,15 +97,15 @@ class Location(models.Model):
     # Setting foreign key
     branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE, verbose_name='Branch')
     # Location attributes
-    district = models.CharField(max_length=15)
-    county = models.CharField(max_length=15, null=True, blank=True)
-    sub_county = models.CharField(max_length=15, null=True, blank=True)
-    parish = models.CharField(max_length=15, null=True, blank=True)
-    town = models.CharField(max_length=15)
-    zone = models.CharField(max_length=15, null=True, blank=True)
-    plot_no = models.CharField(max_length=15, null=True, blank=True)
-    building = models.CharField(max_length=15, null=True, blank=True)
-    unique_direction = models.CharField(max_length=150, null=True, blank=True)
+    district = models.CharField(max_length=50)
+    county = models.CharField(max_length=50, null=True, blank=True)
+    sub_county = models.CharField(max_length=50, null=True, blank=True)
+    parish = models.CharField(max_length=50, null=True, blank=True)
+    town = models.CharField(max_length=50)
+    zone = models.CharField(max_length=50, null=True, blank=True)
+    plot_no = models.CharField(max_length=50, null=True, blank=True)
+    building = models.CharField(max_length=50, null=True, blank=True)
+    unique_direction = models.CharField(max_length=250, null=True, blank=True)
 
     # Defining a display string for each instance
     def __str__(self):
@@ -125,7 +130,7 @@ class Contact(models.Model):
     mobile_number = models.CharField(max_length=15)
     office_number = models.CharField(max_length=15, blank=True)
     fax_number = models.CharField(max_length=15, blank=True)
-    email_address = models.EmailField(max_length=150, null=True, blank=True)
+    email_address = models.EmailField(max_length=250, null=True, blank=True)
 
     # Defining a display string for each instance
     def __str__(self):
@@ -149,7 +154,7 @@ class Department(models.Model):
     # Setting foreign key
     branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE, verbose_name='Branch')
     # Department attributes
-    department_name = models.CharField(max_length=50)
+    department_name = models.CharField(max_length=250)
     department_description = models.TextField('Description', max_length=1024)
 
     # Defining a display string for each instance
@@ -240,12 +245,12 @@ class WorkingTime(models.Model):
 class Staff(models.Model):
     """"Creates and associates with a database relation that store data about a staff member"""
     # staff primary key
-    staff_id = models.CharField(primary_key=True, max_length=30)
+    staff_id = models.CharField(primary_key=True, max_length=200)
     # Setting foreign key
     office_id = models.ForeignKey(Office, on_delete=models.CASCADE, verbose_name='Office')
     # staff attributes
-    staff_first_name = models.CharField('First Name', max_length=15)
-    staff_last_name = models.CharField('Last Name', max_length=15)
+    staff_first_name = models.CharField('First Name', max_length=30)
+    staff_last_name = models.CharField('Last Name', max_length=30)
     staff_profile_photo = models.CharField('Profile Photo', max_length=512, blank=True, null=True)
     staff_designation_choices = (
         # ('system_admin', 'System administrator'),

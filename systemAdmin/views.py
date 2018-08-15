@@ -210,6 +210,20 @@ def appointments(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
+            # Fetch and set all service units created or managed by the current user.
+            units = fetch_units_for_user(user)
+            branches = []
+            for unit in units:
+                branches.append(fetch_branches_for_units(unit.unit_id))
+            branches = branches
+
+            context.update({'units': units})
+            context.update({'branches': branches})
+            context.update({'section_title_info': 'You can view appointments for the entire Service unit, or browse for Branches under it.'})
+            context.update({'toggle_title1': 'View Appointments for this entire Service unit'})
+            context.update({'btn1_value': 'glyphicon glyphicon-eye-open'})
+            context.update({'toggle_title2': 'Browse Branches under this Service unit'})
+            context.update({'btn2_value': 'glyphicon glyphicon-option-horizontal clr-grn'})
             # Build and return the required page
             return render(request, t, context)
         else:
@@ -295,14 +309,12 @@ def set_session_data(request, uid):
     if uid:
         u = SystemAdmin.objects.get(system_admin_id=uid)
         request.session['app'] = 'orims.com'
-        admn = {
-            'userid': uid,
-            'username': u.system_admin_user_name,
-            'role': 'Administrator',
-            'email': u.system_admin_email,
-            # 'photo': u.system_admin_user_name,
-        }
-        request.session['admin'] = admn
+        request.session['user_admin'] = uid
+
+        request.session['username']= u.system_admin_user_name
+        request.session['role']= 'Administrator'
+        request.session['email']= u.system_admin_email
+
         t= timezone.now().date().year
         # 'year': timezone.now().date().year,
         # 'month': timezone.now().date().month,

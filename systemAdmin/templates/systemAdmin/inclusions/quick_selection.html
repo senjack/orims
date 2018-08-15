@@ -10,10 +10,15 @@
                             <div class="col-xs-11" style=""> Dashboard : Quick Options</div>
                         </div>
                     </div>
-                    <div class="alert-info" style="padding:10px;border:1px grey;">
+                    <div class="alert-info"
+                         style="padding:10px;border:1px grey;cursor:pointer;"
+                         data-toggle="tooltip" data-placement="bottom"
+                         title="Click to Hide or view a list of Service units you manage"
+                         onclick="orimsCollapseOne('unit-selection-area');"
+                    >
                         <div class="clr-gre1">You can quickly select a Service unit to manage, from the list below.</div>
                     </div>
-            <div id="units" class="panel-body"
+            <div id="unit-selection-area" class="panel-body"
                  style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
                 <div ><!--Build Quick access panel-->
 
@@ -93,18 +98,14 @@
 
                     <div class="caption">
                         <div class="clr-gre">
-                        <h3>Quick preview and Selection Area</h3>
-                        <p>You can minimize this section at any time.</p>
+                        <h3>Quick Service Unit preview and selection area</h3>
+                        <p>You can hide this Service units List at any time.</p>
                         </div>
-                        <p>
-                            <button id="min" class="btn btn-primary">minimize</button>
-                            <a href="#" class="btn btn-primary" role="button">
-                                Button
-                            </a>
-                            <a href="#" class="btn btn-default" role="button">
-                                Button
-                            </a>
-                        </p>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;">
+                            <button id="min" class="btn btn-default" onclick="orimsCollapseOne('unit-selection-area');">
+                                Hide list
+                            </button>
+                        </div>
                     </div>
 
                 </div><!--End Quick access profile panel-->

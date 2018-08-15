@@ -20,3 +20,14 @@ def fetch_all_units(request):
 def fetch_units_for_user(user_id):
     filtered_units = ServiceUnit.objects.filter(system_admin_id=user_id)
     return filtered_units
+
+
+# A method to return all Branches under a service unit managed by a user
+def fetch_branches_for_units(unit_id):
+    filtered_branches = Branch.objects.filter(unit_id=unit_id)
+    return filtered_branches
+
+# A method to return all Branches
+def fetch_all_branches():
+    branches = Branch.objects.all()
+    return branches
