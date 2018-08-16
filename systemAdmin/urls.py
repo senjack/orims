@@ -14,7 +14,7 @@ urlpatterns = [
 
     path('home', views.home, name='home'),
 
-    path('officeAccounts', views.officeAccounts, name='officeAccounts'),
+    path('serviceUnits', views.serviceUnits, name='serviceUnits'),
 
     path('userAccounts', views.userAccounts, name='userAccounts'),
 

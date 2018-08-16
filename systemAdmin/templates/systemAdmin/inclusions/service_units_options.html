@@ -1,0 +1,49 @@
+﻿{% load static %}
+{% load staticfiles %}
+`
+        <div class="list-group">
+            <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
+                <div class="row">
+                    <div class="col-xs-1"><span class="glyphicon glyphicon-briefcase"></span></div>
+                    <div class="col-xs-11"> System Admin : Service Units Management Panel</div>
+                </div>
+            </div>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-home "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >Create Service Unit</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-plus clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-group-item" style="padding:5px;">
+                    <div class="alert" style="margin:0px;background:#f8f8f8;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-home "></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="clr-gre-1" >View all Service Units you manage</div>
+                            </div>
+                            <div class="col-xs-1">
+                                    <span class="glyphicon glyphicon-eye-open clr-grn" style="font-size:90%;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
+                <strong class="clr-gre"> {{ request.session.app }} </strong>
+            </div>
+        </div>

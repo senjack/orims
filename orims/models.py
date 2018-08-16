@@ -1,5 +1,6 @@
 from django.db import models
 from systemAdmin.models import SystemAdmin
+from orims.custom import RandomFileName
 
 # Added imports
 # from django.utils import timezone
@@ -32,10 +33,9 @@ class ServiceUnit(models.Model):
         default='select',
     )
     unit_description = models.TextField(max_length=1024)
-    unit_logo = models.FileField(upload_to='photos/uploads/ServiceUnit/logos',max_length=500)
-    unit_featured_image = models.FileField(upload_to='photos/uploads/ServiceUnit/featured_images', max_length=500)
-    featured_image = ''
-    unit_cover_photo = models.FileField(upload_to='photos/uploads/ServiceUnit/cover_photos', max_length=500)
+    unit_logo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/logos'),max_length=500)
+    unit_featured_image = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/featured_images'), max_length=500)
+    unit_cover_photo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/cover_photos'), max_length=500)
 
     # Defining what to be returned for each instance
     def __str__(self):

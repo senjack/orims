@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import check_password
-# SYSTEM ADMINISTRATOR MODELS.
+from orims.custom import RandomFileName
 
 
 class SystemAdmin(models.Model):
@@ -8,6 +8,8 @@ class SystemAdmin(models.Model):
     system_admin_user_name = models.CharField(max_length=254)
     system_admin_password = models.CharField(max_length=500)
     system_admin_email = models.EmailField(max_length=500)
+    system_admin_profile_photo = models.FileField(upload_to=RandomFileName('photos/uploads/System_Admin/profile_photos/'),
+                                                  max_length=500)
 
     # Defining a display string for each instance
     def __str__(self):

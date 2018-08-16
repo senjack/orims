@@ -21,14 +21,14 @@
                 </div>
             </a>
 
-            <a href="{% url 'systemAdmin:serviceUnits' %}" class="list-group-item" style="padding:5px;">
+            <a href="{% url 'systemAdmin:officeAccounts' %}" class="list-group-item" style="padding:5px;">
                 <div class="alert" style="margin:0px;background:#f8f8f8;">
                     <div class="row">
                         <div class="col-xs-1">
                             <span class="glyphicon glyphicon-briefcase "></span>
                         </div>
                         <div class="col-xs-9">
-                            <div class="clr-gre-1" ><strong>Service Units</strong></div>
+                            <div class="clr-gre-1" ><strong>Office Accounts</strong></div>
                         </div>
                         <div class="col-xs-1">
                                 <span class="glyphicon glyphicon-plus glyplus clr-grn"></span>
@@ -46,6 +46,23 @@
                         </div>
                         <div class="col-xs-9">
                             <div class="clr-gre-1" ><strong>User Accounts</strong></div>
+                        </div>
+                        <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-plus glyplus clr-grn"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{% url 'systemAdmin:appointments' %}" class="list-group-item" style="padding:5px;">
+                <div class="alert" style="margin:0px;background:#f8f8f8;">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="clr-gre-1" ><strong>Appointments</strong></div>
                         </div>
                         <div class="col-xs-1">
                                 <span class="glyphicon glyphicon-plus glyplus clr-grn"></span>
@@ -79,7 +96,7 @@
                             <span class="glyphicon glyphicon-book"></span>
                         </div>
                         <div class="col-xs-9">
-                            <div class="clr-gre-1" ><strong>Documents</strong></div>
+                            <div class="clr-gre-1" ><strong>Reports & Documents</strong></div>
                         </div>
                         <div class="col-xs-1">
                                 <span class="glyphicon glyphicon-plus glyplus clr-grn"></span>
@@ -105,6 +122,7 @@
                     </div>
                 </div>
             </a>
+
 
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
                 <strong class="clr-gre"> {{ request.session.app }} </strong>

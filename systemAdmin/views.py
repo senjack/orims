@@ -139,9 +139,9 @@ def home(request):
 
 
 # OFFIECE ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
-def officeAccounts(request):
+def serviceUnits(request):
     # STEP1.0.0: Set template and create an empty context object.
-    t = 'systemAdmin/extensions/office_accounts.html'
+    t = 'systemAdmin/extensions/service_units.html'
     context = {}
 
     # STEP1.1: Test for session, to determine currently logged in user.
@@ -314,6 +314,7 @@ def set_session_data(request, uid):
         request.session['username']= u.system_admin_user_name
         request.session['role']= 'Administrator'
         request.session['email']= u.system_admin_email
+        request.session['profile_photo'] = u.system_admin_profile_photo.url
 
         t= timezone.now().date().year
         # 'year': timezone.now().date().year,
