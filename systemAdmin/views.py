@@ -152,6 +152,41 @@ def serviceUnits(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
+            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'create_unit':
+                # Fetch and set all service units created or managed by the current user.
+                units = fetch_units_for_user(user)
+                context.update({'units': units})
+                context.update({'create_unit': True})
+            elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
+                # Fetch and set all service units created or managed by the current user.
+                units = fetch_units_for_user(user)
+                context.update({'units': units})
+                context.update({'section_title_info': 'A list of All apointments you manage.'})
+                context.update({'toggle_title1': 'Select Service unit for more Management options'})
+                context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
+                context.update({'toggle_title2': 'Edit Service unit Information'})
+                context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
+                context.update({'toggle_title3': 'Delete this Service unit?'})
+                context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
+                context.update({'display_unit_selection_list': True})
+                context.update({'branches': ''})
+            else:
+                # Fetch and set all service units created or managed by the current user.
+                units = fetch_units_for_user(user)
+                branches = []
+                for unit in units:
+                    branches.append(fetch_branches_for_units(unit.unit_id))
+                branches = branches
+
+                context.update({'units': units})
+                context.update({'branches': branches})
+                context.update({
+                                   'section_title_info': 'You can view appointments for the entire Service unit, or browse for Branches under it.'})
+                context.update({'toggle_title1': 'View Appointments for this entire Service unit'})
+                context.update({'btn1_value': 'glyphicon glyphicon-eye-open'})
+                context.update({'toggle_title2': 'Browse Branches under this Service unit'})
+                context.update({'btn2_value': 'glyphicon glyphicon-option-horizontal clr-grn'})
+            # End if
             # Build and return the required page
             return render(request, t, context)
         else:

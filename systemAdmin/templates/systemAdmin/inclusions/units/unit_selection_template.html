@@ -64,15 +64,15 @@
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align:right;padding-right:0px;">
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
+                                           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="">
                                            </div>
-                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="background:#ccc;padding:0px;">
+                                           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px;">
                                                  <div class="btn-group" role="group" aria-label="Basic example" style="width:100%;text-align:right;margin:0px;padding:0px;">
                                                      <!-- IP6 -->
                                                      {# onclick:custom_url #}{# title:custom_toggle_title1 #}
                                                      <button name = "view" class="btn btn-success"
                                                              onclick=""
-                                                             style="width:50%;"
+                                                             style="width:33%;"
                                                              data-toggle="tooltip"
                                                              data-placement="bottom"
                                                              title="{{toggle_title1}}">
@@ -80,15 +80,26 @@
                                                      </button>
                                                      {# onclick:custom_url #}{# title:custom_toggle_title1 #}
                                                      <!-- IP6 -->
+
+                                                     <button name = "view" class="btn btn-default"
+                                                             onclick=""
+                                                             style="width:33%;"
+                                                             data-toggle="tooltip"
+                                                             data-placement="bottom"
+                                                             title="{{toggle_title2}}">
+                                                         <span class="{{ btn2_value }}"></span>
+                                                     </button>
+
+
                                                      <!-- IP7 -->
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
-                                                    <button name = "branches" class="btn btn-default grn-bdr"
+                                                    <button name = "branches" class="btn btn-default clr-gre"
                                                             onclick="orimsCollapseOne('{{ unit.unit_id }}');"
-                                                            style="width:50%;"
+                                                            style="width:33%;"
                                                             data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{toggle_title2}}"
+                                                            title="{{toggle_title3}}"
                                                     >
-                                                        <span class="{{ btn2_value }}"></span>
+                                                        <span class="{{ btn3_value }}"></span>
                                                     </button>
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                                      <!-- IP7 -->
@@ -104,63 +115,6 @@
                 </div>
                 <!-- IP8 -->
                 {# id:id #}
-                <div class="unit_collapsible" id="{{ unit.unit_id }}" style="display:none;padding:10px;border:1px grey;">
-                {# id:id #}
-                <!-- IP8 -->
-                {% if branches %}
-                        <div class="row" style="margin-top:-10px;">
-                    {% for branch_group in branches %}
-                            {% for branch in branch_group %}
-                                {% if branch.unit_id %}
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
-                                    <!-- IP href for <a> -->
-                                    <a class="list1" href="#">
-                                            <!-- IP9 -->
-                                        {# title:branch_name #}
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                             style="height:40px;background:#fff;border:1px solid #eee;color:#79aec8;padding-top:10px;"
-                                             data-toggle="tooltip"
-                                             data-placement="bottom"
-                                             title="{{ branch.branch_name }}"
-                                        >
-                                        {# title:branch_name #}
-                                            <!-- END: IP9 -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow:hidden;">
-                                                <div style="height:20px;overflow:hidden;">
-                                                   <!-- IP10 -->
-                                                    {# branch_name #}
-                                                    {{ unit.unit_id }}
-                                                    {{ branch.unit_id }}
-                                                    Ntinda - kiwatule Branch
-                                                    {# branch_name #}
-                                                   <!-- END: IP10 -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                {% endif %}
-                            {% endfor %}
-                    {% endfor %}
-                {% endif %}
-                            <!-- For collapse Button -->
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:5px;">
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-align:right;padding:5px;">
-                                            <button name = "branches" class="btn btn-sm btn-default"
-                                                    onclick="orimsCollapseOne('{{ unit.unit_id }}');"
-                                                    style="width:50%;"
-                                                    data-toggle="tooltip" data-placement="bottom"
-                                                    title="Hide Branch List for this Service unit"
-                                            >
-                                                Close
-                                            </button>
-                                        </div>
-                                </div>
-                            <!-- END OF: For collapse Button -->
-                        </div>
-                </div>
             </div>
         {% endfor %}
 {% endif %}

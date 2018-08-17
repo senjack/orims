@@ -18,7 +18,7 @@
 {% block body %}
 <div class="row" style="">
     <!-- Left panels section -->
-    <div class="col-md-4" style="" >
+    <div class="col-lg-4 col-md-12 col-sm-12" style="" >
             <div style="margin-top:-20px;width:100%;"></div>
         <!-- Include System Admin panel -->
             {% block pn %}{% include '../inclusions/admin_panel.html' %} {% endblock %}
@@ -27,10 +27,16 @@
     <!-- END OF: Left panels section -->
 
     <!-- right bigger body section -->
-    <div class="col-md-8" style="margin-bottom:20px;" >
+    <div class="col-lg-8 col-md-12 col-sm-12" style="margin-bottom:20px;" >
             <div style="margin-top:-20px;width:100%;"></div>
         <!-- Include Office accounts option panel -->
-            {% block OA %}{% include '../inclusions/service_units_options.html' %} {% endblock %}
+            {% if create_unit %}
+                {% block create_unit %}{% include '../inclusions/units/unit_creation_form.html' %} {% endblock %}
+            {% elif display_unit_selection_list %}
+                {% block unit_list %}{% include '../inclusions/units/unit_selection_template.html' %} {% endblock %}
+            {% else %}
+                {% block OA %}{% include '../inclusions/service_units_options.html' %} {% endblock %}
+            {% endif %}
         <!-- End of Office accounts option panel -->
     </div>
 

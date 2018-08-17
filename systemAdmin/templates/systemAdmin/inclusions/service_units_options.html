@@ -4,12 +4,12 @@
         <div class="list-group">
             <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                 <div class="row">
-                    <div class="col-xs-1"><span class="glyphicon glyphicon-briefcase"></span></div>
-                    <div class="col-xs-11"> System Admin : Service Units Management Panel</div>
+                    <div class="col-xs-1"><span class="glyphicon glyphicon-home"></span></div>
+                    <div class="col-xs-11"> System Admin : Service Units</div>
                 </div>
             </div>
 
-                <a href="#" class="list-group-item" style="padding:5px;">
+                <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=create_unit" class="list-group-item" style="padding:5px;">
                     <div class="alert" style="margin:0px;background:#f8f8f8;">
                         <div class="row">
                             <div class="col-xs-1">
@@ -26,7 +26,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="list-group-item" style="padding:5px;">
+                <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=view_units" class="list-group-item" style="padding:5px;">
                     <div class="alert" style="margin:0px;background:#f8f8f8;">
                         <div class="row">
                             <div class="col-xs-1">

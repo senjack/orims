@@ -27,11 +27,5 @@ function orimsCollapseOne(a){
 }
 
 function orimsShowOneOfAll(e,es){
-    var c;
-    var d=0;
-    c = document.getElementByClass(es);
-    for(d;d<c.length;d++){
-        c[d].style.display = 'none';
-    }
 	orimsShowOne(e);
 }
