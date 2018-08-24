@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from .forms import *
 from orims.views import *
+from orims.forms import *
 from .models import SystemAdmin
 from django.http import HttpResponse
 from orims.meta import meta_data
@@ -143,6 +144,7 @@ def serviceUnits(request):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/service_units.html'
     context = {}
+    f = UnitCreationForm(request.POST or None)
 
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
@@ -152,11 +154,17 @@ def serviceUnits(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'create_unit':
+            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'create_unit' and request.GET['mode'] == 'load_form':
                 # Fetch and set all service units created or managed by the current user.
                 units = fetch_units_for_user(user)
                 context.update({'units': units})
                 context.update({'create_unit': True})
+                if request.method == 'POST':
+                    if f.is_valid:
+                        pass
+                else:
+                    context.update({'form': f})
+
             elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
                 # Fetch and set all service units created or managed by the current user.
                 units = fetch_units_for_user(user)

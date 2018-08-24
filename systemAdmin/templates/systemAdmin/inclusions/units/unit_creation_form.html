@@ -1,6 +1,6 @@
 ﻿{% load static %}
 {% load staticfiles %}
-
+<form method="">
         <div class="row">
             <div class="col-md-12">
 
@@ -42,7 +42,8 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:5px;margin-top:5px;">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
                                         <div class="input-group input-group-lg">
-                                          <input class="form-control" type="text" placeholder="Enter Unit Name" style="border-radius:5px;">
+                                                            {{ form.unitname }}
+                                          <!--<input class="form-control" type="text" placeholder="Enter Unit Name" style="border-radius:5px;">-->
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left:5px;padding-right:0px;margin-top:5px;">
@@ -61,7 +62,7 @@
                                             <h5>Description (Not more that 512 characters)</h5>
                                         </div>
                                         <div class="input-group  input-group-lg">
-                                            <textarea class="form-control clr-gre" placeholder="Enter unit description" style="min-height:600px;border-radius:3px;height:100%;"></textarea>
+                                            <textarea class="form-control clr-gre" placeholder="Enter Service unit description" style="min-height:600px;border-radius:3px;height:100%;"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -172,3 +173,4 @@
 
             </div>
         </div>
+</form>
