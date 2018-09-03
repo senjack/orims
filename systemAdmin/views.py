@@ -165,11 +165,15 @@ def serviceUnits(request):
                 else:
                     context.update({'form': f})
 
+            elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'cancel_unit_creation' and request.GET['mode'] == 'hide_form':
+                # Empty all form fields:
+                f = UnitCreationForm()
+                return redirect('systemAdmin:serviceUnits')
             elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
                 # Fetch and set all service units created or managed by the current user.
                 units = fetch_units_for_user(user)
                 context.update({'units': units})
-                context.update({'section_title_info': 'A list of All apointments you manage.'})
+                context.update({'section_title_info': 'A list of All Service units you manage.'})
                 context.update({'toggle_title1': 'Select Service unit for more Management options'})
                 context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
                 context.update({'toggle_title2': 'Edit Service unit Information'})
@@ -208,6 +212,43 @@ def serviceUnits(request):
     # Just try logging in.
     return redirect('systemAdmin:login')
 # End of officeAccounts() Method
+
+
+# USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
+def createUnit(request):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/service_units.html'
+    context = {}
+    f = UnitCreationForm(request.POST or None)
+
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            if request.POST and f is not None:
+                """
+                commited_form = f.save()
+                commited_form.fields['system_admin_id'] = request.session['user_admin']
+                commited_form.save()
+                """
+            else:
+                return HttpResponse("<font color = 'red'><b>Invalid data Submitted</b></font>")
+            # Build and return the required page
+            return render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, try nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
 
 
 # USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER

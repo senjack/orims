@@ -19,7 +19,7 @@ class ServiceUnit(models.Model):
     unit_name = models.CharField('Service Unit name', max_length=200)
     # Defining possible service unit types to form a lookup.
     unit_choice = (
-        ('select', 'Select Type of service unit'),
+        ('select', '--Select Category--'),
         ('Ministry', 'Ministry'),
         ('Organization', 'Organization'),
         ('Firm', 'Firm'),

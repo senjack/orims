@@ -1,39 +1,52 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth import forms as auth_form
 from .models import *
 from django.core.exceptions import ValidationError
 
 
 # START : ADMIN SIGNUP FORM
-class UnitCreationForm(forms.Form):
-    unitname = forms.Field(
-        widget=forms.TextInput(
-            attrs={
-                'autofocus': True,
-                'type': 'text',
-                'name': 'unitname',
-                'id': 'unit_name',
-                'class': 'form-control',
-                'placeholder': 'Enter Unit Name',
-                'style': 'border-radius:5px;',
-                'max-length': 512,
-            }
-        ),
-    )
+class UnitCreationForm(forms.Form,ModelForm):
+    class Meta:
+        model = ServiceUnit
+        fields = ['system_admin_id','unit_name', 'unit_type', 'unit_description', 'unit_logo','unit_featured_image',
+                  'unit_cover_photo'
+                  ]
+        widgets = {
+            'unit_name': forms.TextInput(
+                attrs={
+                    'autofocus': True,
+                    'type': 'text',
+                    'name': 'unitname',
+                    'id': 'unit_name',
+                    'class': 'form-control',
+                    'placeholder': 'Enter Unit Name',
+                    'style': 'border-radius:5px;',
+                    'max-length': 512,
+                }
+            ),
+            'unit_type': forms.Select(
+                attrs={
+                        'name': 'unit_category',
+                        'id': 'unit_category',
+                        'class': 'form-control',
+                        'style': 'border-radius:5px;height:45px;',
+                    }
+            ),
+            'unit_description': forms.Textarea(
+                attrs={
+                    'name': 'unit_description',
+                    'id': 'unit_description',
+                    'class': 'form-control',
+                    'placeholder': 'Enter Service unit description',
+                    'style': 'min-height:600px;border-radius:3px;height:100%;',
+                }
+            ),
+        }
 
-    email = forms.EmailField(
-        max_length=500,
-        widget=forms.EmailInput(
-            attrs={
-                'type': 'email',
-                'name': 'email',
-                'id': 'admin_email',
-                'placeholder': 'Email Address i.e. admin@orims.com',
-                'class': 'form-control',
-            }
-        ),
 
-    )
+    def set_admin_id(self, system_admin_id):
+        self.fields['system_admin_id'] = system_admin_id
 
 """
     def clean_username(self):

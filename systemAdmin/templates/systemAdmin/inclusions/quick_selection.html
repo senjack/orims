@@ -27,14 +27,14 @@
                 {% if forloop.first or not forloop.counter|divisibleby:2 %}
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" style="background:#f5f5f5;">
                                 <div class="panel-heading">
                                     <strong>
                                         <div class="clr-gre">{{ unit.unit_type }}</div>
                                     </strong>
                                 </div>
-                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
-                                    <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="height:150px;width:250px;" />
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;margin-right:15px;">
+                                    <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="max-height:150px;max-width:250px;" />
                                 </div>
                                 <ul class="list-group">
                                     <li class="list-group-item clr-dft"><strong>{{ unit.unit_name }}</strong></li>
@@ -48,7 +48,7 @@
                                                  <div class="col-xs-6"></div>
                                                  <div class="col-xs-6">
                                                     <a href="{% url 'systemAdmin:signup' %}">
-                                                        <button name = "select" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                        <button name = "select" class="btn btn-sm btn-primary" style="width:100%;">Select</button>
                                                     </a>
                                                 </div>
                                              </div>
@@ -59,13 +59,13 @@
                         {% if forloop.last %}</div>{% endif %}
                 {% else %}
                         <div class="col-sm-6">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" style="background:#f5f5f5;">
                                 <div class="panel-heading">
                                     <strong>
                                         <div class="clr-gre">{{ unit.unit_type }}</div>
                                     </strong>
                                 </div>
-                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;">
+                                <div class="panel-body" style="background:#f5f5f5;overflow:hidden;margin-right:15px;">
                                     <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="height:150px;width:250px;" />
                                 </div>
                                 <ul class="list-group">
@@ -80,7 +80,7 @@
                                              <div class="col-xs-6"></div>
                                              <div class="col-xs-6">
                                                 <a href="{% url 'systemAdmin:signup' %}">
-                                                    <button name = "select" class="btn btn-sm btn-success" style="width:100%;">Select</button>
+                                                    <button name = "select" class="btn btn-sm btn-primary" style="width:100%;">Select</button>
                                                 </a>
                                             </div>
                                          </div>
@@ -113,6 +113,5 @@
             <div class="panel-body list-group-item" style="text-align:center;background:#f6f6f6;">
                 <strong class="clr-gre"> {{ request.session.app }} </strong>
             </div>
-                </div>
-            </div>
         </div>
+    </div>
