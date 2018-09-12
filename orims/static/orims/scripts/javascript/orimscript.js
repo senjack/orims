@@ -1,7 +1,9 @@
 /*
+
 This is a  custom Javascript code for orims app.
 Developed by Afrodjango initiative.
 All rights reserved @AfroDjango initiative
+
 */
 
 var test_connectivity = function(){
@@ -16,14 +18,12 @@ function orimsHideOne(a){
 }
 
 function orimsCollapseOne(a){
-	var b;
-	b = document.getElementById(a);
+	var b = document.getElementById(a);
     if(b.style.display == 'block'){
         orimsHideOne(b);
+        return
     }
-    else{
-        orimsShowOne(b);
-    }
+    orimsShowOne(b);
 }
 
 function orimsShowOneOfAll(e,es){

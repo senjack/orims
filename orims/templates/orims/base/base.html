@@ -42,6 +42,7 @@
 
 		<!-- Required for Bootstrap to work successfully offline -->
         <link rel="stylesheet" href="{% static 'orims/styles/orimstrap/orimstrap.css' %}"/>
+        <link rel="stylesheet" href="{% static 'orims/styles/orimstrap/profile.css' %}"/>
         <!-- End of : Required for Bootstrap to work successfully offline -->
 
         <!-- Needed in all cases. this is a custom Javascript for ORIMS -->
@@ -49,45 +50,45 @@
         <!-- END OF: Needed in all cases. this is a custom Javascript for ORIMS -->
 
 	</head>
-	<body id="orims">
-	<div id="body-inheritor" class="body-inheritor"><!-- Beginning of Body inheritor div -->
+	<body id="orims" style="">
+		<div id="body-inheritor" class="body-inheritor container" style=""><!-- Beginning of Body inheritor div -->
 
-		<!-- ORIMS HEADER SECTION MARKUP -->
-		<div id="header-division" class="header-division"><!-- Beginning of Header container div -->
-			<div id="header-container" class="container header-container"><!-- Beginning of Header container Bootstrap inheritor div -->
-				<!-- To be extended [Just in case] -->
-				{% block header%} {% endblock %}
-			</div><!-- End of Header container Bootstrap inheritor div -->
-		</div><!-- End of Header container div -->
-		<!-- END OF : ORIMS HEADER SECTION MARKUP -->
-
-
-		<!-- ORIMS BODY SECTION MARKUP -->
-		<div id="body-division" class="body-division"><!-- Beginning of Body container div -->
-			<div id="body-container" class="container body-container"><!-- Beginning of body container Bootstrap inheritor div -->
-				<!-- To be extended [Just in case] -->
-				<!-- Div just to create a span above body content -->
-				<div style="margin-top:50px;width:100%;"></div>
-				<!-- End of: Div just to create a span above body content -->
-                {% block body%} {% endblock %}
-			</div><!-- End of body container Bootstrap inheritor div -->
-		</div><!-- End of body container div -->
-		<!-- END OF : ORIMS BODY SECTION MARKUP -->
+			<!-- ORIMS HEADER SECTION MARKUP -->
+			<div id="header-division" class="header-division"><!-- Beginning of Header container div -->
+				<div id="header-container" class="container header-container"><!-- Beginning of Header container Bootstrap inheritor div -->
+					<!-- To be extended [Just in case] -->
+					{% block header%} {% endblock %}
+				</div><!-- End of Header container Bootstrap inheritor div -->
+			</div><!-- End of Header container div -->
+			<!-- END OF : ORIMS HEADER SECTION MARKUP -->
 
 
-		<!-- ORIMS FOOTER SECTION MARKUP -->
-		<div id="footer-division" class="footer-division"><!-- Beginning of footer container div -->
-            <div id="footer-container" class="container footer-container"><!-- Beginning of footer container Bootstrap inheritor div -->
-				<!-- To be extended [Just in case] -->
-                {% block footer%}
-				    <!-- Include Footer -->
-						{% block ft %}{% include '../inclusions/footer.html' %} {% endblock %}
-					<!-- End of Footer -->
-				{% endblock %}
-			</div><!-- End of footer container Bootstrap inheritor div -->
-		</div><!-- End of footer container div -->
-		<!-- END OF : ORIMS FOOTER SECTION MARKUP -->
-	</div><!-- End of Body inheritor div -->
+			<!-- ORIMS BODY SECTION MARKUP -->
+			<div id="body-division" class="body-division"><!-- Beginning of Body container div -->
+				<div id="body-container" class="container body-container"><!-- Beginning of body container Bootstrap inheritor div -->
+					<!-- To be extended [Just in case] -->
+					<!-- Div just to create a span above body content -->
+					<div style="margin-top:50px;width:100%;"></div>
+					<!-- End of: Div just to create a span above body content -->
+					{% block body%} {% endblock %}
+				</div><!-- End of body container Bootstrap inheritor div -->
+			</div><!-- End of body container div -->
+			<!-- END OF : ORIMS BODY SECTION MARKUP -->
+
+
+			<!-- ORIMS FOOTER SECTION MARKUP -->
+			<div id="footer-division" class="footer-division"><!-- Beginning of footer container div -->
+				<div id="footer-container" class="container footer-container"><!-- Beginning of footer container Bootstrap inheritor div -->
+					<!-- To be extended [Just in case] -->
+					{% block footer%}
+						<!-- Include Footer -->
+							{% block ft %}{% include '../inclusions/footer.html' %} {% endblock %}
+						<!-- End of Footer -->
+					{% endblock %}
+				</div><!-- End of footer container Bootstrap inheritor div -->
+			</div><!-- End of footer container div -->
+			<!-- END OF : ORIMS FOOTER SECTION MARKUP -->
+		</div><!-- End of Body inheritor div -->
 
     <!-- Required for Bootstrap to successfully work offline -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -98,13 +99,15 @@
 		<!--purely jquery-->
         <script type="javascript" src="{% static 'orims/scripts/jquery/jquery-3.2.1.js' %}"></script>
         <script type="javascript" src="{% static 'orims/scripts/jquery/jquery-3.2.1.min.js' %}"></script>
+        <script type="javascript" src="{% static 'orims/styles/bootstrap/bootstrap-3.3.7/css/npm.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="" />
+
     <!-- End of : Required for Bootstrap to successfully work offline -->
 
     <!-- Required for Bootstrap to successfully work online -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- End of : Required for Bootstrap to successfully work online -->

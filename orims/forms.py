@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 
 # START : ADMIN SIGNUP FORM
-class UnitCreationForm(forms.Form,ModelForm):
+class UnitCreationForm(ModelForm):
     class Meta:
         model = ServiceUnit
         fields = ['system_admin_id','unit_name', 'unit_type', 'unit_description', 'unit_logo','unit_featured_image',
@@ -21,8 +21,7 @@ class UnitCreationForm(forms.Form,ModelForm):
                     'id': 'unit_name',
                     'class': 'form-control',
                     'placeholder': 'Enter Unit Name',
-                    'style': 'border-radius:5px;',
-                    'max-length': 512,
+                    'style': 'border-radius:5px;height:45px;width:100%;',
                 }
             ),
             'unit_type': forms.Select(
@@ -30,7 +29,7 @@ class UnitCreationForm(forms.Form,ModelForm):
                         'name': 'unit_category',
                         'id': 'unit_category',
                         'class': 'form-control',
-                        'style': 'border-radius:5px;height:45px;',
+                        'style': 'border-radius:5px;height:45px;width:100%;',
                     }
             ),
             'unit_description': forms.Textarea(
@@ -38,10 +37,11 @@ class UnitCreationForm(forms.Form,ModelForm):
                     'name': 'unit_description',
                     'id': 'unit_description',
                     'class': 'form-control',
-                    'placeholder': 'Enter Service unit description',
-                    'style': 'min-height:600px;border-radius:3px;height:100%;',
+                    'placeholder': 'Enter Service unit description (in Not more that 1024 characters)',
+                    'style': 'min-height:200px;border-radius:3px;height:100%;',
                 }
             ),
+            #'unit_logo':forms.ImageField(),
         }
 
 

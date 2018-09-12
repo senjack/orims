@@ -6,6 +6,7 @@ from orims.forms import *
 from .models import SystemAdmin
 from django.http import HttpResponse
 from orims.meta import meta_data
+from django.http.response import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import views
@@ -160,7 +161,7 @@ def serviceUnits(request):
                 context.update({'units': units})
                 context.update({'create_unit': True})
                 if request.method == 'POST':
-                    if f.is_valid:
+                    if f.is_valid():
                         pass
                 else:
                     context.update({'form': f})
@@ -230,11 +231,9 @@ def createUnit(request):
             # Set session data for the new user
             set_session_data(request, user)
             if request.POST and f is not None:
-                """
-                commited_form = f.save()
-                commited_form.fields['system_admin_id'] = request.session['user_admin']
-                commited_form.save()
-                """
+                # f.set_admin_id(user)
+                f.save()
+                # print(f)
             else:
                 return HttpResponse("<font color = 'red'><b>Invalid data Submitted</b></font>")
             # Build and return the required page
