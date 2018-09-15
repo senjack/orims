@@ -1,43 +1,44 @@
-# orims_repository
+# ORIMS SYSTEM
 
 
 
-CONCEPT FOR ONLINE OFFICE RECEPTION AND INFO MANAGEMENT SYSTEM.
+## ONLINE OFFICE RECEPTION AND INFORMATION MANAGEMENT SYSTEM.<br/>
 The project is to build an online office reception information management tool using Python and related technologies. The major aim of the tool is to help the general public make official appointments and to reduce time wasted on visiting a public office when the official wanted is absent or not available for meeting.
 
-Objective
-To effect social service delivery and e-governance
-Key functionalities and user interaction
-�	System admin
-I.	Create organization/ministry account
-II.	Create offices (under organization account)
-III.	Register receptionist and official for office
+## Objective:
+To effect social service delivery and e-governance<br/><br/>
+
+## Key functionalities and user interaction<br/>
+###	System admin
+I.	Create organization/ministry account<br/>
+II.	Create offices (under organization account)<br/>
+III.	Register receptionist and official for office<br/><br/>
 
 
 
-�	Official
-I.	Create monthly schedule
-II.	Receive appointments from receptionist
-III.	Confirms appointments
-IV.	Cancels appointment
+###	Official<br/>
+I.	Create monthly schedule<br/>
+II.	Receive appointments from receptionist<br/>
+III.	Confirms appointments<br/>
+IV.	Cancels appointment<br/><br/>
 
 
-�	Public
-I.	Search for ministry/ organization
-II.	Find office(under organization)
-III.	Places appointment with office
-IV.	Notified appointment date(once approved)
-V.	Confirms to appointment date(on appoint approval)
-VI.	Cancel appointment
-VII.	Appointment repot after (meeting official)
+###	Public<br/>
+I.	Search for ministry/ organization<br/>
+II.	Find office(under organization)<br/>
+III.	Places appointment with office<br/>
+IV.	Notified appointment date(once approved)<br/>
+V.	Confirms to appointment date(on appoint approval)<br/>
+VI.	Cancel appointment<br/>
+VII.	Appointment repot after (meeting official)<br/>
 
-�	Receptionist
-I.	Send official appointment request to official
-II.	Assigns appointment dates to public
-III.	Contacts person who placed appointment once official approves appointment.
-IV.	Cancels appointments
+###	Receptionist<br/>
+I.	Send official appointment request to official<br/>
+II.	Assigns appointment dates to public<br/>
+III.	Contacts person who placed appointment once official approves appointment.<br/>
+IV.	Cancels appointments<br/><br/>
 
 
 
-Note: This document shall be edited to add other system functionalities as the development commence.
+### Note: <br/>This document shall be edited to add other system functionalities as the development commence.
 
