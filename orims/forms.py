@@ -41,7 +41,6 @@ class UnitCreationForm(ModelForm):
                     'style': 'min-height:200px;border-radius:3px;height:100%;',
                 }
             ),
-            #'unit_logo':forms.ImageField(),
         }
 
 

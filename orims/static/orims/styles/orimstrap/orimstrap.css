@@ -16,7 +16,8 @@ a.active-pill{background:#f7f7f7;}
 .fm-mido{padding-top:150px;}
 .glyplus{font-size:85%;text-align:right;}
 a.list1:hover{background:#eee;}
-
+.aln-lft{text-align:left;}
+.aln-ryt{text-align:right;}
 .pnl-bdy-white-bg {
                     text-align:center;
                     border-top-right-radius:0px;

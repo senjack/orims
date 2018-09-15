@@ -1,5 +1,5 @@
 ﻿        <div class="list-group" style="">
-            <div href="#" class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
+            <div class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                 <span class="glyphicon glyphicon-user"></span> Profile
             </div>
             <div class="panel-body" style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
@@ -33,7 +33,7 @@
                                         <strong>UserName: </strong>
                                     </div>
                                 </div>
-                                <div class="col-sm-7" style="">
+                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="">
                                     <div class="clr-dft"><strong>{{ request.session.username }}</strong></div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                         <strong>Role: </strong>
                                     </div>
                                 </div>
-                                <div class="col-lg-7 col-md-7 col-sm-7" style="">
+                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="">
                                     <div class="clr-dft"><strong>
                                         <!--System Admin-->
                                         {{ request.session.role }}
@@ -57,7 +57,7 @@
                                     <div style="text-align:right;">
                                         <strong>Email: </strong></div>
                                 </div>
-                                <div class="col-lg-7 col-md-7 col-sm-7" style="overflow:hidden;">
+                                <div class="col-lg-7 col-md-7 col-sm-7  col-xs-7" style="overflow:hidden;">
                                     <div class="clr-dft" style="font-size:95%;"><strong>{{ request.session.email }}</strong></div>
                                 </div>
                             </div>
