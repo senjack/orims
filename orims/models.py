@@ -33,9 +33,12 @@ class ServiceUnit(models.Model):
         default='select',
     )
     unit_description = models.TextField(max_length=1024)
-    unit_logo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/logos'),max_length=2000)
-    unit_featured_image = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/featured_images'), max_length=2000)
-    unit_cover_photo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/cover_photos'), max_length=2000)
+    unit_logo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/logos'),
+                                 max_length=2000,null = True,blank = True)
+    unit_featured_image = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/featured_images'),
+                                           max_length=2000,null = True,blank = True)
+    unit_cover_photo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/cover_photos'),
+                                        max_length=2000,null = True,blank = True)
 
     # Defining what to be returned for each instance
     def __str__(self):

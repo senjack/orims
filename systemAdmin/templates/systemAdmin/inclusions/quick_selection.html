@@ -19,7 +19,7 @@
                         <div class="clr-gre1">You can quickly select a Service unit to manage, from the list below.</div>
                     </div>
             <div id="unit-selection-area" class="panel-body"
-                 style="text-align:center;border:1px solid #ccc;background:#f9f9f9;">
+                 style="text-align:center;border:1px solid #ccc;background:#f9f9f9;display:block;">
                 <div ><!--Build Quick access panel-->
 
 {% if units %}
@@ -36,6 +36,9 @@
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;margin-right:15px;">
                                     {% if unit.unit_featured_image %}
                                         <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="max-height:150px;max-width:250px;" />
+                                    {% else %}
+                                        <img src="{% static 'orims/photos/defaults/ServiceUnit/featured_images/orims.jpg' %}" alt="{{unit.unit_name}}"
+                                          style="max-height:150px;max-width:250px;"  />
                                     {% endif %}
                                 </div>
                                 <ul class="list-group">
@@ -72,6 +75,9 @@
                                 <div class="panel-body" style="background:#f5f5f5;overflow:hidden;margin-right:15px;">
                                     {% if unit.unit_featured_image %}
                                         <img src="{{unit.unit_featured_image.url}}" alt="{{ unit.unit_name }}" style="max-height:150px;max-width:250px;" />
+                                    {% else %}
+                                        <img src="{% static 'orims/photos/defaults/ServiceUnit/featured_images/orims.jpg' %}" alt="{{unit.unit_name}}"
+                                          style="max-height:150px;max-width:250px;"  />
                                     {% endif %}
                                 </div>
                                 <ul class="list-group">

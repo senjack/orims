@@ -4,9 +4,10 @@ from .forms import *
 from orims.views import *
 from orims.forms import *
 from .models import SystemAdmin
-from django.http import HttpResponse
 from orims.meta import meta_data
 from django.http.response import HttpResponse
+from django.http.request import HttpRequest
+from django.core.files import uploadedfile
 from django.views.decorators.http import require_POST
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import views
@@ -155,53 +156,57 @@ def serviceUnits(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'create_unit' and request.GET['mode'] == 'load_form':
-                # Fetch and set all service units created or managed by the current user.
-                units = fetch_units_for_user(user)
-                context.update({'units': units})
-                context.update({'create_unit': True})
-                if request.method == 'POST':
-                    if f.is_valid():
-                        pass
+            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin':
+                if request.GET['action'] == 'create_unit' and request.GET['mode'] == 'load_form':
+                    # Fetch and set all service units created or managed by the current user.
+                    t = 'systemAdmin/extensions/mono_page.html'
+                    units = fetch_units_for_user(user)
+                    context.update({'units': units})
+                    context.update({'create_unit': True})
+                    if request.method == 'POST':
+                        if f.is_valid():
+                            pass
+                    else:
+                        context.update({'form': f})
+
+                elif request.GET['action'] == 'cancel_unit_creation' and request.GET['mode'] == 'hide_form':
+                    # Empty all form fields:
+                    f = UnitCreationForm()
+                    return redirect('systemAdmin:serviceUnits')
+                elif request.GET['action'] == 'view_units':
+                    # Fetch and set all service units created or managed by the current user.
+                    units = fetch_units_for_user(user)
+                    context.update({'units': units})
+                    context.update({'section_title_info': 'A list of All Service units you manage.'})
+                    context.update({'toggle_title1': 'Select this Service unit for more Management options'})
+                    context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
+                    context.update({'toggle_title2': 'Edit this Service unit\'s Information'})
+                    context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
+                    context.update({'toggle_title3': 'Delete this Service unit?'})
+                    context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
+                    context.update({'display_unit_selection_list': True})
+                    context.update({'branches': ''})
                 else:
-                    context.update({'form': f})
+                    # Fetch and set all service units created or managed by the current user.
+                    units = fetch_units_for_user(user)
+                    branches = []
+                    for unit in units:
+                        branches.append(fetch_branches_for_units(unit.unit_id))
+                    branches = branches
 
-            elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'cancel_unit_creation' and request.GET['mode'] == 'hide_form':
-                # Empty all form fields:
-                f = UnitCreationForm()
-                return redirect('systemAdmin:serviceUnits')
-            elif request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
-                # Fetch and set all service units created or managed by the current user.
-                units = fetch_units_for_user(user)
-                context.update({'units': units})
-                context.update({'section_title_info': 'A list of All Service units you manage.'})
-                context.update({'toggle_title1': 'Select Service unit for more Management options'})
-                context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
-                context.update({'toggle_title2': 'Edit Service unit Information'})
-                context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
-                context.update({'toggle_title3': 'Delete this Service unit?'})
-                context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
-                context.update({'display_unit_selection_list': True})
-                context.update({'branches': ''})
+                    context.update({'units': units})
+                    context.update({'branches': branches})
+                    context.update({'section_title_info': 'You can view appointments for the entire Service unit, or browse for Branches under it.'})
+                    context.update({'toggle_title1': 'View Appointments for this entire Service unit'})
+                    context.update({'btn1_value': 'glyphicon glyphicon-eye-open'})
+                    context.update({'toggle_title2': 'Browse Branches under this Service unit'})
+                    context.update({'btn2_value': 'glyphicon glyphicon-option-horizontal clr-grn'})
+                # End if
+                # Build and return the required page
+                return render(request, t, context)
             else:
-                # Fetch and set all service units created or managed by the current user.
-                units = fetch_units_for_user(user)
-                branches = []
-                for unit in units:
-                    branches.append(fetch_branches_for_units(unit.unit_id))
-                branches = branches
-
-                context.update({'units': units})
-                context.update({'branches': branches})
-                context.update({
-                                   'section_title_info': 'You can view appointments for the entire Service unit, or browse for Branches under it.'})
-                context.update({'toggle_title1': 'View Appointments for this entire Service unit'})
-                context.update({'btn1_value': 'glyphicon glyphicon-eye-open'})
-                context.update({'toggle_title2': 'Browse Branches under this Service unit'})
-                context.update({'btn2_value': 'glyphicon glyphicon-option-horizontal clr-grn'})
-            # End if
-            # Build and return the required page
-            return render(request, t, context)
+                # In case of no GET request, just load service unit options
+                return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
@@ -220,7 +225,7 @@ def createUnit(request):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/service_units.html'
     context = {}
-    f = UnitCreationForm(request.POST or None)
+    f = UnitCreationForm(request.POST, request.FILES)
 
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
@@ -232,8 +237,13 @@ def createUnit(request):
             set_session_data(request, user)
             if request.POST and f is not None:
                 # f.set_admin_id(user)
-                f.save()
-                # print(f)
+                if f.is_valid():
+                    instance = f.save(commit=False)
+                    us = SystemAdmin.objects.get(system_admin_id = user)
+                    instance.system_admin_id = us
+                    instance.save()
+                    print("Service unit registered succesfully : " + str(instance))
+                    return HttpResponse("Service unit registered succesfully " + str(instance))
             else:
                 return HttpResponse("<font color = 'red'><b>Invalid data Submitted</b></font>")
             # Build and return the required page

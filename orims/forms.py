@@ -9,10 +9,17 @@ from django.core.exceptions import ValidationError
 class UnitCreationForm(ModelForm):
     class Meta:
         model = ServiceUnit
-        fields = ['system_admin_id','unit_name', 'unit_type', 'unit_description', 'unit_logo','unit_featured_image',
+        fields = [#'system_admin_id',
+                  'unit_name',
+                  'unit_type',
+                  'unit_description',
+
+                  'unit_logo',
+                  'unit_featured_image',
                   'unit_cover_photo'
                   ]
         widgets = {
+            'system_admin_id': forms.Select(),
             'unit_name': forms.TextInput(
                 attrs={
                     'autofocus': True,
@@ -20,8 +27,8 @@ class UnitCreationForm(ModelForm):
                     'name': 'unitname',
                     'id': 'unit_name',
                     'class': 'form-control',
-                    'placeholder': 'Enter Unit Name',
-                    'style': 'border-radius:5px;height:45px;width:100%;',
+                    'placeholder': 'Enter Service Unit Name',
+                    'style': 'border-radius:3px;width:100%;',
                 }
             ),
             'unit_type': forms.Select(
@@ -29,7 +36,7 @@ class UnitCreationForm(ModelForm):
                         'name': 'unit_category',
                         'id': 'unit_category',
                         'class': 'form-control',
-                        'style': 'border-radius:5px;height:45px;width:100%;',
+                        'style': 'border-radius:3px;width:100%;',
                     }
             ),
             'unit_description': forms.Textarea(
@@ -37,10 +44,13 @@ class UnitCreationForm(ModelForm):
                     'name': 'unit_description',
                     'id': 'unit_description',
                     'class': 'form-control',
-                    'placeholder': 'Enter Service unit description (in Not more that 1024 characters)',
+                    'placeholder': 'Enter Service unit description ( Less that 1024 characters )',
                     'style': 'min-height:200px;border-radius:3px;height:100%;',
                 }
             ),
+            'unit_logo': forms.ClearableFileInput(),
+            'unit_featured_image': forms.ClearableFileInput(),
+            'unit_cover_photo': forms.ClearableFileInput()
         }
 
 

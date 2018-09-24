@@ -19,13 +19,31 @@ function orimsHideOne(a){
 
 function orimsCollapseOne(a){
 	var b = document.getElementById(a);
-    if(b.style.display == 'block'){
+	var c = b.style.display;
+    if(c == 'block' || c == 'inline-block'){
         orimsHideOne(b);
-        return
     }
-    orimsShowOne(b);
+    else{
+        orimsShowOne(b);
+    }
+
 }
 
 function orimsShowOneOfAll(e,es){
 	orimsShowOne(e);
+}
+
+function toggle_content(a,b){
+	var c,d;
+	 c = document.getElementById(a);
+	 d = document.getElementById(b);
+    if(d.style.display == 'block'){
+        orimsHideOne(d);
+        orimsShowOne(c);
+    }
+    else{
+        orimsHideOne(c);
+        orimsShowOne(d);
+    }
+    return
 }

@@ -9,7 +9,9 @@
                             <div class="clr-gre1">
                                 <!-- IP1 -->
                                 {# section_title_info #}
-                                {{ section_title_info }}
+                                    {% if section_title_info %}
+                                        {{ section_title_info }}
+                                    {% endif %}
                                 {# section_title_info #}
                                 <!-- END: IP1 -->
                             </div>
@@ -27,8 +29,13 @@
                             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;padding-right:0px;margin:0px;background:#f8f8f8;height:100px;">
                                 <!-- IP2 -->
                                 {# src:unit.logo #}{# alt:unit.name #}
-                                <img src="{{unit.unit_logo.url}}" alt="{{unit.unit_name}}"
-                                     style="height:100%;width:100%;max-width:100px;" />
+                                    {% if unit.unit_logo %}
+                                        <img src="{{unit.unit_logo.url}}" alt="{{unit.unit_name}}"
+                                         style="height:100%;width:100%;max-width:100px;" />
+                                    {% else %}
+                                        <img src="{% static 'orims/photos/defaults/ServiceUnit/logos/orims.jpg' %}" alt="{{unit.unit_name}}"
+                                         style="height:100%;width:100%;max-width:100px;" />
+                                    {% endif %}
                                 {# src:unit.logo #}{# alt:unit.name #}
                                 <!-- END: IP2 -->
                             </div>
@@ -36,7 +43,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:20%;overflow:hidden;">
                                     <!-- IP3 -->
                                     {# title:toggle_title1 #}
-                                    <div class="clr-dft" data-toggle="tooltip" data-placement="bottom"
+                                        <div class="clr-dft" data-toggle="tooltip" data-placement="bottom"
                                          title="{{ unit.unit_name }}">
                                     {# title:toggle_title1 #}
                                     <!-- IP3 -->
@@ -44,7 +51,9 @@
                                         <strong>
                                             <!-- IP4 -->
                                             {# unit_name #}
-                                            {{unit.unit_name}}
+                                                {% if unit.unit_name %}
+                                                {{unit.unit_name}}
+                                                {% endif %}
                                             {# unit_name #}
                                             <!-- IP4 -->
                                         </strong>
@@ -55,7 +64,9 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"style="height:100%;width:100%;padding:5px;margin-right:5px;overflow:hidden;">
                                             <!-- IP5 -->
                                             {# unit_description #}
-                                            {{unit.unit_description}}
+                                                {% if unit.unit_description %}
+                                                    {{unit.unit_description}}
+                                                {% endif %}
                                             {# unit_description #}
                                             <!-- IP5 -->
                                         </div>
@@ -93,14 +104,16 @@
 
                                                      <!-- IP7 -->
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
-                                                    <button name = "branches" class="btn btn-default clr-gre"
-                                                            onclick="orimsCollapseOne('{{ unit.unit_id }}');"
-                                                            style="width:33%;"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{toggle_title3}}"
-                                                    >
-                                                        <span class="{{ btn3_value }}"></span>
-                                                    </button>
+                                                     {% if unit.unit_id %}
+                                                        <button name = "branches" class="btn btn-default clr-gre"
+                                                                onclick="orimsCollapseOne('{{ unit.unit_id }}');"
+                                                                style="width:33%;"
+                                                                data-toggle="tooltip" data-placement="bottom"
+                                                                title="{{toggle_title3}}"
+                                                        >
+                                                            <span class="{{ btn3_value }}"></span>
+                                                        </button>
+                                                     {% endif %}
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                                      <!-- IP7 -->
                                                 </div>
