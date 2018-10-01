@@ -33,17 +33,22 @@
     <!-- right bigger body section -->
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="margin-bottom:20px;" >
             <div style="margin-top:-20px;width:100%;"></div>
-        <!-- Include Dashboard Quick selection panel -->
-            {% block QS %}{% include '../inclusions/quick_selection.html' %} {% endblock %}
-        <!-- End of Dashboard Quick selection panel -->
+        <div>
+
+            <!-- Include Dashboard Quick selection panel -->
+                {% block QS %}{% include '../inclusions/quick_selection.html' %} {% endblock %}
+            <!-- End of Dashboard Quick selection panel -->
+        </div>
 
 
         <!-- QUICK GUIDE SECTION -->
+       <div style="margin:-15px;">
 
             <!-- Include Quick guide -->
-                {% block QG %}{% include '../inclusions/quick_guide.html' %} {% endblock %}
+            {% block QG %}{% include '../inclusions/quick_guide.html' %} {% endblock %}
             <!-- End of Quick guide -->
 
+       </div>
         <!-- END OF QUICK GUIDE SECTION -->
     </div>
 

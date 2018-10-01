@@ -90,6 +90,7 @@ class Branch(models.Model):
     # Enforcing custom table name
     class Meta:
         db_table = "Branch"
+        verbose_name_plural = "Branches"
     # End class Meta
 # End class Branch
 

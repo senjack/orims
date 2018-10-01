@@ -2,7 +2,34 @@
 {% load staticfiles %}
 <div class="col-lg-3 col-md-3 col-sm-12"></div>
 <div class="col-lg-6 col-md-6 col-sm-12">
-<form enctype="multipart/form-data" method="POST" action="{% url 'systemAdmin:createUnit' %}">
+    {% if unit_creation_success or unit_update_success %}
+        <div class="alert alert-success alert-dismissable">
+            {% if unit_update_success %}
+                Service unit Updated successfully!
+            {% else %}
+                Service unit created successfully!
+            {% endif %}
+            <span class="glyphicon glyphicon-ok"></span>
+            <hr/>
+           <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=view_units">
+               <button name = "create" class="btn btn-success" style="width:100%;">Preview Service Unit</button>
+           </a>
+        </div>
+    {% endif %}
+
+{% if action == "update_unit" %}
+    <form
+            enctype="multipart/form-data"
+            method="POST"
+            action="{% url 'systemAdmin:updateUnit' %}"
+    >
+{% else %}
+    <form
+            enctype="multipart/form-data"
+            method="POST"
+            action="{% url 'systemAdmin:createUnit' %}"
+    >
+{% endif %}
         <div class="row">
             <div class="col-md-12">
 
@@ -10,7 +37,7 @@
                     <!-- Form Header section -->
                     <div class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                         <div class="row">
-                            <div class="col-xs-12" style=""><span class="glyphicon glyphicon-home"></span> Service unit Registration form</div>
+                            <div class="col-xs-12" style=""><span class="glyphicon glyphicon-home"></span> {{form_title}} </div>
                         </div>
                     </div>
                     <!-- END OF: Form Header section -->
@@ -27,8 +54,8 @@
                                     <ul class="nav nav-pills">
                                       <li>
                                             <a>
-                                                Register Ministry, Organisation,Business,...
-                                              <span class="glyphicon glyphicon-plus clr-grn"></span>
+                                                {{form_prompt_message}}
+                                              <!--<span class="glyphicon glyphicon-plus clr-grn"></span>-->
                                             </a>
                                       </li>
                                     </ul>
@@ -43,7 +70,9 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left:0px;padding-right:0px;">
                                         {% csrf_token %}
-                                        {#{ form.system_admin_id }#}
+                                        <!--<input name="hidden_id" value="{{form.instance.unit_id}}"/>-->
+
+                                        {#{ form.hidden_id }#}
                                         {% csrf_token %}
                                         {{ form.unit_name }}
                                     </div>
@@ -199,8 +228,7 @@
                                      <!-- IP6 -->
                                      {# onclick:custom_url #}{# title:custom_toggle_title1 #}
                                      <input type="submit" name = "view" class="btn btn-primary"
-                                            value="Add Unit"
-                                             onclick=""
+                                            value="{{submit_button_caption}}"
                                              style="width:50%;"
                                              data-toggle="tooltip"
                                              data-placement="bottom"
@@ -238,6 +266,6 @@
 
             </div>
         </div>
-</form>
+    </form>
 </div>
 <div class="col-lg-3 col-md-3 col-sm-12></div>

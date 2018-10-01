@@ -31,3 +31,15 @@ def fetch_branches_for_units(unit_id):
 def fetch_all_branches():
     branches = Branch.objects.all()
     return branches
+
+def build_unit_update_form(user, context=None):
+    u = user or None
+    if u:
+        context.update({'update_unit': True})
+        context.update({'form_title': 'Service unit Update form'})
+        context.update({'form_prompt_message': 'Edit and update this Service Unit Information.'})
+        context.update({'submit_button_caption': 'Update'})
+        context.update({'toggle_title1': 'Click to Update Service Unit Information'})
+        context.update({'toggle_title2': 'Click to Cancel Service Unit information Update Process'})
+        context.update({'action': 'update_unit'})
+    return context

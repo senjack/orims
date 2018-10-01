@@ -1,8 +1,10 @@
 # ORIMS SYSTEM
 
+## ONLINE OFFICE RECEPTION INFORMATION MANAGEMENT SYSTEM.<br/>
 
+![Image](./orims/static/orims/photos/defaults/github-MD-file/md_cover_photo.png)
 
-## ONLINE OFFICE RECEPTION AND INFORMATION MANAGEMENT SYSTEM.<br/>
+## Overview:
 The project is to build an online office reception information management tool using Python and related technologies. The major aim of the tool is to help the general public make official appointments and to reduce time wasted on visiting a public office when the official wanted is absent or not available for meeting.
 
 ## Objective:

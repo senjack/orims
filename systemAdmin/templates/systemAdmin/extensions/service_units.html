@@ -32,9 +32,13 @@
         <!-- Include Office accounts option panel -->
             {% if create_unit %}
                 {% block create_unit %}{% include '../inclusions/units/unit_creation_form.html' %} {% endblock %}
-            {% elif display_unit_selection_list %}
-                {% block unit_list %}{% include '../inclusions/units/unit_selection_template.html' %} {% endblock %}
-            {% else %}
+            {% endif %}
+
+            {% if display_unit_selection_list %}
+                {% block Unit_list %}{% include '../inclusions/units/unit_selection_template.html' %} {% endblock %}
+            {% endif  %}
+
+            {% if not create_unit and not display_unit_selection_list %}
                 {% block OA %}{% include '../inclusions/service_units_options.html' %} {% endblock %}
             {% endif %}
         <!-- End of Office accounts option panel -->

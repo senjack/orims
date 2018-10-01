@@ -156,52 +156,48 @@ def serviceUnits(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
+            # Fetch and set all service units created or managed by the current user.
+            units = fetch_units_for_user(user)
+
+            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
+                t = 'systemAdmin/extensions/service_units.html'
+                context.update({'units': units})
+                context.update({'section_title_info': 'A list of All Service units you manage.'})
+                context.update({'toggle_title1': 'Select this Service unit for more Management options'})
+                context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
+                context.update({'toggle_title2': 'Edit this Service unit\'s Information'})
+                context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
+                context.update({'toggle_title3': 'Delete this Service unit'})
+                context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
+                context.update({'display_unit_selection_list': True})
+                context.update({'branches': ''})
+                return render(request, t, context)
+            # End if
+
             if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin':
-                if request.GET['action'] == 'create_unit' and request.GET['mode'] == 'load_form':
-                    # Fetch and set all service units created or managed by the current user.
+                if request.GET['mode'] == 'load_form':
                     t = 'systemAdmin/extensions/mono_page.html'
-                    units = fetch_units_for_user(user)
-                    context.update({'units': units})
-                    context.update({'create_unit': True})
-                    if request.method == 'POST':
-                        if f.is_valid():
-                            pass
-                    else:
-                        context.update({'form': f})
+                    if request.GET['action'] == 'create_unit':
+                        context.update({'units': units})
+                        context.update({'create_unit': True})
+                        context.update({'form_title': 'Service unit Registration form'})
+                        context.update({'form_prompt_message': 'Register Ministry, Organisation, Business, Firm, ...'})
+                        context.update({'submit_button_caption': 'Register Unit'})
+                        context.update({'toggle_title1': 'Click to Register Service Unit'})
+                        context.update({'toggle_title2': 'Click to Cancel Service Unit Registration Process'})
+                        context.update({'action':'create_units'})
+
+                        if request.method == 'POST':
+                            if f.is_valid():
+                                pass
+                        else:
+                            context.update({'form': f})
 
                 elif request.GET['action'] == 'cancel_unit_creation' and request.GET['mode'] == 'hide_form':
                     # Empty all form fields:
                     f = UnitCreationForm()
                     return redirect('systemAdmin:serviceUnits')
-                elif request.GET['action'] == 'view_units':
-                    # Fetch and set all service units created or managed by the current user.
-                    units = fetch_units_for_user(user)
-                    context.update({'units': units})
-                    context.update({'section_title_info': 'A list of All Service units you manage.'})
-                    context.update({'toggle_title1': 'Select this Service unit for more Management options'})
-                    context.update({'btn1_value': 'glyphicon glyphicon-thumbs-up'})
-                    context.update({'toggle_title2': 'Edit this Service unit\'s Information'})
-                    context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
-                    context.update({'toggle_title3': 'Delete this Service unit?'})
-                    context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
-                    context.update({'display_unit_selection_list': True})
-                    context.update({'branches': ''})
-                else:
-                    # Fetch and set all service units created or managed by the current user.
-                    units = fetch_units_for_user(user)
-                    branches = []
-                    for unit in units:
-                        branches.append(fetch_branches_for_units(unit.unit_id))
-                    branches = branches
 
-                    context.update({'units': units})
-                    context.update({'branches': branches})
-                    context.update({'section_title_info': 'You can view appointments for the entire Service unit, or browse for Branches under it.'})
-                    context.update({'toggle_title1': 'View Appointments for this entire Service unit'})
-                    context.update({'btn1_value': 'glyphicon glyphicon-eye-open'})
-                    context.update({'toggle_title2': 'Browse Branches under this Service unit'})
-                    context.update({'btn2_value': 'glyphicon glyphicon-option-horizontal clr-grn'})
-                # End if
                 # Build and return the required page
                 return render(request, t, context)
             else:
@@ -216,16 +212,74 @@ def serviceUnits(request):
         pass
     # End of try:
     # Just try logging in.
+    # return HttpResponse("<font color = 'red'><b>Un Expected Error TRACED </b></font>")
     return redirect('systemAdmin:login')
 # End of officeAccounts() Method
 
 
-# USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
+# SERVICE UNIT CREATION
 def createUnit(request):
     # STEP1.0.0: Set template and create an empty context object.
-    t = 'systemAdmin/extensions/service_units.html'
+    t = 'systemAdmin/extensions/mono_page.html'
     context = {}
-    f = UnitCreationForm(request.POST, request.FILES)
+    f = UnitCreationForm(request.POST, request.FILES or None)
+
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+
+            # Set session data for the new user
+            set_session_data(request, user)
+
+            if request.POST:
+                context.update({'units_creation_success': False})
+
+                if f.is_valid():
+                    instance = f.save(commit=False)
+                    us = SystemAdmin.objects.get(system_admin_id = user)
+                    instance.system_admin_id = us
+                    instance.save()
+
+                    print(instance.unit_id)
+                    print("\nService unit registered succesfully : " + str(instance))
+
+                    # Turn on flags to enable loading unit update form
+                    unit_creation_success = True
+                    context.update({'unit_creation_success': True})
+
+                    # Check for whether a flag to enable loading unit update form is on
+                    if unit_creation_success:
+                        context.update(build_unit_update_form(user, context))
+                        f = UnitCreationForm(instance=instance)
+                        context.update({'form': f})
+
+                    return render(request, t, context)
+            else:
+                return HttpResponse("<font color = 'red'><b>Un Expected Error</b></font>")
+            # Build and return the required page
+            return render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, try nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
+
+
+# SERVICE UNIT UPDATE
+def updateUnit(request,unit_id = None):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/mono_page.html'
+    # t = 'systemAdmin/extensions/service_units.html'
+    context = {}
+    f = UnitCreationForm(request.POST, request.FILES or None)
 
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
@@ -235,17 +289,20 @@ def createUnit(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
-            if request.POST and f is not None:
-                # f.set_admin_id(user)
+            if request.POST:
                 if f.is_valid():
-                    instance = f.save(commit=False)
-                    us = SystemAdmin.objects.get(system_admin_id = user)
-                    instance.system_admin_id = us
-                    instance.save()
-                    print("Service unit registered succesfully : " + str(instance))
-                    return HttpResponse("Service unit registered succesfully " + str(instance))
+                   # Turn on flags to enable loading unit update form
+                    unit_update_success = True
+                    context.update({'unit_update_success': True})
+
+                    if unit_update_success:
+                        context.update(build_unit_update_form(user, context))
+                        # f = UnitCreationForm(instance=instance)
+                        context.update({'form': f})
+
+                    return render(request, t, context)
             else:
-                return HttpResponse("<font color = 'red'><b>Invalid data Submitted</b></font>")
+                return HttpResponse("<font color = 'red'><b>Un Expected Error</b></font>")
             # Build and return the required page
             return render(request, t, context)
         else:

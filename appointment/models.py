@@ -21,6 +21,8 @@ class Avails(models.Model):
     # Enforcing custom table name
     class Meta:
         db_table = "Avails"
+        verbose_name_plural = "Avails"
+
     # End class Meta
 # End class Avails
 
