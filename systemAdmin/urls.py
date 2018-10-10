@@ -20,13 +20,21 @@ urlpatterns = [
 
     path('serviceUnits?user=system-admin&level=system_admin&action=cancel_unit_creation&mode=hide_form', views.serviceUnits, name='serviceUnits'),
 
+    path('serviceUnits?user=system-admin&level=system_admin&action=view_units', views.serviceUnits,name='serviceUnits'),
+
     path('createUnit', views.createUnit, name='createUnit'),
+
+    path('editUnit', views.editUnit, name='editUnit'),
+
+    path('editUnit/<int:unit_id>/', views.editUnit, name='editUnit'),
 
     path('updateUnit', views.updateUnit, name='updateUnit'),
 
-    path('updateUnit/<int:unit_id>', views.updateUnit, name='updateUnit'),
+    path('updateUnit/<int:unit_id>/', views.updateUnit, name='updateUnit'),
 
-    path('serviceUnits?user=system-admin&level=system_admin&action=view_units', views.serviceUnits,name='serviceUnits'),
+    path('deleteUnit', views.deleteUnit, name='deleteUnit'),
+
+    path('deleteUnit/<int:unit_id>/', views.deleteUnit, name='deleteUnit'),
 
     path('userAccounts', views.userAccounts, name='userAccounts'),
 

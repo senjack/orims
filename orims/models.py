@@ -1,9 +1,10 @@
 from django.db import models
 from systemAdmin.models import SystemAdmin
 from orims.custom import RandomFileName
+import uuid
 
 # Added imports
-# from django.utils import timezone
+from django.utils import timezone
 
 
 # Model Class for service Unit
@@ -39,6 +40,8 @@ class ServiceUnit(models.Model):
                                            max_length=2000,null = True,blank = True)
     unit_cover_photo = models.FileField(upload_to=RandomFileName('photos/uploads/ServiceUnit/cover_photos'),
                                         max_length=2000,null = True,blank = True)
+    true = auto_now = True
+    registration_date = models.DateTimeField(default=timezone.now)
 
     # Defining what to be returned for each instance
     def __str__(self):
@@ -75,7 +78,7 @@ class Branch(models.Model):
         choices=branch_level_choice,
         default='other',
     )
-    registration_date = models.DateTimeField()
+    registration_date = models.DateTimeField(default=timezone.now)
 
     safe_id = ''
 
@@ -154,12 +157,14 @@ class Department(models.Model):
     Creates and associates with a database relation that store data about a department.
     """
     # Department primary key
-    department_id = models.CharField(primary_key=True,max_length=512)
+    department_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
+    # models.CharField(primary_key=True,max_length=512)
     # Setting foreign key
     branch_id = models.ForeignKey(Branch, on_delete=models.CASCADE, verbose_name='Branch')
     # Department attributes
     department_name = models.CharField(max_length=250)
     department_description = models.TextField('Description', max_length=1024)
+    registration_date = models.DateTimeField(default=timezone.now)
 
     # Defining a display string for each instance
     def __str__(self):
@@ -179,21 +184,23 @@ class Office(models.Model):
     Creates and associates with a database relation that store data about an office
     """
     # Office primary key
-    office_id = models.CharField(primary_key=True, max_length=512)
+    office_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
+    # office_id = models.CharField(primary_key=True, max_length=512)
     # Setting foreign key
     department_id = models.ForeignKey(Department, on_delete=models.CASCADE, verbose_name='Department')
     # Department attributes
     office_name = models.CharField(max_length=50)
     office_description = models.TextField(max_length=1024)
     office_working_time_choice = (
-        ('default', 'Standard Working Dime and Days'),
-        ('custom', 'Set Custom Working Time for office'),
+        ('Standard Working Time and Days', 'Standard Working Time and Days'),
+        ('Set Custom Working Time for office', 'Set Custom Working Time for office'),
     )
     office_working_time = models.CharField(
         max_length=30,
         choices=office_working_time_choice,
-        default='default',
+        default='Standard Working Dime and Days',
     )
+    registration_date = models.DateTimeField(default=timezone.now)
 
     # Defining a display string for each instance
     def __str__(self):
@@ -260,7 +267,7 @@ class Staff(models.Model):
         # ('system_admin', 'System administrator'),
         ('Official', 'Official'),
         ('receptionist', 'Receptionist'),
-        ('select', 'Select Staff Designation')
+        ('select', '---Select Staff Designation---')
     )
     # Creating choices for staff
     staff_designation = models.CharField(
@@ -270,6 +277,7 @@ class Staff(models.Model):
         default='select',
     )
     about_staff = models.TextField(max_length=512, blank=True, null=True)
+    registration_date = models.DateTimeField(default=timezone.now)
 
     # Defining a display string for each instance
     def __str__(self):

@@ -1,6 +1,9 @@
 from django.db import models
 from orims.models import Staff
 
+# Added imports
+from django.utils import timezone
+from  datetime import date
 
 # Avails model
 class Avails(models.Model):
@@ -10,7 +13,7 @@ class Avails(models.Model):
     # Setting foreign key
     availer = models.CharField(max_length=15)
     availed = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    session_start = models.DateTimeField()
+    session_start = models.DateTimeField(default=timezone.now)
     session_stop = models.DateTimeField()
 
     # Defining a display string for each instance
@@ -29,13 +32,15 @@ class Avails(models.Model):
 
 # Appointment model
 class Appointment(models.Model):
-    """"Creates and associates with a database relation that store data about official - client appointment"""
+    """"
+    Creates and associates with a database relation that store data about official - client appointment
+    """
     # Appointment primary key
-    appointment_id = models.CharField(primary_key=True,max_length = 30)
+    appointment_id = models.CharField(primary_key=True,max_length = 1024)
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Staff')
     # appointment attributes
-    placement_time = models.DateTimeField('Appointment placement Time')
+    placement_time = models.DateTimeField('Appointment placement Time',default=timezone.now)
     start_time = models.DateTimeField('Time when appointment starts')
     stop_time = models.DateTimeField('Time when Appointment ends')
     reason = models.TextField('Reason for appointment schedule', max_length=512)
@@ -98,7 +103,7 @@ class Schedule(models.Model):
     # Setting foreign key
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Staff')
     # schedule attributes
-    sch_date = models.DateField('When Schedule was made')
+    sch_date = models.DateField('When Schedule was made',default=timezone.now)
     effect_date = models.DateField('When Schedule is to effect')
     start_time = models.TimeField('Schedule start time')
     end_time = models.TimeField('Schedule End time')

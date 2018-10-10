@@ -1,6 +1,6 @@
 from django.db import models
 from orims.models import Staff
-
+from django.utils import timezone
 
 # SERVICE UNIT ADMINISTRATORS' MODELS.
 class Administrator(models.Model):
@@ -23,6 +23,7 @@ class Administrator(models.Model):
         choices=admin_level_choices,
         default='select',
     )
+    registration_date = models.DateTimeField(default=timezone.now)
 
     # Defining a display string for each instance
     def __str__(self):

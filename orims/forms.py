@@ -8,24 +8,6 @@ from django.core.exceptions import ValidationError
 # START : UNIT CREATION / UPDATE FORM
 class UnitCreationForm(ModelForm):
 
-    def fetch_unit_id(self):
-        return self.visible_fields()
-
-
-    hidden_id = forms.Field(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'text',
-                'name': 'hidden_id',
-                'id': 'hidden_id',
-                'class': 'form-control',
-                'placeholder': 'hidden_id',
-                'value': fetch_unit_id,
-                'style': 'display:block;',
-            }
-        ),
-    )
-
     class Meta:
         model = ServiceUnit
         fields = [#'system_admin_id',
@@ -39,7 +21,8 @@ class UnitCreationForm(ModelForm):
                   'unit_cover_photo'
                   ]
         widgets = {
-            'system_admin_id': forms.Select(),
+            #'system_admin_id': forms.Select(),
+            #'unit_id':forms.Select(),
             'unit_name': forms.TextInput(
                 attrs={
                     'autofocus': True,
@@ -68,9 +51,9 @@ class UnitCreationForm(ModelForm):
                     'style': 'min-height:200px;border-radius:3px;height:100%;',
                 }
             ),
-            'unit_logo': forms.ClearableFileInput(),
-            'unit_featured_image': forms.ClearableFileInput(),
-            'unit_cover_photo': forms.ClearableFileInput()
+            'unit_logo': forms.FileInput(),
+            'unit_featured_image': forms.FileInput(),
+            'unit_cover_photo': forms.FileInput()
         }
 
 

@@ -235,24 +235,69 @@ def createUnit(request):
             set_session_data(request, user)
 
             if request.POST:
-                context.update({'units_creation_success': False})
+                # context.update({'units_creation_success': False})
 
                 if f.is_valid():
+                    # STEP 1: Create a form instance which is not to be saved instantly
                     instance = f.save(commit=False)
+
+                    # STEP 2: If current user is Admin,
+                    # Attach current user as system admin
                     us = SystemAdmin.objects.get(system_admin_id = user)
                     instance.system_admin_id = us
+
+                    # STEP 3: Create / save service unit
                     instance.save()
 
-                    print(instance.unit_id)
+                    # Step 4: Create default Branch and name it 'Main Branch'
+                    # 4.1: Create instance for the newly created service unit.
+                    unit = ServiceUnit.objects.get(unit_id=instance.unit_id)
+                    # 4.2: Create a unit object to be sent to the client together with the form
+                    context.update({'unit': unit})
+                    # 4.3: call Branch creation method
+                    b = create_branch(service_unit_id=unit, branch_name='Main', branch_level='main')
+                    b
+
+                    # Step 5: Create default Department and name it 'Reception Department'
+                    # 5.1: Create instance for the newly created Branch.
+                    branch = Branch.objects.get(branch_id=b)
+                    # 5.2: call Department creation method
+                    d = create_department(branch_id=branch,
+                                          dept_name='Reception',
+                                          dept_description ="""This is the the Receiption department, Under which the following are expected.\n
+                    I.	Sending official appointment request to official\n
+                    II.	Assigning appointment dates to public\n
+                    III.	Contacting person who placed appointment once official approves appointment.\n
+                    IV.	Canceling appointments
+                    """,)
+                    d
+
+                    # Step 6: Create default Office and name it 'Office of the Receptionist'
+                    # 6.1: Create instance for the newly created Department.
+                    department = Department.objects.get(department_id=d)
+                    # 6.2: call Department creation method
+                    o = create_office(department_id=department,
+                                      office_name='Receptionist',
+                                      working_time='Standard Working Time and Days',
+                                      office_description ="""This is the the Office of the Receptionist, Under which the following are expected.\n
+                    I.	Sending official appointment request to official\n
+                    II.	Assigning appointment dates to public\n
+                    III.	Contacting person who placed appointment once official approves appointment.\n
+                    IV.	Canceling appointments
+                    """,)
+                    o
+
                     print("\nService unit registered succesfully : " + str(instance))
 
                     # Turn on flags to enable loading unit update form
                     unit_creation_success = True
                     context.update({'unit_creation_success': True})
+                    # request.session['unit_update'] = instance.unit_id
+                    updateUnit(request, unit_id=instance.unit_id)
 
                     # Check for whether a flag to enable loading unit update form is on
                     if unit_creation_success:
-                        context.update(build_unit_update_form(user, context))
+                        context.update(build_unit_update_form(context))
                         f = UnitCreationForm(instance=instance)
                         context.update({'form': f})
 
@@ -273,14 +318,11 @@ def createUnit(request):
     return redirect('systemAdmin:login')
 
 
-# SERVICE UNIT UPDATE
-def updateUnit(request,unit_id = None):
+# LOAD SERVICE UNIT UPDATE FORM
+def editUnit(request,unit_id = None):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/mono_page.html'
-    # t = 'systemAdmin/extensions/service_units.html'
     context = {}
-    f = UnitCreationForm(request.POST, request.FILES or None)
-
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
         if request.session['user_admin']:
@@ -289,22 +331,59 @@ def updateUnit(request,unit_id = None):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
+            #unit = ServiceUnit.objects.get(unit_id=unit_id) or None
+            unit = get_object_or_404(ServiceUnit,unit_id=unit_id)
+
+            if unit:
+                updateUnit(request, unit_id)
+            else:
+                pass
+                # method coming soon
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # Just try logging in.
+        return redirect('systemAdmin:login')
+
+
+# SERVICE UNIT UPDATE
+def updateUnit(request,unit_id = None):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/mono_page.html'
+    context = {}
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+
+            # return HttpResponse("<font color = 'green'><b>Found</b></font>")
+
             if request.POST:
-                if f.is_valid():
+                    unit = ServiceUnit.objects.get(unit_id=unit_id) or None
+                    f = UnitCreationForm(request.POST, request.FILES or None, instance=unit)
+
+                    # unit = ServiceUnit.objects.get(unit_id=request.session['unit_update'])
+                    if unit and f.is_valid():
+                        f.save()
+
                    # Turn on flags to enable loading unit update form
                     unit_update_success = True
                     context.update({'unit_update_success': True})
-
                     if unit_update_success:
-                        context.update(build_unit_update_form(user, context))
-                        # f = UnitCreationForm(instance=instance)
+                        context.update(build_unit_update_form(context))
+                        # Create a unit object to be sent to the client together with the form
+                        context.update({'unit': unit})
                         context.update({'form': f})
 
                     return render(request, t, context)
             else:
                 return HttpResponse("<font color = 'red'><b>Un Expected Error</b></font>")
-            # Build and return the required page
-            return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
@@ -315,6 +394,37 @@ def updateUnit(request,unit_id = None):
     # End of try:
     # Just try logging in.
     return redirect('systemAdmin:login')
+
+
+# DELETE SERVICE UNIT
+def deleteUnit(request,unit_id = None):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/mono_page.html'
+    context = {}
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            unit = get_object_or_404(ServiceUnit,unit_id=unit_id)
+            if unit:
+                unit.delete()
+                #redirect('systemAdmin:serviceUnits?user=system-admin&level=system_admin&action=view_units')
+            else:
+                pass
+                # method coming soon
+
+            render(request, t, context)
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # Just try logging in.
+        return redirect('systemAdmin:login')
 
 
 # USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER

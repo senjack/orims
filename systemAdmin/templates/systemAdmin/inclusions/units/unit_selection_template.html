@@ -92,27 +92,32 @@
                                                      {# onclick:custom_url #}{# title:custom_toggle_title1 #}
                                                      <!-- IP6 -->
 
-                                                     <button name = "view" class="btn btn-default"
-                                                             onclick=""
-                                                             style="width:33%;"
-                                                             data-toggle="tooltip"
-                                                             data-placement="bottom"
-                                                             title="{{toggle_title2}}">
+                                                     <a role="button"
+                                                        href="{% url 'systemAdmin:editUnit' %}/{{unit.unit_id}}/"
+                                                        name = "view" class="btn btn-default"
+                                                         onclick=""
+                                                         style="width:33%;"
+                                                         data-toggle="tooltip"
+                                                         data-placement="bottom"
+                                                         title="{{toggle_title2}}"
+                                                     >
                                                          <span class="{{ btn2_value }}"></span>
-                                                     </button>
+                                                     </a>
 
 
                                                      <!-- IP7 -->
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                                      {% if unit.unit_id %}
-                                                        <button name = "branches" class="btn btn-default clr-gre"
+                                                        <a role="button"
+                                                           href="{% url 'systemAdmin:deleteUnit' %}/{{unit.unit_id}}/"
+                                                           name = "branches" class="btn btn-default clr-gre"
                                                                 onclick="orimsCollapseOne('{{ unit.unit_id }}');"
                                                                 style="width:33%;"
                                                                 data-toggle="tooltip" data-placement="bottom"
                                                                 title="{{toggle_title3}}"
                                                         >
                                                             <span class="{{ btn3_value }}"></span>
-                                                        </button>
+                                                        </a>
                                                      {% endif %}
                                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                                      <!-- IP7 -->

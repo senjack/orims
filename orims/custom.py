@@ -2,6 +2,7 @@ import uuid
 import os
 from django.utils.deconstruct import deconstructible
 
+
 @deconstructible
 class RandomFileName(object):
     def __init__(self, path):
@@ -11,3 +12,4 @@ class RandomFileName(object):
         # @note It's up to the validators to check if it's the correct file type in name or if one even exist.
         extension = os.path.splitext(filename)[1]
         return self.path % (uuid.uuid4(), extension)
+
