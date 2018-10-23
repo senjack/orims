@@ -42,5 +42,6 @@ IV.	Cancels appointments<br/><br/>
 
 
 
-### Note: <br/>This document shall be edited to add other system functionalities as the development commence.
+### Note: <br/>
+This document shall be edited to add other system functionalities as the development commence or else goes on.
 

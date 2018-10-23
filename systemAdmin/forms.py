@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth import forms as auth_form
 from .models import SystemAdmin
 from django.core.exceptions import ValidationError
@@ -146,3 +147,65 @@ class AdminSignUpForm(auth_form.UserCreationForm):
         # print(check_password(self.cleaned_data['password1'], user.system_admin_password))
         return user
 # End of : class AdminSignUpForm():
+
+
+# START : ADMIN SIGNUP FORM
+class AdminUpdateForm(ModelForm):
+    class Meta:
+        model = SystemAdmin
+        fields = [
+            'system_admin_id',
+            'system_admin_user_name',
+            'system_admin_first_name',
+            'system_admin_last_name',
+            'system_admin_email',
+            'system_admin_profile_photo',
+            'system_admin_cover_photo',
+        ]
+        widgets = {
+            'system_admin_user_name': forms.TextInput(
+                attrs={
+                    # 'autofocus': True,
+                    'autocomplete': 'Off',
+                    'type': 'text',
+                    'name': 'user_name',
+                    'id': 'system_admin',
+                    'class': 'form-control',
+                    'placeholder': 'Enter your User Name',
+                    'style': 'border-radius:3px;width:100%;',
+                }
+            ),
+            'system_admin_first_name': forms.TextInput(
+                attrs={
+                    'type': 'text',
+                    'name': 'first_name',
+                    'id': 'first_name',
+                    'class': 'form-control',
+                    'placeholder': 'Enter your First Name',
+                    'style': 'border-radius:3px;width:100%;',
+                }
+            ),
+            'system_admin_last_name': forms.TextInput(
+                attrs={
+                    'type': 'text',
+                    'name': 'last_name',
+                    'id': 'last_name',
+                    'class': 'form-control',
+                    'placeholder': 'Enter your Last Name',
+                    'style': 'border-radius:3px;width:100%;',
+                }
+            ),
+            'system_admin_email': forms.EmailInput(
+                attrs={
+                    'type': 'email',
+                    'name': 'email',
+                    'id': 'admin_email',
+                    'placeholder': 'Email Address i.e. admin@orims.com',
+                    'class': 'form-control',
+                }
+            ),
+            'system_admin_profile_photo': forms.FileInput(),
+            'system_admin_cover_photo': forms.FileInput(),
+        }
+
+# End of : class ():

@@ -5,7 +5,7 @@ from orims.views import *
 from orims.forms import *
 from .models import SystemAdmin
 from orims.meta import meta_data
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse, Http404
 from django.http.request import HttpRequest
 from django.core.files import uploadedfile
 from django.views.decorators.http import require_POST
@@ -19,47 +19,56 @@ def index(request):
 
 
 def signup(request):
-    # Test whether POST method is used.
-    # POST method is needed for data hiding
+    # STEP 1.0: Test whether POST method is used.
+    # POST method is needed for Form Data security
     if request.method == 'POST':
-        # If the POST method was used, then create and set Variables(filled up form and template).
+        # STEP 1.1: If the POST method was used, then create and set Variables(filled up form and template).
         # Create a new form instance(f)
         f = AdminSignUpForm(request.POST)
+        # Create a template instance
         t = 'systemAdmin/extensions/signup.html'
-        # Check for form validity(status)
+
+        # STEP 1.2: Check for form validity(status)
         if f.is_valid():
-            # If form is valid, then save data in the form and and then clear the signUp form,
+            # STEP 1.2.1: If form is valid, then save data in the form and and then clear the signUp form,
             #  by creating a new empty signUp form instance.
             f.save()
             f = AdminSignUpForm()
-            # Now return the empty Signup form with success message alert initiated.
+
+            # STEP 1.2.2: Now return the empty Signup form with success message alert initiated.
             return render(request, t, {'form': f,'display_success':True})
         # End of if f.is_valid():
+
     else:
-        # If the POST method was not used, then Drop or clear up that insecure data,
+        # STEP 1.2.1: If the POST method was not used, then Drop or clear up that insecure data,
         # By creating an empty signUp form instance.
         # OR in case of first signup instance, Prepare an empty signup form.
         f = AdminSignUpForm()
     # End of if request.method == 'POST':
 
-    # In case of first signup instance, Return an empty SignUp form.
+    # STEP 2.0: In case of first signup instance, Return an empty SignUp form.
     return render(request, 'systemAdmin/extensions/signup.html', {'form': f})
 # End of function signup():
 
 
 def login(request):
-    # Sert login template.
+    # Set login template.
     t = 'systemAdmin/extensions/login.html'
+
     # If the Request POST variable has data in it, Create a filled up Login form instance(f).
     # Otherwise set f to nothing.
     f = AdminLoginForm(request.POST or None)
+
     # set f as a value to the key 'form' of the context object to be passed on to any returned template
     context = {'form':f}
+
+    # Test for whether POST method was used
     if request.method == 'POST':
         # In case the request.POST variable has some data, Test for validity of the passed data.
         if f.is_valid:
             # If data in the Request.POST variable is valid, fetch user name from the form.
             username = request.POST['username'].lower()
+
             # Check whether there is any user with the supplied user name.
             u = SystemAdmin.objects.filter(system_admin_user_name= username)
             if not u.count():
@@ -67,6 +76,7 @@ def login(request):
                 uname_error = "There is no User with the supplied Username. \
                 Please Enter your correct Username and Try again."
                 context.update({'username_error': uname_error})
+
                 # Terminate the login process and throw username error.
                 return render(request, t, context)
             # End of if not u.count():
@@ -75,6 +85,7 @@ def login(request):
             # fetch the supplied password form the submitted form.
             password = request.POST['password']
             u1 = SystemAdmin.objects.get(system_admin_user_name= username)
+
             # Compare the supplied password with that of the filtered user from the database.
             p = u1.get_password(password)
             if not p:
@@ -90,6 +101,7 @@ def login(request):
             # Hence set or start the user session for admin.
             user = u1.get_user_id()
             request.session['user_admin'] = user
+
             # After the system admin user session has been successfully set, then redirect to System-admin home.
             return redirect('systemAdmin:home')
         # End of if f.is_valid:
@@ -103,8 +115,11 @@ def login(request):
         except KeyError:
             # Else create an empty login form for logging in.
             f = AdminLoginForm()
-        context.update({'form': f})
         # End of try:
+
+        context.update({'form': f})
+    # End of: if request.method == 'POST':
+
     # Return the new created empty login form.
     return render(request, t, context)
 # End of function login():
@@ -121,11 +136,17 @@ def home(request):
             # if user is logged in, build home page.
             # create new user instance
             user = request.session['user_admin']
+
             # Set session data for the new user
             set_session_data(request, user)
+
             # Fetch and set all service units created or managed by the current user.
             units = fetch_units_for_user(user)
             context.update({'units': units})
+
+            # Set admin panel options
+            context.update({'options': admin_panel_options(active='dashboard')})
+
             # Build and return the home client view template with the set units for the user
             return render(request, t, context)
         else:
@@ -141,7 +162,7 @@ def home(request):
 # End of function home():
 
 
-# OFFIECE ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
+# SERVICE UNITS HANDLING METHOD
 def serviceUnits(request):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/service_units.html'
@@ -154,8 +175,10 @@ def serviceUnits(request):
             # if user is logged in, build the required page.
             # create new user instance
             user = request.session['user_admin']
+
             # Set session data for the new user
             set_session_data(request, user)
+
             # Fetch and set all service units created or managed by the current user.
             units = fetch_units_for_user(user)
 
@@ -212,12 +235,11 @@ def serviceUnits(request):
         pass
     # End of try:
     # Just try logging in.
-    # return HttpResponse("<font color = 'red'><b>Un Expected Error TRACED </b></font>")
     return redirect('systemAdmin:login')
 # End of officeAccounts() Method
 
 
-# SERVICE UNIT CREATION
+# SERVICE UNIT CREATION VIEW METHOD
 def createUnit(request):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/mono_page.html'
@@ -235,8 +257,6 @@ def createUnit(request):
             set_session_data(request, user)
 
             if request.POST:
-                # context.update({'units_creation_success': False})
-
                 if f.is_valid():
                     # STEP 1: Create a form instance which is not to be saved instantly
                     instance = f.save(commit=False)
@@ -278,7 +298,7 @@ def createUnit(request):
                     # 6.2: call Department creation method
                     o = create_office(department_id=department,
                                       office_name='Receptionist',
-                                      working_time='Standard Working Time and Days',
+                                      working_time='Standard',
                                       office_description ="""This is the the Office of the Receptionist, Under which the following are expected.\n
                     I.	Sending official appointment request to official\n
                     II.	Assigning appointment dates to public\n
@@ -323,22 +343,32 @@ def editUnit(request,unit_id = None):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/mono_page.html'
     context = {}
+
     # STEP1.1: Test for session, to determine currently logged in user.
     try:
         if request.session['user_admin']:
             # if user is logged in, build the required page.
             # create new user instance
             user = request.session['user_admin']
+
             # Set session data for the new user
             set_session_data(request, user)
-            #unit = ServiceUnit.objects.get(unit_id=unit_id) or None
             unit = get_object_or_404(ServiceUnit,unit_id=unit_id)
 
             if unit:
-                updateUnit(request, unit_id)
+                f = UnitCreationForm(instance=unit)
+                context.update({"edit_unit":True})
+                context.update(build_unit_update_form(context))
+
+                # Create a unit object to be sent to the client together with the form
+                context.update({'unit': unit})
+                context.update({'form': f})
+
+                return render(request, t, context)
             else:
-                pass
-                # method coming soon
+                # If no Service unit matches the given query,
+                # Just Load the standard HTTP 404 page.
+                return Http404()
         else:
             # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
@@ -348,7 +378,7 @@ def editUnit(request,unit_id = None):
         return redirect('systemAdmin:login')
 
 
-# SERVICE UNIT UPDATE
+# SERVICE UNIT UPDATE VIEW METHOD
 def updateUnit(request,unit_id = None):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/mono_page.html'
@@ -365,12 +395,16 @@ def updateUnit(request,unit_id = None):
             # return HttpResponse("<font color = 'green'><b>Found</b></font>")
 
             if request.POST:
-                    unit = ServiceUnit.objects.get(unit_id=unit_id) or None
+                    unit = get_object_or_404(ServiceUnit, unit_id=unit_id)
                     f = UnitCreationForm(request.POST, request.FILES or None, instance=unit)
 
                     # unit = ServiceUnit.objects.get(unit_id=request.session['unit_update'])
                     if unit and f.is_valid():
                         f.save()
+                    else:
+                        # If no Service unit matches the given query, Or form Data not validated,
+                        # Just Load the standard HTTP 404 page.
+                        return Http404()
 
                    # Turn on flags to enable loading unit update form
                     unit_update_success = True
@@ -412,10 +446,21 @@ def deleteUnit(request,unit_id = None):
             unit = get_object_or_404(ServiceUnit,unit_id=unit_id)
             if unit:
                 unit.delete()
-                #redirect('systemAdmin:serviceUnits?user=system-admin&level=system_admin&action=view_units')
+
+                # Turn on flags to enable loading unit update form
+                unit_delete_success = True
+                context.update({'unit_delete_success': True})
+                if unit_delete_success:
+                    # Create a unit object to be sent to the client together with the form
+                    context.update({'unit': unit})
+                    return redirect('systemAdmin:serviceUnits')
+                    #return render(request, t, context)
+                else:
+                    return HttpResponse("<font color = 'red'><b>Error Encountered while Deleting the Service Unit</b></font>")
             else:
-                pass
-                # method coming soon
+                # If no Service unit matches the given query,
+                # Just Load the standard HTTP 404 page.
+                return Http404()
 
             render(request, t, context)
         else:
@@ -425,6 +470,100 @@ def deleteUnit(request,unit_id = None):
     except KeyError:
         # Just try logging in.
         return redirect('systemAdmin:login')
+
+
+# LOAD ADMIN UPDATE FORM
+def editAdmin(request):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/mono_page.html'
+    context = {}
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+            admin = get_object_or_404(SystemAdmin,system_admin_id=user)
+            if admin:
+                # updateAdmin(request, admin_id)
+                f = AdminUpdateForm(instance=admin) or None
+                context.update(build_admin_update_form(context))
+
+                # Create admin object to be sent to the client together with the form
+                context.update({'admin': admin})
+                context.update({'form': f})
+                print(f)
+
+                return render(request, t, context)
+###
+            else:
+                pass
+                # method coming soon
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # Just try logging in.
+        return redirect('systemAdmin:login')
+
+
+# ADMIN UPDATE
+def updateAdmin(request,admin_id = None):
+    # STEP1.0.0: Set template and create an empty context object.
+    t = 'systemAdmin/extensions/mono_page.html'
+    context = {}
+    # STEP1.1: Test for session, to determine currently logged in user.
+    try:
+        if request.session['user_admin']:
+            # if user is logged in, build the required page.
+            # create new user instance
+            user = request.session['user_admin']
+            # Set session data for the new user
+            set_session_data(request, user)
+
+            if request.POST:
+                    admin = get_object_or_404(SystemAdmin, system_admin_id=admin_id)
+                    f = AdminUpdateForm(request.POST, request.FILES or None, instance=admin)
+
+                    if admin and f.is_valid():
+                        f.save()
+                        return HttpResponse("<font color = 'green'><b>Profile Updated! Successfully</b></font>")
+                   # Turn on flags to enable loading admin update form
+                    admin_update_success = True
+                    context.update({'admin_update_success': True})
+                    if admin_update_success:
+                        context.update(build_admin_update_form(context))
+                        # Create admin object to be sent to the client together with the form
+                        context.update({'admin': admin})
+                        context.update({'form': f})
+
+                    return render(request, t, context)
+            else:
+                return HttpResponse("<font color = 'red'><b>Un Expected Error</b></font>")
+        else:
+            # if no user is logged in, try Logging in.
+            return redirect('systemAdmin:login')
+        # End of if request.session['user_admin']:
+    except KeyError:
+        # In case  testing for the logged in user fails, try nothing,
+        pass
+    # End of try:
+    # Just try logging in.
+    return redirect('systemAdmin:login')
+
+
+def build_admin_update_form(context=None):
+    context.update({'update_admin': True})
+    context.update({'form_title': 'Profile Update form'})
+    context.update({'form_prompt_message': 'Edit and update your profile.'})
+    context.update({'submit_button_caption': 'Update'})
+    context.update({'toggle_title1': 'Click to Update your profile'})
+    context.update({'toggle_title2': 'Click to Cancel Update Process'})
+    context.update({'action': 'update_admin'})
+    return context
 
 
 # USER ACCOUNTS MANAGEMENT OPTIONS PAGE BUILDER
@@ -562,12 +701,47 @@ def loggedin(request, template, data_feed):
 # End of function loggedin():
 
 
+# A method set admin panel options
+def admin_panel_options(active='dashboard'):
+    dashboard = {'name':'Dashboard','link': 'systemAdmin:home', 'glyphicon': 'glyphicon-dashboard', 'active': ''}
+    unit = {'name':'Service Units','link': 'systemAdmin:serviceUnits', 'glyphicon': 'glyphicon-home', 'active': ''}
+    profile = {'name':'Admin Profile','link': 'systemAdmin:userAccounts', 'glyphicon': 'glyphicon-user', 'active': ''}
+    monitor = {'name':'Monitoring Tool','link': '#', 'glyphicon': 'glyphicon-eye-open', 'active': ''}
+    documents = {'name':'Documents','link': '#', 'glyphicon': 'glyphicon-book', 'active': ''}
+    settings = {'name':'General Settings','link': '#', 'glyphicon': 'glyphicon-cog', 'active': ''}
+
+    if active == 'dashboard':
+        dashboard.update({'active': 'active-pill'})
+    elif active == 'unit':
+        unit.update({'active': 'active-pill'})
+    elif active == 'profile':
+        profile.update({'active': 'active-pill'})
+    elif active == 'monitor':
+        monitor.update({'active': 'active-pill'})
+    elif active == 'documents':
+        documents.update({'active': 'active-pill'})
+    elif active == 'settings':
+        settings.update({'active': 'active-pill'})
+    else:
+        pass
+
+    a = [
+        {'dashboard':dashboard},
+        {'unit':unit},
+        {'profile':profile},
+        {'monitor':monitor},
+        {'documents':documents},
+        {'settings':settings}
+    ]
+    return a
+
+
 # Fetch user details based on session admin id
 # This data is always to be fetched frequently before any action.
 # This is because, in case the user data is updated, the session is updated too.
 def set_session_data(request, uid):
     if uid:
-        u = SystemAdmin.objects.get(system_admin_id=uid)
+        u = get_object_or_404(SystemAdmin, system_admin_id=uid)
         request.session['app'] = 'orims.com'
         request.session['user_admin'] = uid
 

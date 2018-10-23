@@ -2,14 +2,10 @@
 {% load staticfiles %}
 <div class="col-lg-3 col-md-3 col-sm-12"></div>
 <div class="col-lg-6 col-md-6 col-sm-12">
-    {% if not form.errors %}
-    {% if unit_creation_success or unit_update_success %}
+{% if not form.errors %}
+    {% if admin_update_success %}
         <div class="alert alert-success alert-dismissable">
-            {% if unit_update_success %}
-                Service unit Updated successfully!
-            {% else %}
-                Service unit created successfully!
-            {% endif %}
+            Service unit Updated successfully!
             <span class="glyphicon glyphicon-ok"></span>
             <hr/>
            <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=view_units">
@@ -17,9 +13,9 @@
            </a>
         </div>
     {% endif %}
-    {% endif %}
-    {% if form.errors %}
+{% endif %}
 
+    {% if form.errors %}
         <div id = "unit_error_display_pane" class="alert alert-danger alert-dismissable" style="display:block;">
             <span class="glyphicon glyphicon-exclamation-sign"></span>
             FIELD FILLING ERROR(S) DETECTED:<hr/>
@@ -58,19 +54,11 @@
         </div>
     {% endif %}
 
-{% if action == "update_unit" %}
     <form
             enctype="multipart/form-data"
             method="POST"
-            action="{% url 'systemAdmin:updateUnit' %}/{{form.instance.unit_id}}/"
+            action="{% url 'systemAdmin:updateAdmin' %}/{{form.instance.system_admin_id}}/"
     >
-{% else %}
-    <form
-            enctype="multipart/form-data"
-            method="POST"
-            action="{% url 'systemAdmin:createUnit' %}"
-    >
-{% endif %}
         <div class="row">
             <div class="col-md-12">
 
@@ -78,7 +66,7 @@
                     <!-- Form Header section -->
                     <div class="blu-bdr list-group-item fm-hd-big pn-hd" style="text-align:left;color:#fff;">
                         <div class="row">
-                            <div class="col-xs-12" style=""><span class="glyphicon glyphicon-home"></span> {{form_title}} </div>
+                            <div class="col-xs-12" style=""><span class="glyphicon glyphicon-user"></span> {{form_title}} </div>
                         </div>
                     </div>
                     <!-- END OF: Form Header section -->
@@ -109,45 +97,56 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width:100%;padding-left:0px;padding-right:0px;margin-top:10px;">
                                 <!-- changed -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
-                                    {% if form.unit_name.errors %}
-                                        <div class="alert alert-danger alert-dismissable" style="text-align:left;margin-bottom:2px;">
-                                            <b>Service Unit Name field errors:</b>
-                                            {{form.unit_name.errors}}
+                                    {% if form.system_admin_user_name.errors %}
+                                        <div class="alert alert-danger alert-dismisable" style="text-align:left;margin-bottom:2px;">
+                                            <b>System Admin User Name field errors:</b>
+                                            {{form.system_admin_user_name.errors}}
                                         </div>
                                     {% endif %}
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-left:0px;padding-right:0px;">
-                                        {% csrf_token %}
-                                        <!--<input name="hidden_id" value="{{form.instance.unit_id}}"/>-->
-                                        {% csrf_token %}
-                                        {{ form.unit_name }}
-                                    </div>
-                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding:4px;"></div>
-                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="padding-left:0px;padding-right:0px;">
-                                        {% csrf_token %}
-                                        {{ form.unit_type }}
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 label clr-gre" style="margin-top:5px;text-align:left;">
-                                            <!--<h5>Description (Not more that 1024 characters)</h5>-->
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 input-group">
-                                            {% if form.unit_description.errors %}
-                                                <hr/>
-                                                <div class="alert alert-danger alert-dismissable" style="text-align:left;margin-bottom:2px;">
-                                                    <b>Service Unit Description field errors:</b>
-                                                    {{form.unit_description.errors}}
-                                                </div>
-                                            {% endif %}
-                                            {% csrf_token %}
-                                            {{ form.unit_description }}
-                                            <!-- <textarea class="form-control clr-gre" placeholder="Enter Service unit description" style="min-height:600px;border-radius:3px;height:100%;"></textarea>-->
-                                        </div>
+                                        {% csrf_token %}
+                                        {{ form.system_admin_user_name }}
                                     </div>
                                 </div>
 
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
+                                    {% if form.system_admin_first_name.errors%}
+                                        <div class="alert alert-danger alert-dismisable" style="text-align:left;margin-bottom:2px;">
+                                            <b>System Admin First Name field errors:</b>
+                                            {{form.system_admin_first_name.errors}}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
+                                        {% csrf_token %}
+                                        {{ form.system_admin_first_name }}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
+                                    {% if form.system_admin_last_name.errors%}
+                                        <div class="alert alert-danger alert-dismisable" style="text-align:left;margin-bottom:2px;">
+                                            <b>System Admin Last Name field errors:</b>
+                                            {{form.system_admin_last_name.errors}}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
+                                        {% csrf_token %}
+                                        {{ form.system_admin_last_name }}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:5px;">
+                                    {% if form.system_admin_email.errors%}
+                                        <div class="alert alert-danger alert-dismisable" style="text-align:left;margin-bottom:2px;">
+                                            <b>System Admin Last Name field errors:</b>
+                                            {{form.system_admin_email.errors}}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
+                                        {% csrf_token %}
+                                        {{ form.system_admin_email }}
+                                    </div>
+                                </div>
                                 <!-- changed -->
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
@@ -159,8 +158,8 @@
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 clr-gre"
                                                  style="">
                                                 <div id="blue-plus-content">
-                                                    Click The blue plus button to Update logo, featured image and / or cover
-                                                    photo for this Service Unit
+                                                    Click The blue plus button to Update Your Profile and / or cover
+                                                    photo.
                                                 </div>
                                                 <div id="blue-minus-content" style="display:none;">
                                                     Click The blue minus button to hide the Photo Update area
@@ -182,93 +181,50 @@
                                         <div id = "unit_photos" class="col-lg-12 col-md-12 col-sm-12"
                                              style="margin-top:10px;border-top:1px solid #ccc;display:none;padding:0px;padding-top:10px;">
                                             <div>
-                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="padding:0px;">
-
-
-    <!---->
-
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre"
-                                                         style="background:#f6f7f9;margin-top:5px;margin-bottom:0px;text-align:left;border:1px solid #eee;border-radius:3px 3px 0 0">
-                                                        <h5>Logo/Trademark</h5>
-                                                    </div>
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                                         style="background:white;border:1px solid #eee;overflow:hidden;">
-                                                        {% if unit.unit_logo %}
-                                                            <img src="{{unit.unit_logo.url}}"
-                                                                 alt="{{unit.unit_name}}"
-                                                                 style="width:100px;height:100px;background:#eee;margin-top:10px;"
-                                                            />
-                                                        {% else %}
-                                                            <img src="{% static 'orims/photos/defaults/ServiceUnit/logos/orims.jpg' %}"
-                                                                 alt="unit"
-                                                                 style="width:100px;height:100px;background:#eee;margin-top:10px;"
-                                                            />
-
-                                                        {% endif %}
-                                                        <div class="form-group"
-                                                             style="width:85px;margin-top:10px;overflow:hidden;text-align:center;">
-                                                            {% csrf_token %}
-                                                            {{ form.unit_logo }}
-                                                            <!--<input type="file" id="inputfile">-->
-                                                       </div>
-                                                    </div>
-
-    <!---->
-
-                                                </div>
-                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="padding:0px;">
-
-    <!---->
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre" style="background:#f6f7f9;margin-top:5px;margin-bottom:0px;text-align:left;border:1px solid #eee;border-radius:3px 3px 0 0">
-                                                        <h5>Featured Image</h5>
+                                                        <h5>Profile Photo</h5>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                          style="background:white;border:1px solid #eee;overflow:hidden;">
-                                                        {% if unit.unit_featured_image %}
-                                                            <img src="{{unit.unit_featured_image.url}}"
-                                                                 alt="{{unit.unit_name}}"
-                                                                 style="width:100%;max-width:250px;height:100px;background:#eee;margin-top:10px;"
+                                                          {% if admin.system_admin_profile_photo %}
+                                                            <img src="{{admin.system_admin_profile_photo.url}}"
+                                                                 alt="{{admin.system_admin_first_name}} {{admin.system_admin_last_name}}"
+                                                                 style="width:100%;max-width:400px;height:250px;background:#eee;margin-top:10px;"
                                                             />
-                                                        {% else %}
-                                                            <img src="{% static 'orims/photos/defaults/ServiceUnit/featured_images/orims.jpg' %}"
-                                                                 alt="unit"
-                                                                 style="width:100%;max-width:250px;height:100px;background:#eee;margin-top:10px;" />
-                                                        {% endif %}
-                                                        <div class="form-group"
-                                                             style="width:85px;margin-top:10px;overflow:hidden;text-align:center;">
-                                                            {% csrf_token %}
-                                                            {{ form.unit_featured_image }}
-                                                       </div>
+                                                            {% else %}
+                                                            <img src="{% static 'systemAdmin/photos/defaults/SystemAdmin/profile_photo/orims.jpg' %}"
+                                                                 alt="{{admin.system_admin_first_name}} {{admin.system_admin_last_name}}"
+                                                                 style="width:100%;max-width:300px;height:300px;background:#eee;margin-top:10px;" />
+                                                            {% endif %}
+                                                            <div class="form-group"
+                                                                 style="width:85px;margin-top:10px;overflow:hidden;text-align:center;">
+                                                                {% csrf_token %}
+                                                                {{ form.system_admin_profile_photo }}
+                                                           </div>
                                                     </div>
 
-    <!---->
-
-
-                                                </div>
-                                            </div>
-                                            <div>
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clr-gre" style="background:#f6f7f9;margin-top:5px;margin-bottom:0px;text-align:left;border:1px solid #eee;border-radius:3px 3px 0 0">
                                                         <h5>Cover Photo</h5>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                          style="background:white;border:1px solid #eee;overflow:hidden;">
-                                                      {% if unit.unit_cover_photo %}
-                                                            <img src="{{unit.unit_cover_photo.url}}"
-                                                                 alt="{{unit.unit_name}}"
+                                                          {% if admin.system_admin_cover_photo %}
+                                                            <img src="{{admin.system_admin_cover_photo.url}}"
+                                                                 alt="{{admin.system_admin_first_name}} {{admin.system_admin_last_name}}"
                                                                  style="width:100%;max-width:400px;height:250px;background:#eee;margin-top:10px;"
                                                             />
-                                                        {% else %}
-                                                        <img src="{% static 'orims/photos/defaults/ServiceUnit/cover_photos/orims.jpg' %}"
-                                                             alt="unit"
-                                                             style="width:100%;max-width:400px;height:250px;background:#eee;margin-top:10px;" />
-                                                        {% endif %}
-                                                        <div class="form-group"
-                                                             style="width:85px;margin-top:10px;overflow:hidden;text-align:center;">
-                                                            {% csrf_token %}
-                                                            {{ form.unit_cover_photo }}
-                                                       </div>
+                                                            {% else %}
+                                                            <img src="{% static 'systemAdmin/photos/defaults/SystemAdmin/cover_photos/orims.jpg' %}"
+                                                                 alt="{{admin.system_admin_first_name}} {{admin.system_admin_last_name}}"
+                                                                 style="width:100%;max-width:400px;height:250px;background:#eee;margin-top:10px;" />
+                                                            {% endif %}
+                                                            <div class="form-group"
+                                                                 style="width:85px;margin-top:10px;overflow:hidden;text-align:center;">
+                                                                {% csrf_token %}
+                                                                {{ form.system_admin_cover_photo }}
+                                                           </div>
                                                     </div>
 
                                             </div>
@@ -300,7 +256,7 @@
                                      <!-- IP7 -->
                                      {# onclick:collapse_method(x) #}{# title:custom_toggle_title2 #}
                                     <a role="button" name = "branches" class="btn btn-default blu-bdr"
-                                            href = "{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=cancel_unit_creation&mode=hide_form"
+                                            href="{% url 'systemAdmin:userAccounts' %}"
                                             onclick="orimsCollapseOne('{{ unit.unit_id }}');"
                                             style="width:50%;"
                                             data-toggle="tooltip" data-placement="bottom"

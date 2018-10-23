@@ -6,7 +6,6 @@ import uuid
 # Added imports
 from django.utils import timezone
 
-
 # Model Class for service Unit
 class ServiceUnit(models.Model):
     """"
@@ -21,14 +20,30 @@ class ServiceUnit(models.Model):
     # Defining possible service unit types to form a lookup.
     unit_choice = (
         ('select', '--Select Category--'),
+        ('Association', 'Association'),
+        ('Business Firm', 'Business Firm'),
+        ('Clinic', 'Clinic'),
+        ('Club', 'Club'),
+        ('Cooperative Society', 'Cooperative Society'),
+        ('Drug Shop', 'Drug Shop'),
+        ('Group', 'Group'),
+        ('Health Center', 'Health Center'),
+        ('Hospital', 'Hospital'),
+        ('Institute', 'Institute'),
+        ('Institution', 'Institution'),
+        ('Law Firm', 'Law Firm'),
+        ('Media House', 'Media House'),
         ('Ministry', 'Ministry'),
-        ('Organization', 'Organization'),
-        ('Firm', 'Firm'),
-        ('Other', 'Others')
+        ('Organisation', 'Organisation'),
+        ('Pharmacy', 'Pharmacy'),
+        ('School', 'School'),
+        ('Society', 'Society'),
+        ('University', 'University'),
+        ('Other', 'Others'),
     )
     # Creating a choice of service units
     unit_type = models.CharField(
-        'Service Unit type',
+        'Service Unit Category',
         max_length=15,
         choices=unit_choice,
         default='select',
@@ -192,13 +207,13 @@ class Office(models.Model):
     office_name = models.CharField(max_length=50)
     office_description = models.TextField(max_length=1024)
     office_working_time_choice = (
-        ('Standard Working Time and Days', 'Standard Working Time and Days'),
-        ('Set Custom Working Time for office', 'Set Custom Working Time for office'),
+        ('Standard', 'Standard Working Time and Days'),
+        ('Custom', 'Set Custom Working Time for office'),
     )
     office_working_time = models.CharField(
         max_length=30,
         choices=office_working_time_choice,
-        default='Standard Working Dime and Days',
+        default='Standard',
     )
     registration_date = models.DateTimeField(default=timezone.now)
 

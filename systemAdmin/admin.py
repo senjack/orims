@@ -10,6 +10,7 @@ class ManageSystemAdmin(admin.ModelAdmin):
         # (None, {'fields': ['system_admin_password']}),
         (None, {'fields': ['system_admin_email']}),
         (None, {'fields': ['system_admin_profile_photo']}),
+        (None, {'fields': ['system_admin_cover_photo']}),
     ]
 
 

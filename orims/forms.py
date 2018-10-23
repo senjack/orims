@@ -26,6 +26,7 @@ class UnitCreationForm(ModelForm):
             'unit_name': forms.TextInput(
                 attrs={
                     'autofocus': True,
+                    'autocomplete': 'Off',
                     'type': 'text',
                     'name': 'unitname',
                     'id': 'unit_name',
@@ -39,7 +40,7 @@ class UnitCreationForm(ModelForm):
                         'name': 'unit_category',
                         'id': 'unit_category',
                         'class': 'form-control',
-                        'style': 'border-radius:3px;width:100%;',
+                        'style': 'border-radius:3px;width:100%;height:35px;',
                     }
             ),
             'unit_description': forms.Textarea(
@@ -57,4 +58,4 @@ class UnitCreationForm(ModelForm):
         }
 
 
-# End of : class AdminSignUpForm():
+# End of : class ():

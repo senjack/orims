@@ -38,6 +38,12 @@ urlpatterns = [
 
     path('userAccounts', views.userAccounts, name='userAccounts'),
 
+    path('editAdmin', views.editAdmin, name='editAdmin'),
+
+    path('updateAdmin', views.updateAdmin, name='updateAdmin'),
+
+    path('updateAdmin/<int:admin_id>/', views.updateAdmin, name='updateAdmin'),
+
     path('appointments', views.appointments, name='appointments'),
 
     path('logout', views.logout, name='logout'),
