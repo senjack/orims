@@ -163,7 +163,7 @@ def home(request):
 
 
 # SERVICE UNITS HANDLING METHOD
-def serviceUnits(request):
+def serviceUnits(request, deleted = None):
     # STEP1.0.0: Set template and create an empty context object.
     t = 'systemAdmin/extensions/service_units.html'
     context = {}
@@ -182,7 +182,10 @@ def serviceUnits(request):
             # Fetch and set all service units created or managed by the current user.
             units = fetch_units_for_user(user)
 
-            if request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units':
+            # Set admin panel options
+            context.update({'options': admin_panel_options(active='unit')})
+
+            if (deleted == 'deleted') or (request.GET and request.GET['user'] == 'system-admin' and request.GET['level'] == 'system_admin' and request.GET['action'] == 'view_units'):
                 t = 'systemAdmin/extensions/service_units.html'
                 context.update({'units': units})
                 context.update({'section_title_info': 'A list of All Service units you manage.'})
@@ -192,8 +195,12 @@ def serviceUnits(request):
                 context.update({'btn2_value': 'glyphicon glyphicon-pencil clr-gre'})
                 context.update({'toggle_title3': 'Delete this Service unit'})
                 context.update({'btn3_value': 'glyphicon glyphicon-trash clr-gre1'})
-                context.update({'display_unit_selection_list': True})
                 context.update({'branches': ''})
+                context.update({'display_unit_selection_list': True})
+
+                if deleted == 'deleted':
+                    context.update({'unit_delete_success': True})
+                # End if
                 return render(request, t, context)
             # End if
 
@@ -202,13 +209,7 @@ def serviceUnits(request):
                     t = 'systemAdmin/extensions/mono_page.html'
                     if request.GET['action'] == 'create_unit':
                         context.update({'units': units})
-                        context.update({'create_unit': True})
-                        context.update({'form_title': 'Service unit Registration form'})
-                        context.update({'form_prompt_message': 'Register Ministry, Organisation, Business, Firm, ...'})
-                        context.update({'submit_button_caption': 'Register Unit'})
-                        context.update({'toggle_title1': 'Click to Register Service Unit'})
-                        context.update({'toggle_title2': 'Click to Cancel Service Unit Registration Process'})
-                        context.update({'action':'create_units'})
+                        build_unit_registration_form(context=context)
 
                         if request.method == 'POST':
                             if f.is_valid():
@@ -265,62 +266,76 @@ def createUnit(request):
                     # Attach current user as system admin
                     us = SystemAdmin.objects.get(system_admin_id = user)
                     instance.system_admin_id = us
+                    unit_creation_success = False
 
-                    # STEP 3: Create / save service unit
-                    instance.save()
+                    # Check for whether There is already a unit registered with the same name
+                    name1 = f.cleaned_data["unit_name"]
+                    name2 = None
+                    try:
+                        name2 = ServiceUnit.objects.get(unit_name=name1)
+                    except:
+                        pass
 
-                    # Step 4: Create default Branch and name it 'Main Branch'
-                    # 4.1: Create instance for the newly created service unit.
-                    unit = ServiceUnit.objects.get(unit_id=instance.unit_id)
-                    # 4.2: Create a unit object to be sent to the client together with the form
-                    context.update({'unit': unit})
-                    # 4.3: call Branch creation method
-                    b = create_branch(service_unit_id=unit, branch_name='Main', branch_level='main')
-                    b
+                    if name2 is not None:
+                        context.update({'unit_name_matched': True})
+                    else:
+                        # STEP 3: Create / save service unit
+                        instance.save()
 
-                    # Step 5: Create default Department and name it 'Reception Department'
-                    # 5.1: Create instance for the newly created Branch.
-                    branch = Branch.objects.get(branch_id=b)
-                    # 5.2: call Department creation method
-                    d = create_department(branch_id=branch,
-                                          dept_name='Reception',
-                                          dept_description ="""This is the the Receiption department, Under which the following are expected.\n
-                    I.	Sending official appointment request to official\n
-                    II.	Assigning appointment dates to public\n
-                    III.	Contacting person who placed appointment once official approves appointment.\n
-                    IV.	Canceling appointments
-                    """,)
-                    d
+                        # Step 4: Create default Branch and name it 'Main Branch'
+                        # 4.1: Create instance for the newly created service unit.
+                        unit = ServiceUnit.objects.get(unit_id=instance.unit_id)
+                        # 4.2: Create a unit object to be sent to the client together with the form
+                        context.update({'unit': unit})
+                        # 4.3: call Branch creation method
+                        b = create_branch(service_unit_id=unit, branch_name='Main', branch_level='main')
+                        b
 
-                    # Step 6: Create default Office and name it 'Office of the Receptionist'
-                    # 6.1: Create instance for the newly created Department.
-                    department = Department.objects.get(department_id=d)
-                    # 6.2: call Department creation method
-                    o = create_office(department_id=department,
-                                      office_name='Receptionist',
-                                      working_time='Standard',
-                                      office_description ="""This is the the Office of the Receptionist, Under which the following are expected.\n
-                    I.	Sending official appointment request to official\n
-                    II.	Assigning appointment dates to public\n
-                    III.	Contacting person who placed appointment once official approves appointment.\n
-                    IV.	Canceling appointments
-                    """,)
-                    o
+                        # Step 5: Create default Department and name it 'Reception Department'
+                        # 5.1: Create instance for the newly created Branch.
+                        branch = Branch.objects.get(branch_id=b)
+                        # 5.2: call Department creation method
+                        d = create_department(branch_id=branch,
+                                              dept_name='Reception',
+                                              dept_description ="""This is the the Receiption department, Under which the following are expected.\n
+                        I.	Sending official appointment request to official\n
+                        II.	Assigning appointment dates to public\n
+                        III.	Contacting person who placed appointment once official approves appointment.\n
+                        IV.	Canceling appointments
+                        """,)
+                        d
 
-                    print("\nService unit registered succesfully : " + str(instance))
+                        # Step 6: Create default Office and name it 'Office of the Receptionist'
+                        # 6.1: Create instance for the newly created Department.
+                        department = Department.objects.get(department_id=d)
+                        # 6.2: call Department creation method
+                        o = create_office(department_id=department,
+                                          office_name='Receptionist',
+                                          working_time='Standard',
+                                          office_description ="""This is the the Office of the Receptionist, Under which the following are expected.\n
+                        I.	Sending official appointment request to official\n
+                        II.	Assigning appointment dates to public\n
+                        III.	Contacting person who placed appointment once official approves appointment.\n
+                        IV.	Canceling appointments
+                        """,)
+                        o
 
-                    # Turn on flags to enable loading unit update form
-                    unit_creation_success = True
-                    context.update({'unit_creation_success': True})
-                    # request.session['unit_update'] = instance.unit_id
-                    updateUnit(request, unit_id=instance.unit_id)
+                        print("\nService unit registered succesfully : " + str(instance))
 
+                        # Turn on flags to enable loading unit update form
+                        unit_creation_success = True
+                        context.update({'unit_creation_success': True})
+                        # request.session['unit_update'] = instance.unit_id
+                        updateUnit(request, unit_id=instance.unit_id)
+
+                    context.update(build_unit_update_form(context))
                     # Check for whether a flag to enable loading unit update form is on
                     if unit_creation_success:
-                        context.update(build_unit_update_form(context))
                         f = UnitCreationForm(instance=instance)
-                        context.update({'form': f})
+                    else:
+                        build_unit_registration_form(context=context)
 
+                    context.update({'form': f})
                     return render(request, t, context)
             else:
                 return HttpResponse("<font color = 'red'><b>Un Expected Error</b></font>")
@@ -444,6 +459,10 @@ def deleteUnit(request,unit_id = None):
             # Set session data for the new user
             set_session_data(request, user)
             unit = get_object_or_404(ServiceUnit,unit_id=unit_id)
+
+            # Set admin panel options
+            context.update({'options': admin_panel_options(active='dashboard')})
+
             if unit:
                 unit.delete()
 
@@ -453,7 +472,7 @@ def deleteUnit(request,unit_id = None):
                 if unit_delete_success:
                     # Create a unit object to be sent to the client together with the form
                     context.update({'unit': unit})
-                    return redirect('systemAdmin:serviceUnits')
+                    return redirect('systemAdmin:serviceUnits',deleted = 'deleted')
                     #return render(request, t, context)
                 else:
                     return HttpResponse("<font color = 'red'><b>Error Encountered while Deleting the Service Unit</b></font>")
@@ -462,7 +481,7 @@ def deleteUnit(request,unit_id = None):
                 # Just Load the standard HTTP 404 page.
                 return Http404()
 
-            render(request, t, context)
+            return render(request, t, context)
         else:
             # if no user is logged in, try Logging in.
             return redirect('systemAdmin:login')
@@ -530,7 +549,8 @@ def updateAdmin(request,admin_id = None):
 
                     if admin and f.is_valid():
                         f.save()
-                        return HttpResponse("<font color = 'green'><b>Profile Updated! Successfully</b></font>")
+                        # return HttpResponse("<font color = 'green'><b>Profile Updated! Successfully</b></font>")
+
                    # Turn on flags to enable loading admin update form
                     admin_update_success = True
                     context.update({'admin_update_success': True})
@@ -563,6 +583,10 @@ def build_admin_update_form(context=None):
     context.update({'toggle_title1': 'Click to Update your profile'})
     context.update({'toggle_title2': 'Click to Cancel Update Process'})
     context.update({'action': 'update_admin'})
+
+    # Set admin panel options
+    context.update({'options': admin_panel_options(active='profile')})
+
     return context
 
 
@@ -580,6 +604,10 @@ def userAccounts(request):
             user = request.session['user_admin']
             # Set session data for the new user
             set_session_data(request, user)
+
+            # Set admin panel options
+            context.update({'options': admin_panel_options(active='profile')})
+
             # Build and return the required page
             return render(request, t, context)
         else:
@@ -726,12 +754,13 @@ def admin_panel_options(active='dashboard'):
         pass
 
     a = [
-        {'dashboard':dashboard},
-        {'unit':unit},
-        {'profile':profile},
-        {'monitor':monitor},
-        {'documents':documents},
-        {'settings':settings}
+        dashboard,unit,profile,monitor,documents,settings
+        # {'dashboard':dashboard},
+        # {'unit':unit},
+        # {'profile':profile},
+        # {'monitor':monitor},
+        # {'documents':documents},
+        # {'settings':settings}
     ]
     return a
 
@@ -748,7 +777,10 @@ def set_session_data(request, uid):
         request.session['username']= u.system_admin_user_name
         request.session['role']= 'Administrator'
         request.session['email']= u.system_admin_email
-        request.session['profile_photo'] = u.system_admin_profile_photo.url
+        try:
+            request.session['profile_photo'] = u.system_admin_profile_photo.url
+        except:
+            pass
 
         t= timezone.now().date().year
         # 'year': timezone.now().date().year,

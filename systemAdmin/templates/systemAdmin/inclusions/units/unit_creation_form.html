@@ -4,7 +4,7 @@
 <div class="col-lg-6 col-md-6 col-sm-12">
     {% if not form.errors %}
     {% if unit_creation_success or unit_update_success %}
-        <div class="alert alert-success alert-dismissable">
+        <div class="alert alert-success alert-dismisable">
             {% if unit_update_success %}
                 Service unit Updated successfully!
             {% else %}
@@ -17,6 +17,16 @@
            </a>
         </div>
     {% endif %}
+        {% if unit_name_matched %}
+            <div class="alert alert-danger alert-dismisable">
+                <b>Error !</b><hr/>
+                There is already a Service Unit with the supplied name.<br/>
+                Please change the <b>Service Unit name</b> and try Again
+                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                <hr/>
+            </div>
+        {% endif %}
+
     {% endif %}
     {% if form.errors %}
 

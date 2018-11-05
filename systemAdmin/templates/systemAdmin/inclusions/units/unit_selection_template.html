@@ -1,5 +1,18 @@
 ﻿{% load static %}
 {% load staticfiles %}
+
+    {% if unit_delete_success %}
+        <div class="alert alert-success alert-dismisable">
+            <b>Deleted </b>
+            <span class="glyphicon glyphicon-ok"></span><hr/>
+            The Service Unit was deleted successfully
+            <hr/>
+           <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=view_units">
+               <button name = "create" class="btn btn-success" style="width:100%;">OK</button>
+           </a>
+        </div>
+    {% endif %}
+
         <div class="list-group">
 <!-- Section1: General appointment records management options -->
             <!--<a>-->

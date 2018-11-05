@@ -4,12 +4,12 @@
 <div class="col-lg-6 col-md-6 col-sm-12">
 {% if not form.errors %}
     {% if admin_update_success %}
-        <div class="alert alert-success alert-dismissable">
-            Service unit Updated successfully!
+        <div class="alert alert-success alert-dismisable">
+            Profile has been Updated successfully!
             <span class="glyphicon glyphicon-ok"></span>
             <hr/>
-           <a href="{% url 'systemAdmin:serviceUnits' %}?user=system-admin&level=system_admin&action=view_units">
-               <button name = "create" class="btn btn-success" style="width:100%;">Preview Service Unit in List</button>
+           <a href="#">
+               <button name = "create" class="btn btn-success" style="width:100%;">Preview your Profile</button>
            </a>
         </div>
     {% endif %}

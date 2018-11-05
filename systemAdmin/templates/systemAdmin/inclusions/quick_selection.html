@@ -42,11 +42,15 @@
                                     {% endif %}
                                 </div>
                                 <ul class="list-group">
-                                    <li class="list-group-item clr-dft"><strong>{% if unit.unit_name %} {{ unit.unit_name }} {% endif %}</strong></li>
+                                    <li class="list-group-item clr-dft">
+                                        <strong>
+                                            {% if unit.unit_name %} {{ unit.unit_name|truncatewords:20 }} {% endif %}
+                                        </strong>
+                                    </li>
                                         <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
-                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                            <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;text-align:justfy;">
                                                 {% if unit.unit_description %}
-                                                    {{ unit.unit_description }}
+                                                    {{ unit.unit_description|truncatewords:20 }}
                                                 {% endif %}
                                             </div>
                                         </li>
@@ -83,9 +87,9 @@
                                 <ul class="list-group">
                                     <li class="list-group-item clr-dft"><strong>{% if unit.unit_name %} {{ unit.unit_name }} {% endif %}</strong></li>
                                     <li class="list-group-item" style="height:100px;overflow:hidden;padding:10px;">
-                                        <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;">
+                                        <div class="clr-gre" style="height:75px;overflow:hidden;padding-bottom:10px;text-align:justfy;">
                                             {% if unit.unit_description %}
-                                                {{ unit.unit_description }}
+                                                    {{ unit.unit_description|truncatewords:20 }}
                                             {% endif %}
                                         </div>
                                     </li>

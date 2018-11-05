@@ -48,7 +48,7 @@ class UnitCreationForm(ModelForm):
                     'name': 'unit_description',
                     'id': 'unit_description',
                     'class': 'form-control',
-                    'placeholder': 'Enter Service unit description ( Less that 1024 characters )',
+                    'placeholder': 'Enter Service unit description (Less than 1024 characters)',
                     'style': 'min-height:200px;border-radius:3px;height:100%;',
                 }
             ),

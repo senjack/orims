@@ -26,6 +26,7 @@ class ServiceUnit(models.Model):
         ('Club', 'Club'),
         ('Cooperative Society', 'Cooperative Society'),
         ('Drug Shop', 'Drug Shop'),
+        ('Financial Institution', 'Financial Institution'),
         ('Group', 'Group'),
         ('Health Center', 'Health Center'),
         ('Hospital', 'Hospital'),
@@ -44,7 +45,7 @@ class ServiceUnit(models.Model):
     # Creating a choice of service units
     unit_type = models.CharField(
         'Service Unit Category',
-        max_length=15,
+        max_length=30,
         choices=unit_choice,
         default='select',
     )
@@ -68,6 +69,7 @@ class ServiceUnit(models.Model):
     # Enforcing custom table name
     class Meta:
         db_table = "ServiceUnit"
+        ordering = ['-registration_date']
     # End class Meta
 # End class ServiceUnit
 

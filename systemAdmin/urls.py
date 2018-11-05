@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('serviceUnits', views.serviceUnits, name='serviceUnits'),
 
+    path('serviceUnits/<deleted>/', views.serviceUnits, name='serviceUnits'),
+
     path('serviceUnits?user=system-admin&level=system_admin&action=create_unit&mode=load_form', views.serviceUnits, name='serviceUnits'),
 
     path('serviceUnits?user=system-admin&level=system_admin&action=cancel_unit_creation&mode=hide_form', views.serviceUnits, name='serviceUnits'),

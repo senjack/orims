@@ -20,12 +20,12 @@
     <!-- right bigger body section -->
     <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom:20px;" >
             <div style="margin-top:-20px;width:100%;"></div>
-            {% if unit_creation_success or unit_update_success or create_unit or edit_unit or update_unit %}
+            {% if unit_creation_success or unit_update_success or create_unit or edit_unit or update_unit or unit_name_matched %}
                 {% block create_unit %}{% include '../inclusions/units/unit_creation_form.html' %} {% endblock %}
             {% elif display_unit_selection_list %}
                 {% block unit_list %}{% include '../inclusions/units/unit_selection_template.html' %} {% endblock %}
             {% elif update_admin %}
-                {% block admin_update %}{% include '../inclusions/admin/admin_profile.html' %} {% endblock %}
+                {% block admin_update %}{% include '../inclusions/admin/admin_profile_update.html' %} {% endblock %}
             {% else %}
                 {% block OA %}{% include '../inclusions/service_units_options.html' %} {% endblock %}
             {% endif %}

@@ -60,6 +60,16 @@ def fetch_all_branches():
     branches = Branch.objects.all()
     return branches
 
+def build_unit_registration_form(context=None):
+    context.update({'create_unit': True})
+    context.update({'form_title': 'Service unit Registration form'})
+    context.update({'form_prompt_message': 'Register Ministry, Organisation, Business, Firm, ...'})
+    context.update({'submit_button_caption': 'Register Unit'})
+    context.update({'toggle_title1': 'Click to Register Service Unit'})
+    context.update({'toggle_title2': 'Click to Cancel Service Unit Registration Process'})
+    context.update({'action': 'create_unit'})
+    return context
+
 def build_unit_update_form(context=None):
     context.update({'update_unit': True})
     context.update({'form_title': 'Service unit Update form'})
