@@ -37,3 +37,11 @@ a.list1:hover{background:#eee;}
 }
 
 .hidden-element{display:none;}
+
+.model-plugin-style{
+    z-index:0;
+    width:100%;
+    height:1000x;
+    background:#000;
+    color:red;
+}
